@@ -1,4 +1,5 @@
 import React from 'react';
+import { iOSUIKit } from 'react-native-typography';
 
 import {
   createStackNavigator,
@@ -35,8 +36,7 @@ const AppStack = createStackNavigator(
       headerRight: <SearchButton />,
       title: 'ASOS',
       headerTitleStyle: {
-        fontSize: 26,
-        fontWeight: 'bold'
+        ...iOSUIKit.largeTitleEmphasized
       }
     }
   }
