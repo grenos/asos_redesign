@@ -8,6 +8,11 @@ class App extends Component {
   constructor(props) {
     super(props);
   }
+
+  static navigationOptions = {
+    header: null
+  };
+
   render() {
     const key = '12345';
 
@@ -15,8 +20,11 @@ class App extends Component {
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to Asos Redesign project</Text>
         <Button title="load" onPress={() => this.props.selectItem(key)} />
-
         <Button title="show" onPress={() => alert(this.props.testProps)} />
+        <Button
+          title="navigation"
+          onPress={() => this.props.navigation.navigate('Home')}
+        />
       </View>
     );
   }
