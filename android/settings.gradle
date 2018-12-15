@@ -1,0 +1,3 @@
+rootProject.name = 'asos_redesign'
+
+include ':app'
