@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { withNavigation } from 'react-navigation';
+import { connect } from 'react-redux';
+import { toggleState } from '../../store/actions/actions';
 import { wpW } from '../../helpers/helpers';
 
 const SearchButton = props => {
   return (
-    <TouchableOpacity onPress={() => props.navigation.goBack()}>
+    <TouchableOpacity onPress={() => props.toggler()}>
       <View style={styles.buttonContainer}>
         <Text style={styles.text}>SEARCH</Text>
       </View>
@@ -32,4 +33,15 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withNavigation(SearchButton);
+const mapDispatchToProps = dispacth => {
+  return {
+    toggler: () => dispacth(toggleState())
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SearchButton);
+
+// export default withNavigation(SearchButton);
