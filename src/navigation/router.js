@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   createStackNavigator,
   createAppContainer,
@@ -10,6 +12,10 @@ import {
 import App from '../screens/app/App';
 import Home from '../screens/home/home';
 
+//components
+import BackButton from '../components/backButton/BackButton';
+import SearchButton from '../components/searchButton/SearchButton';
+
 const AppStack = createStackNavigator(
   {
     App: {
@@ -20,7 +26,19 @@ const AppStack = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'App'
+    initialRouteName: 'App',
+    defaultNavigationOptions: {
+      headerStyle: {
+        borderBottomColor: '#fff'
+      },
+      headerLeft: <BackButton />,
+      headerRight: <SearchButton />,
+      title: 'ASOS',
+      headerTitleStyle: {
+        fontSize: 26,
+        fontWeight: 'bold'
+      }
+    }
   }
 );
 
