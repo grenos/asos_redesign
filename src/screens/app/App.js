@@ -13,7 +13,7 @@ class App extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
+        <Text style={styles.welcome}>Welcome to Asos redesign project</Text>
         <Button title="load" onPress={() => this.props.selectItem(key)} />
 
         <Button title="show" onPress={() => alert(this.props.testProps)} />
