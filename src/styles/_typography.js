@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { iOSUIKit } from 'react-native-typography';
 
-export default StyleSheet.create({
+export const styles = StyleSheet.create({
   navTitle: {
     ...iOSUIKit.largeTitleEmphasized
   },

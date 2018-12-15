@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import SearchContainer from '../../components/searchBar/SearchContainer';
+import { iOSUIKit } from 'react-native-typography';
 
 export default class Home extends Component {
   //
@@ -9,7 +10,9 @@ export default class Home extends Component {
     return (
       <View>
         <SearchContainer />
-        <Text>Hello other page!</Text>
+        <ScrollView>
+          <Text style={iOSUIKit.largeTitleEmphasized}>CATALOGUE</Text>
+        </ScrollView>
       </View>
     );
   }
