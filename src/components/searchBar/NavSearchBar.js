@@ -13,7 +13,6 @@ class NavSearchBar extends Component {
   };
 
   _onSubmit = input => {
-    alert(input);
     this.props.inputData(input);
   };
 
