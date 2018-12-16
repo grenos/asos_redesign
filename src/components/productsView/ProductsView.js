@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import { wpH, wpW } from '../../helpers/helpers';
 
+// import EStyleSheet from 'react-native-extended-stylesheet';
+
 export default class ProductsView extends Component {
   state = {
     testData: [
@@ -35,6 +37,31 @@ export default class ProductsView extends Component {
         key: 'e',
         img: 'http://unsplash.it/250/400?random&gravity=center',
         title: 'Random Title'
+      },
+      {
+        key: 'f',
+        img: 'http://unsplash.it/250/400?random&gravity=center',
+        title: 'Random Title'
+      },
+      {
+        key: 'g',
+        img: 'http://unsplash.it/250/400?random&gravity=center',
+        title: 'Random Title'
+      },
+      {
+        key: 'h',
+        img: 'http://unsplash.it/250/400?random&gravity=center',
+        title: 'Random Title'
+      },
+      {
+        key: 'i',
+        img: 'http://unsplash.it/250/400?random&gravity=center',
+        title: 'Random Title'
+      },
+      {
+        key: 'j',
+        img: 'http://unsplash.it/250/400?random&gravity=center',
+        title: 'Random Title'
       }
     ]
   };
@@ -49,7 +76,7 @@ export default class ProductsView extends Component {
             source={{ uri: `${item.img}` }}
             style={styles.imgStyleEven}
           >
-            <Text>{item.title}</Text>
+            {/* <Text>{item.title}</Text> */}
           </ImageBackground>
         </View>
       );
@@ -61,7 +88,7 @@ export default class ProductsView extends Component {
             source={{ uri: `${item.img}` }}
             style={styles.imgStyleOdd}
           >
-            <Text>{item.title}</Text>
+            {/* <Text>{item.title}</Text> */}
           </ImageBackground>
         </View>
       );
@@ -85,28 +112,32 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: wpH(30),
+    height: wpH(35),
     zIndex: 2
   },
   viewContainerOdd: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: wpH(30)
+    height: wpH(35)
   },
   imgStyleEven: {
     width: '100%',
     height: '100%',
     position: 'absolute',
-    left: wpW(10),
-    paddingBottom: '5%',
-    paddingRight: '5%'
+    paddingTop: wpH(3),
+    top: wpH(7)
+    // left: wpW(7)
   },
   imgStyleOdd: {
     width: '100%',
     height: '100%',
     position: 'absolute',
-    bottom: wpH(5),
-    paddingBottom: '5%'
+    paddingTop: wpH(3)
+    // right: wpW(7)
   }
 });
+
+{
+  /* <Text style={[iOSUIKit.largeTitleEmphasized]}>CATALOGUE</Text>; */
+}
