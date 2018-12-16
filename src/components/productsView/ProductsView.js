@@ -7,6 +7,7 @@ import {
   StyleSheet
 } from 'react-native';
 import { wpH, wpW } from '../../helpers/helpers';
+import { iOSUIKit } from 'react-native-typography';
 
 // import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -101,6 +102,11 @@ export default class ProductsView extends Component {
         data={this.state.testData}
         horizontal={false}
         numColumns={2}
+        ListHeaderComponent={() => (
+          <Text style={[iOSUIKit.largeTitleEmphasized, styles.header]}>
+            CATALOG
+          </Text>
+        )}
         renderItem={this._renderItem}
       />
     );
@@ -108,33 +114,39 @@ export default class ProductsView extends Component {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    top: wpH(1),
+    left: wpW(3)
+  },
   viewContainerEven: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: wpH(35),
+    height: wpH(40),
     zIndex: 2
   },
   viewContainerOdd: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: wpH(35)
+    height: wpH(40)
   },
   imgStyleEven: {
     width: '100%',
     height: '100%',
     position: 'absolute',
     paddingTop: wpH(3),
-    top: wpH(7)
-    // left: wpW(7)
+    top: wpH(7),
+    left: wpW(3)
   },
   imgStyleOdd: {
     width: '100%',
     height: '100%',
     position: 'absolute',
-    paddingTop: wpH(3)
-    // right: wpW(7)
+    paddingTop: wpH(3),
+    right: wpW(3)
   }
 });
 
