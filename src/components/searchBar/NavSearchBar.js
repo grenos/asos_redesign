@@ -1,22 +1,30 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { searchInput } from '../../store/actions/actions';
+
 // import { SearchBar } from 'react-native-elements';
 import SearchBar from 'react-native-material-design-searchbar';
 import { wpW } from '../../helpers/helpers';
 
-export default class NavSearchBar extends Component {
+class NavSearchBar extends Component {
   state = {
     input: ''
   };
 
-  someMethod = () => {
-    // alert('typed');
+  _onSubmit = input => {
+    alert(input);
+    this.props.inputData(input);
   };
 
   render() {
+    //
+    const { input } = this.state;
+
     return (
       <SearchBar
-        onSearchChange={() => console.log('On Search Change')}
+        onSearchChange={data => this.setState({ input: data })}
+        onSubmitEditing={() => this._onSubmit(input)}
         height={30}
         iconColor="#000"
         inputStyle={styles.container}
@@ -44,17 +52,13 @@ const styles = StyleSheet.create({
   }
 });
 
-// placeholder = 'SEARCH HERE';
+const mapDispatchToProps = dispacth => {
+  return {
+    inputData: data => dispacth(searchInput(data))
+  };
+};
 
-{
-  /* <SearchBar
-        containerStyle={styles.container}
-        inputContainerStyle={styles.inputContainer}
-        inputStyle={styles.input}
-        showLoading={false}
-        searchIcon={{ color: '#000' }}
-        clearIcon={{ color: '#000' }}
-        onChangeText={() => this.someMethod()}
-        placeholderTextColor="#000"
-      /> */
-}
+export default connect(
+  null,
+  mapDispatchToProps
+)(NavSearchBar);

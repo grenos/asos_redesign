@@ -1,5 +1,3 @@
-import { TEST_ACTION } from '../actions/actions';
-
 const UI_STATE = {
   toggle: false
 };

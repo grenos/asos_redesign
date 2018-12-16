@@ -1,15 +1,16 @@
 import { TEST_ACTION } from '../actions/actionTypes';
 
 const API_STATE = {
-  key: ''
+  key: '',
+  searchInput: ''
 };
 
 const reducer = (state = API_STATE, action) => {
   switch (action.type) {
-    case TEST_ACTION:
+    case 'SEARCH_INPUT':
       return {
         ...state,
-        key: action.payload
+        searchInput: action.payload
       };
     default:
       return state;
