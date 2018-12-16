@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { SearchBar } from 'react-native-elements';
+// import { SearchBar } from 'react-native-elements';
+import SearchBar from 'react-native-material-design-searchbar';
 import { wpW } from '../../helpers/helpers';
 
 export default class NavSearchBar extends Component {
@@ -9,18 +10,19 @@ export default class NavSearchBar extends Component {
   };
 
   someMethod = () => {
-    alert('typed');
+    // alert('typed');
   };
 
   render() {
     return (
       <SearchBar
-        containerStyle={styles.container}
-        inputStyle={styles.input}
-        noIcon={true}
-        onChangeText={this.someMethod}
-        placeholderTextColor="#000"
-        placeholder="SEARCH HERE..."
+        onSearchChange={() => console.log('On Search Change')}
+        height={30}
+        iconColor="#000"
+        inputStyle={styles.container}
+        textStyle={styles.input}
+        placeholder="SEARCH..."
+        placeholderColor="#bdbdbd"
       />
     );
   }
@@ -28,25 +30,31 @@ export default class NavSearchBar extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
-    paddingTop: 10,
     borderTopWidth: 0,
-    borderBottomWidth: 0,
-    alignItems: 'center'
-  },
-  input: {
-    borderWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
     borderBottomWidth: 1,
     borderBottomColor: '#000',
-    backgroundColor: '#fff',
-    marginLeft: 0,
-    marginRight: 0,
-    width: wpW(87),
-    fontSize: 12,
-    fontWeight: 'bold',
-    paddingLeft: 0,
-    color: '#000',
-    margin: 4,
-    height: 19
+    marginRight: wpW(5),
+    marginLeft: wpW(5)
+  },
+  input: {
+    fontSize: 14,
+    color: '#000'
   }
 });
+
+// placeholder = 'SEARCH HERE';
+
+{
+  /* <SearchBar
+        containerStyle={styles.container}
+        inputContainerStyle={styles.inputContainer}
+        inputStyle={styles.input}
+        showLoading={false}
+        searchIcon={{ color: '#000' }}
+        clearIcon={{ color: '#000' }}
+        onChangeText={() => this.someMethod()}
+        placeholderTextColor="#000"
+      /> */
+}

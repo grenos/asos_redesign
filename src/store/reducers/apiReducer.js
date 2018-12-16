@@ -1,8 +1,10 @@
 import { TEST_ACTION } from '../actions/actionTypes';
 
-import { initState } from '../store';
+const API_STATE = {
+  key: ''
+};
 
-const reducer = (state = initState, action) => {
+const reducer = (state = API_STATE, action) => {
   switch (action.type) {
     case TEST_ACTION:
       return {

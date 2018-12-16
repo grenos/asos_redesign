@@ -2,10 +2,6 @@ import { createStore, combineReducers, compose } from 'redux';
 import apiReducer from '../store/reducers/apiReducer';
 import uiReducer from '../store/reducers/uiReducer';
 
-export const initState = {
-  key: ''
-};
-
 const rootReducer = combineReducers({
   apiReducer: apiReducer,
   uiReducer: uiReducer
