@@ -1,5 +1,3 @@
-import { TEST_ACTION } from '../actions/actionTypes';
-
 const API_STATE = {
   key: '',
   searchInput: ''

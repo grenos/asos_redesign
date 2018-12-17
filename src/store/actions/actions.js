@@ -1,17 +1,8 @@
-import { TEST_ACTION } from './actionTypes';
-
 // @ @ @
 
 // API ACTIONS
 
 // @ @ @
-
-export const testAction = key => {
-  return {
-    type: TEST_ACTION,
-    payload: key
-  };
-};
 
 export const searchInput = data => ({
   type: 'SEARCH_INPUT',
