@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { searchInput } from '../../store/actions/actions';
-
-// import { SearchBar } from 'react-native-elements';
 import SearchBar from 'react-native-material-design-searchbar';
 import { wpW } from '../../helpers/helpers';
-// import { withNavigation } from 'react-navigation';
-
+import { compose } from 'redux';
+import { withNavigation } from 'react-navigation';
 class NavSearchBar extends Component {
   state = {
     input: ''
@@ -15,6 +13,7 @@ class NavSearchBar extends Component {
 
   _onSubmit = input => {
     this.props.inputData(input);
+    this.props.navigation.navigate('Home');
   };
 
   render() {
@@ -58,7 +57,10 @@ const mapDispatchToProps = dispacth => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
+export default compose(
+  connect(
+    null,
+    mapDispatchToProps
+  ),
+  withNavigation
 )(NavSearchBar);

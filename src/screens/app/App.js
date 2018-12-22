@@ -7,8 +7,6 @@ export default class App extends Component {
   };
 
   render() {
-    const key = '12345';
-
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to Asos Redesign project</Text>

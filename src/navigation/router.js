@@ -55,7 +55,8 @@ const CompleteStack = createStackNavigator(
   {
     mode: 'modal',
     headerMode: 'none',
-    cardOverlayEnabled: true
+    cardOverlayEnabled: true,
+    transparentCard: true
   }
 );
 
