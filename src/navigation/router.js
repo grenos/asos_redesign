@@ -17,6 +17,7 @@ import SearchProductModal from '../screens/modals/SearchProductModal';
 //components
 import BackButton from '../components/backButton/BackButton';
 import SearchButton from '../components/searchButton/SearchButton';
+import Blur from '../components/blur/BlurComponent';
 
 const AppStack = createStackNavigator(
   {
@@ -31,14 +32,17 @@ const AppStack = createStackNavigator(
     initialRouteName: 'App',
     defaultNavigationOptions: {
       headerStyle: {
-        borderBottomColor: '#fff'
+        borderBottomWidth: 0
       },
+      headerTransparent: true,
+      headerBackground: <Blur />,
       headerLeft: <BackButton />,
       headerRight: <SearchButton />,
       title: 'ASOS',
       headerTitleStyle: {
         ...iOSUIKit.largeTitleEmphasized
-      }
+      },
+      headerBackgroundTransitionPreset: 'translate'
     }
   }
 );

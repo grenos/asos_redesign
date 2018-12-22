@@ -24,12 +24,12 @@ class NavSearchBar extends Component {
       <SearchBar
         onSearchChange={data => this.setState({ input: data })}
         onSubmitEditing={() => this._onSubmit(input)}
-        height={30}
+        height={40}
         iconColor="#000"
         inputStyle={styles.container}
         textStyle={styles.input}
-        placeholder="SEARCH..."
-        placeholderColor="#bdbdbd"
+        placeholder="Search here..."
+        placeholderColor="#000"
       />
     );
   }
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     marginLeft: wpW(5)
   },
   input: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#000'
   }
 });

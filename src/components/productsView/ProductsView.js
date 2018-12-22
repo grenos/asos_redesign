@@ -4,7 +4,8 @@ import {
   FlatList,
   ImageBackground,
   Text,
-  StyleSheet
+  StyleSheet,
+  SafeAreaView
 } from 'react-native';
 import { wpH, wpW } from '../../helpers/helpers';
 import { iOSUIKit } from 'react-native-typography';
@@ -77,7 +78,7 @@ export default class ProductsView extends Component {
             source={{ uri: `${item.img}` }}
             style={styles.imgStyleEven}
           >
-            {/* <Text>{item.title}</Text> */}
+            <Text>{item.title}</Text>
           </ImageBackground>
         </View>
       );
@@ -89,7 +90,7 @@ export default class ProductsView extends Component {
             source={{ uri: `${item.img}` }}
             style={styles.imgStyleOdd}
           >
-            {/* <Text>{item.title}</Text> */}
+            <Text>{item.title}</Text>
           </ImageBackground>
         </View>
       );
@@ -99,6 +100,7 @@ export default class ProductsView extends Component {
   render() {
     return (
       <FlatList
+        style={{ paddingTop: wpH(15) }}
         data={this.state.testData}
         horizontal={false}
         numColumns={2}
@@ -122,15 +124,15 @@ const styles = StyleSheet.create({
   },
   viewContainerEven: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     height: wpH(40),
     zIndex: 2
   },
   viewContainerOdd: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     height: wpH(40)
   },
   imgStyleEven: {
