@@ -6,12 +6,13 @@ import {
   createAppContainer,
   createBottomTabNavigator,
   StackActions,
-  NavigationActions,
-  SafeAreaView
+  NavigationActions
 } from 'react-navigation';
 
+// screens
 import App from '../screens/app/App';
 import Home from '../screens/home/home';
+import SearchProductModal from '../screens/modals/SearchProductModal';
 
 //components
 import BackButton from '../components/backButton/BackButton';
@@ -42,4 +43,20 @@ const AppStack = createStackNavigator(
   }
 );
 
-export default (AppContainer = createAppContainer(AppStack));
+const CompleteStack = createStackNavigator(
+  {
+    AppStack: {
+      screen: AppStack
+    },
+    SearchProductModal: {
+      screen: SearchProductModal
+    }
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+    cardOverlayEnabled: true
+  }
+);
+
+export default (AppContainer = createAppContainer(CompleteStack));

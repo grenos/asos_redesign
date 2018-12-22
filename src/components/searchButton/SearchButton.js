@@ -1,25 +1,14 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Keyboard
-} from 'react-native';
-import { connect } from 'react-redux';
-import { toggleState } from '../../store/actions/actions';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+
 import { wpW } from '../../helpers/helpers';
+import { withNavigation } from 'react-navigation';
 
 const SearchButton = props => {
-  //
-  const _handleOnClick = () => {
-    props.toggler();
-    // close keyboard if open
-    Keyboard.dismiss();
-  };
-
   return (
-    <TouchableOpacity onPress={_handleOnClick}>
+    <TouchableOpacity
+      onPress={() => props.navigation.navigate('SearchProductModal')}
+    >
       <View style={styles.buttonContainer}>
         <Text style={styles.text}>SEARCH</Text>
       </View>
@@ -46,15 +35,15 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapDispatchToProps = dispacth => {
-  return {
-    toggler: () => dispacth(toggleState())
-  };
-};
+// const mapDispatchToProps = dispacth => {
+//   return {
+//     toggler: () => dispacth(toggleState())
+//   };
+// };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(SearchButton);
+// export default compose(
+//   mapDispatchToProps,
+//   withNavigation
+// )(SearchButton);
 
-// export default withNavigation(SearchButton);
+export default withNavigation(SearchButton);

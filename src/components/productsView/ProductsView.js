@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: 'transparent',
     position: 'absolute',
-    top: wpH(1),
+    top: wpH(2),
     left: wpW(3)
   },
   viewContainerEven: {
@@ -134,22 +134,18 @@ const styles = StyleSheet.create({
     height: wpH(40)
   },
   imgStyleEven: {
-    width: '100%',
+    width: wpW(55),
     height: '100%',
     position: 'absolute',
     paddingTop: wpH(3),
-    top: wpH(7),
-    left: wpW(3)
+    top: wpH(10)
+    // left: wpW(3)
   },
   imgStyleOdd: {
-    width: '100%',
+    width: wpW(55),
     height: '100%',
     position: 'absolute',
-    paddingTop: wpH(3),
-    right: wpW(3)
+    paddingTop: wpH(3)
+    // right: wpW(3)
   }
 });
-
-{
-  /* <Text style={[iOSUIKit.largeTitleEmphasized]}>CATALOGUE</Text>; */
-}

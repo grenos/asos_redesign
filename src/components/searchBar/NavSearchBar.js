@@ -6,6 +6,7 @@ import { searchInput } from '../../store/actions/actions';
 // import { SearchBar } from 'react-native-elements';
 import SearchBar from 'react-native-material-design-searchbar';
 import { wpW } from '../../helpers/helpers';
+// import { withNavigation } from 'react-navigation';
 
 class NavSearchBar extends Component {
   state = {
