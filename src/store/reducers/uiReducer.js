@@ -1,13 +1,23 @@
-import { TEST_ACTION } from '../actions/actions';
+const UI_STATE = {
+  toggle: false
+};
 
-import { initState } from '../store';
-
-const reducer = (state = initState, action) => {
+const reducer = (state = UI_STATE, action) => {
   switch (action.type) {
-    case TEST_ACTION:
+    case 'TOGGLE_STATE':
       return {
         ...state,
-        key: action.payload
+        toggle: !state.toggle
+      };
+    case 'TOGGLE_STATE_TRUE':
+      return {
+        ...state,
+        toggle: true
+      };
+    case 'TOGGLE_STATE_FALSE':
+      return {
+        ...state,
+        toggle: false
       };
     default:
       return state;
