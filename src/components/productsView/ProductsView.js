@@ -106,7 +106,7 @@ export default class ProductsView extends Component {
   render() {
     return (
       <FlatList
-        style={{ paddingTop: wpH(15) }}
+        style={{ paddingTop: wpH(13) }}
         data={this.state.testData}
         horizontal={false}
         numColumns={2}
