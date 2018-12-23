@@ -6,7 +6,7 @@ import { wpW } from '../../helpers/helpers';
 const BackButon = props => {
   return (
     <TouchableOpacity onPress={() => props.navigation.goBack()}>
-      <View style={styles.buttonContainer}>
+      <View {...props} style={[styles.buttonContainer, props.style]}>
         <Text style={styles.text}>BACK</Text>
       </View>
     </TouchableOpacity>

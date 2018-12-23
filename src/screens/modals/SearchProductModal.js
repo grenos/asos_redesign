@@ -6,28 +6,28 @@ import SearchContainer from '../../components/searchBar/SearchContainer';
 import BackButon from '../../components/backButton/BackButton';
 import { wpW, wpH } from '../../helpers/helpers';
 
-export default (SearchProductModal = () => {
+const SearchProductModal = props => {
   return (
     <View style={styles.container}>
       <SafeAreaView />
       <BlurView style={styles.absolute} blurType="light" blurAmount={20} />
-      <View style={styles.button}>
-        <BackButon />
-      </View>
+      <BackButon style={styles.button} />
       <Text style={[iOSUIKit.title3Emphasized, styles.header]}>
         Search our catalog here
       </Text>
       <SearchContainer />
     </View>
   );
-});
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
   button: {
-    width: '17%'
+    width: '17%',
+    borderBottomWidth: 0,
+    marginTop: '3%'
   },
   header: {
     marginLeft: wpW(7),
@@ -42,3 +42,5 @@ const styles = StyleSheet.create({
     right: 0
   }
 });
+
+export default SearchProductModal;

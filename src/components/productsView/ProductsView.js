@@ -78,7 +78,7 @@ export default class ProductsView extends Component {
             source={{ uri: `${item.img}` }}
             style={styles.imgStyleEven}
           >
-            <Text>{item.title}</Text>
+            {/* <Text style={iOSUIKit.title3Emphasized}>{item.title}</Text> */}
           </ImageBackground>
         </View>
       );
@@ -90,12 +90,18 @@ export default class ProductsView extends Component {
             source={{ uri: `${item.img}` }}
             style={styles.imgStyleOdd}
           >
-            <Text>{item.title}</Text>
+            {/* <Text style={iOSUIKit.title3Emphasized}>{item.title}</Text> */}
           </ImageBackground>
         </View>
       );
     }
   };
+
+  _renderHeader = () => (
+    <Text style={[iOSUIKit.largeTitleEmphasized, styles.header]}>
+      OUR CATALOGUE
+    </Text>
+  );
 
   render() {
     return (
@@ -104,11 +110,8 @@ export default class ProductsView extends Component {
         data={this.state.testData}
         horizontal={false}
         numColumns={2}
-        ListHeaderComponent={() => (
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.header]}>
-            CATALOG
-          </Text>
-        )}
+        ListHeaderComponent={this._renderHeader}
+        stickyHeaderIndices={[0]}
         renderItem={this._renderItem}
       />
     );
@@ -117,10 +120,10 @@ export default class ProductsView extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: 'transparent',
+    // backgroundColor: 'transparent',
     position: 'absolute',
     top: wpH(2),
-    left: wpW(3)
+    left: wpW(1)
   },
   viewContainerEven: {
     flex: 1,
@@ -140,14 +143,14 @@ const styles = StyleSheet.create({
     height: '100%',
     position: 'absolute',
     paddingTop: wpH(3),
-    top: wpH(10)
-    // left: wpW(3)
+    top: wpH(10),
+    left: wpW(1)
   },
   imgStyleOdd: {
     width: wpW(55),
     height: '100%',
     position: 'absolute',
-    paddingTop: wpH(3)
-    // right: wpW(3)
+    paddingTop: wpH(3),
+    right: wpW(1)
   }
 });
