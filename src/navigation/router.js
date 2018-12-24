@@ -11,6 +11,7 @@ import {
 
 // screens
 import App from '../screens/app/App';
+import GenderView from '../screens/genderView/GenderView';
 import Home from '../screens/home/home';
 import SearchProductModal from '../screens/modals/SearchProductModal';
 
@@ -21,15 +22,15 @@ import Blur from '../components/blur/BlurComponent';
 
 const AppStack = createStackNavigator(
   {
-    App: {
-      screen: App
+    GenderView: {
+      screen: GenderView
     },
     Home: {
       screen: Home
     }
   },
   {
-    initialRouteName: 'App',
+    initialRouteName: 'GenderView',
     defaultNavigationOptions: {
       headerStyle: {
         borderBottomWidth: 0
