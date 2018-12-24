@@ -1,6 +1,6 @@
 const API_STATE = {
-  key: '',
-  searchInput: ''
+  searchInput: '',
+  selectedCategiryId: ''
 };
 
 const reducer = (state = API_STATE, action) => {
@@ -9,6 +9,11 @@ const reducer = (state = API_STATE, action) => {
       return {
         ...state,
         searchInput: action.payload
+      };
+    case 'SELECTED_GATEGORY':
+      return {
+        ...state,
+        selectedCategiryId: action.payload
       };
     default:
       return state;

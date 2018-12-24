@@ -5,15 +5,26 @@ import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
   StatusBar
 } from 'react-native';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withNavigation } from 'react-navigation';
 import { wpW, wpH } from '../../helpers/helpers';
 import { iOSUIKit } from 'react-native-typography';
 import { scaleFontSize } from '../../helpers/helpers';
+
 const SelectGender = props => {
   const { genders } = props;
+
+  const handleNavigation = id => {
+    if (id === 'woman') {
+      // send id to apireducer here
+    } else {
+      // send id to apireducer here
+    }
+    props.navigation.navigate('SelectCategory');
+  };
 
   return (
     <View style={styles.container}>
@@ -21,7 +32,7 @@ const SelectGender = props => {
       {genders.map(item => {
         return (
           <TouchableOpacity
-            onPress={() => null}
+            onPress={() => handleNavigation(item.id)}
             key={item.id}
             activeOpacity={0.7}
           >
@@ -78,4 +89,10 @@ const mapStateToProps = state => {
 //   };
 // };
 
-export default connect(mapStateToProps)(SelectGender);
+export default compose(
+  connect(
+    mapStateToProps,
+    null
+  ),
+  withNavigation
+)(SelectGender);

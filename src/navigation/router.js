@@ -12,6 +12,7 @@ import {
 // screens
 import App from '../screens/app/App';
 import GenderView from '../screens/genderView/GenderView';
+import SelectCategory from '../screens/selectCategory/SelectCategory';
 import Home from '../screens/home/home';
 import SearchProductModal from '../screens/modals/SearchProductModal';
 
@@ -24,6 +25,9 @@ const AppStack = createStackNavigator(
   {
     GenderView: {
       screen: GenderView
+    },
+    SelectCategory: {
+      screen: SelectCategory
     },
     Home: {
       screen: Home
