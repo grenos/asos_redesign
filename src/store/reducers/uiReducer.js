@@ -1,21 +1,4 @@
-import womanPic from '../../assets/img/gender/woman.jpg';
-import manPic from '../../assets/img/gender/men.jpg';
-
-const UI_STATE = {
-  toggle: false,
-  genders: [
-    {
-      id: 'woman',
-      gender: 'woman',
-      img: womanPic
-    },
-    {
-      id: 'man',
-      gender: 'man',
-      img: manPic
-    }
-  ]
-};
+import { UI_STATE } from '../state/defaultUiState';
 
 const reducer = (state = UI_STATE, action) => {
   switch (action.type) {
