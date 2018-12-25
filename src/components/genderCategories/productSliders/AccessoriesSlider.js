@@ -68,12 +68,13 @@ class AccessoriesSlider extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: wpH(1),
+    marginTop: wpH(5),
     marginBottom: 100
   },
   header: {
-    marginBottom: wpH(1)
-    // marginLeft: wpW(2)
+    position: 'absolute',
+    zIndex: 3,
+    top: -wpH(2)
   },
   slide: {},
   name: {
