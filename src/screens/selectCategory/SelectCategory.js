@@ -13,12 +13,7 @@ class SelectCategory extends Component {
     return (
       <View>
         <SafeAreaView />
-        <Text>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam
-          voluptates dolor est ex, odio corrupti aliquid excepturi similique
-          obcaecati vel saepe magni ut eligendi aperiam dignissimos enim harum
-          tenetur possimus.
-        </Text>
+        <WomanCategory />
       </View>
     );
   }

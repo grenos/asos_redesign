@@ -19,7 +19,7 @@ export const UI_STATE = {
       { name: 'Activewear', img: images.activewear },
       { name: 'Coats', img: images.coats },
       { name: 'Jackets', img: images.jackets },
-      { name: 'Hoodies and Sweatshirts', img: images.hoodies },
+      { name: 'Hoodies', img: images.hoodies },
       { name: 'Jeans', img: images.jeans },
       { name: 'Jumpers', img: images.jumpers },
       { name: 'Cardigans', img: images.cardigans },
@@ -33,22 +33,21 @@ export const UI_STATE = {
       { name: 'Leggings', img: images.leggings }
     ],
     shoes: [
-      { name: 'Boots', img: null },
-      { name: 'Chelsea boots', img: null },
-      { name: 'Flat shoes', img: null },
-      { name: 'Heels', img: null },
-      { name: 'Loafers', img: null },
-      { name: 'Sandals', img: null },
-      { name: 'Slippers', img: null },
-      { name: 'Trainers', img: null }
+      { name: 'Boots', img: images.boots },
+      { name: 'Chelsea boots', img: images.chelsea },
+      { name: 'Flat shoes', img: images.flat },
+      { name: 'Heels', img: images.heels },
+      { name: 'Loafers', img: images.loafers },
+      { name: 'Sandals', img: images.sandals },
+      { name: 'Slippers', img: images.slippers },
+      { name: 'Trainers', img: images.trainers }
     ],
     accessories: [
-      { name: 'Bags and Purses', img: null },
-      { name: 'Belts', img: null },
-      { name: 'Gloves', img: null },
-      { name: 'Hats', img: null },
-      { name: 'Scarves', img: null },
-      { name: 'Sunglasses', img: null }
+      { name: 'Bags and Purses', img: images.purse },
+      { name: 'Gloves', img: images.glove },
+      { name: 'Hats', img: images.hat },
+      { name: 'Scarves', img: images.scarve },
+      { name: 'Sunglasses', img: images.sunglasses }
     ]
   }
 };

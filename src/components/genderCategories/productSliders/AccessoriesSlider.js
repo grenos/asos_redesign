@@ -13,7 +13,7 @@ import Carousel from 'react-native-snap-carousel';
 import { wpW, wpH } from '../../../helpers/helpers';
 import { iOSUIKit } from 'react-native-typography';
 
-class ClothesSlider extends Component {
+class AccessoriesSlider extends Component {
   constructor(props) {
     super(props);
 
@@ -76,10 +76,10 @@ class ClothesSlider extends Component {
     return (
       <View style={styles.container}>
         <Text style={[iOSUIKit.largeTitleEmphasized, styles.header]}>
-          CLOTHES
+          ACCESSORIES
         </Text>
         <Carousel
-          data={this.props.clothing}
+          data={this.props.accessories}
           renderItem={this._renderItem}
           sliderWidth={wpW(100)}
           itemWidth={wpW(50)}
@@ -93,7 +93,8 @@ class ClothesSlider extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: wpH(8)
+    marginTop: wpH(1),
+    marginBottom: 100
   },
   header: {
     marginBottom: wpH(1),
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    clothing: state.uiReducer.womanCategories.clothing
+    accessories: state.uiReducer.womanCategories.accessories
   };
 };
 
@@ -133,4 +134,4 @@ export default compose(
     null
   ),
   withNavigation
-)(ClothesSlider);
+)(AccessoriesSlider);
