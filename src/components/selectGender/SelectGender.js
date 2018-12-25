@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  TouchableOpacity,
+  TouchableHighlight,
   ImageBackground,
   View,
   Text,
@@ -31,7 +31,7 @@ const SelectGender = props => {
       <StatusBar backgroundColor="#fff" barStyle="light-content" />
       {genders.map(item => {
         return (
-          <TouchableOpacity
+          <TouchableHighlight
             onPress={() => handleNavigation(item.id)}
             key={item.id}
             activeOpacity={0.7}
@@ -43,7 +43,7 @@ const SelectGender = props => {
                 </Text>
               </View>
             </ImageBackground>
-          </TouchableOpacity>
+          </TouchableHighlight>
         );
       })}
     </View>

@@ -4,7 +4,7 @@ import {
   Text,
   ImageBackground,
   StyleSheet,
-  TouchableOpacity
+  TouchableWithoutFeedback
 } from 'react-native';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -16,38 +16,16 @@ import { iOSUIKit } from 'react-native-typography';
 class AccessoriesSlider extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      activeSlide: 0
-    };
     this._renderItem = this._renderItem.bind(this);
   }
 
   _renderItem({ item, index }) {
-    if (index === this.state.activeSlide) {
-      return (
-        <View style={styles.slide}>
-          <TouchableOpacity
-            activeOpacity={0.6}
-            onPress={() => this._handleNavigation()}
-          >
-            <ImageBackground
-              source={item.img}
-              style={styles.img}
-              resizeMode="cover"
-            >
-              <View style={styles.TextContainer}>
-                <Text style={[iOSUIKit.subheadEmphasized, styles.name]}>
-                  {item.name.toUpperCase()}
-                </Text>
-              </View>
-            </ImageBackground>
-          </TouchableOpacity>
-        </View>
-      );
-    } else {
-      return (
-        <View style={styles.slide}>
+    return (
+      <View style={styles.slide}>
+        <TouchableWithoutFeedback
+          activeOpacity={0.6}
+          onPress={() => this._handleNavigation()}
+        >
           <ImageBackground
             source={item.img}
             style={styles.img}
@@ -59,17 +37,13 @@ class AccessoriesSlider extends Component {
               </Text>
             </View>
           </ImageBackground>
-        </View>
-      );
-    }
+        </TouchableWithoutFeedback>
+      </View>
+    );
   }
 
   _handleNavigation() {
     this.props.navigation.navigate('Home');
-  }
-
-  _onSnap(index) {
-    this.setState({ activeSlide: index });
   }
 
   render() {
@@ -83,7 +57,8 @@ class AccessoriesSlider extends Component {
           renderItem={this._renderItem}
           sliderWidth={wpW(100)}
           itemWidth={wpW(50)}
-          inactiveSlideOpacity={0.4}
+          inactiveSlideOpacity={1}
+          enableSnap={false}
           onSnapToItem={index => this._onSnap(index)}
         />
       </View>
@@ -97,8 +72,8 @@ const styles = StyleSheet.create({
     marginBottom: 100
   },
   header: {
-    marginBottom: wpH(1),
-    marginLeft: wpW(2)
+    marginBottom: wpH(1)
+    // marginLeft: wpW(2)
   },
   slide: {},
   name: {

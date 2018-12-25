@@ -4,7 +4,7 @@ import {
   Text,
   ImageBackground,
   StyleSheet,
-  TouchableOpacity
+  TouchableWithoutFeedback
 } from 'react-native';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -14,40 +14,28 @@ import { wpW, wpH } from '../../../helpers/helpers';
 import { iOSUIKit } from 'react-native-typography';
 
 class ShoesSlider extends Component {
+  // constructor(props) {
+  //   super(props);
+
+  //   this.state = {
+  //     activeSlide: 0
+  //   };
+  //   this._renderItem = this._renderItem.bind(this);
+  // }
+
   constructor(props) {
     super(props);
-
-    this.state = {
-      activeSlide: 0
-    };
     this._renderItem = this._renderItem.bind(this);
   }
 
   _renderItem({ item, index }) {
-    if (index === this.state.activeSlide) {
-      return (
-        <View style={styles.slide}>
-          <TouchableOpacity
-            activeOpacity={0.6}
-            onPress={() => this._handleNavigation()}
-          >
-            <ImageBackground
-              source={item.img}
-              style={styles.img}
-              resizeMode="cover"
-            >
-              <View style={styles.TextContainer}>
-                <Text style={[iOSUIKit.subheadEmphasized, styles.name]}>
-                  {item.name.toUpperCase()}
-                </Text>
-              </View>
-            </ImageBackground>
-          </TouchableOpacity>
-        </View>
-      );
-    } else {
-      return (
-        <View style={styles.slide}>
+    // if (index === this.state.activeSlide) {
+    return (
+      <View style={styles.slide}>
+        <TouchableWithoutFeedback
+          activeOpacity={0.6}
+          onPress={() => this._handleNavigation()}
+        >
           <ImageBackground
             source={item.img}
             style={styles.img}
@@ -59,18 +47,34 @@ class ShoesSlider extends Component {
               </Text>
             </View>
           </ImageBackground>
-        </View>
-      );
-    }
+        </TouchableWithoutFeedback>
+      </View>
+    );
+    // } else {
+    // return (
+    //   <View style={styles.slide}>
+    //     <ImageBackground
+    //       source={item.img}
+    //       style={styles.img}
+    //       resizeMode="cover"
+    //     >
+    //       <View style={styles.TextContainer}>
+    //         <Text style={[iOSUIKit.subheadEmphasized, styles.name]}>
+    //           {item.name.toUpperCase()}
+    //         </Text>
+    //       </View>
+    //     </ImageBackground>
+    //   </View>
+    // );
   }
 
   _handleNavigation() {
     this.props.navigation.navigate('Home');
   }
 
-  _onSnap(index) {
-    this.setState({ activeSlide: index });
-  }
+  // _onSnap(index) {
+  //   this.setState({ activeSlide: index });
+  // }
 
   render() {
     return (
@@ -83,8 +87,8 @@ class ShoesSlider extends Component {
           renderItem={this._renderItem}
           sliderWidth={wpW(100)}
           itemWidth={wpW(50)}
-          inactiveSlideOpacity={0.4}
-          onSnapToItem={index => this._onSnap(index)}
+          inactiveSlideOpacity={1}
+          enableSnap={false}
         />
       </View>
     );
@@ -96,8 +100,8 @@ const styles = StyleSheet.create({
     marginTop: wpH(1)
   },
   header: {
-    marginBottom: wpH(1),
-    marginLeft: wpW(2)
+    marginBottom: wpH(1)
+    // marginLeft: wpW(2)
   },
   slide: {},
   name: {
@@ -134,3 +138,6 @@ export default compose(
   ),
   withNavigation
 )(ShoesSlider);
+
+// this goes on carousel component
+// onSnapToItem={index => this._onSnap(index)}
