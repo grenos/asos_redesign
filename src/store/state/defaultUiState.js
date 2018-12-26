@@ -14,6 +14,7 @@ export const UI_STATE = {
       img: images.man
     }
   ],
+  brand: images.brand,
   womanCategories: {
     clothing: [
       { name: 'Activewear', img: images.activewear },

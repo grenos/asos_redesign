@@ -2,6 +2,7 @@ const images = {
   //gender
   woman: require('./gender/woman.jpg'),
   man: require('./gender/men.jpg'),
+  brand: require('./gender/brand_promo.png'),
   // woman clothes
   activewear: require('./categories/woman/clothes/activewear.jpg'),
   coats: require('./categories/woman/clothes/coats.jpg'),

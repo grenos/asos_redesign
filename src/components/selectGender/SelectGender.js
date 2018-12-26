@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  TouchableHighlight,
+  TouchableWithoutFeedback,
   ImageBackground,
   View,
   Text,
@@ -33,19 +33,24 @@ const SelectGender = props => {
     <View style={styles.container}>
       {genders.map(item => {
         return (
-          <TouchableHighlight
+          <TouchableWithoutFeedback
             onPress={() => handleNavigation(item.id)}
             key={item.id}
-            activeOpacity={0.7}
           >
-            <ImageBackground source={item.img} style={styles.img}>
-              <View style={styles.textContainer}>
-                <Text style={[iOSUIKit.largeTitleEmphasized, styles.header]}>
-                  {item.gender.toUpperCase()}
-                </Text>
-              </View>
-            </ImageBackground>
-          </TouchableHighlight>
+            <View style={styles.centerImages}>
+              <ImageBackground
+                source={item.img}
+                style={styles.img}
+                resizeMode="cover"
+              >
+                <View style={styles.textContainer}>
+                  <Text style={[iOSUIKit.largeTitleEmphasized, styles.header]}>
+                    {item.gender.toUpperCase()}
+                  </Text>
+                </View>
+              </ImageBackground>
+            </View>
+          </TouchableWithoutFeedback>
         );
       })}
     </View>
@@ -54,13 +59,17 @@ const SelectGender = props => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center'
+    height: wpH(50),
+    justifyContent: 'flex-start'
+    // alignItems: 'center'
+  },
+  centerImages: {
+    height: wpH(25)
+    // justifyContent: 'center'
   },
   img: {
     width: wpW(100),
-    height: wpH(40)
+    height: wpH(23)
   },
   textContainer: {
     flex: 1,
@@ -71,7 +80,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     lineHeight: 100,
     fontSize: scaleFontSize(55),
-    left: wpW(1),
+    // left: wpW(1),
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10
