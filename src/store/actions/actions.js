@@ -9,6 +9,11 @@ export const searchInput = data => ({
   payload: data
 });
 
+export const chooseGenderCategory = id => ({
+  type: 'CHOOSE_GENDER',
+  payload: id
+});
+
 // @ @ @
 
 // UI ACTIONS

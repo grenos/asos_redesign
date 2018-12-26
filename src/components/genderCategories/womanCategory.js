@@ -11,9 +11,9 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { wpW, wpH } from '../../helpers/helpers';
 
-import ClothesSlider from './productSliders/ClothesSlider';
-import ShoesSlider from './productSliders/ShoesSlider';
-import AccessoriesSlider from './productSliders/AccessoriesSlider';
+import ClothesSlider from './productSliders/woman/ClothesSlider';
+import ShoesSlider from './productSliders/woman/ShoesSlider';
+import AccessoriesSlider from './productSliders/woman/AccessoriesSlider';
 
 const WomanCategory = props => {
   return (

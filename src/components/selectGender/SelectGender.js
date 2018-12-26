@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { chooseGenderCategory } from '../../store/actions/actions';
 import { withNavigation } from 'react-navigation';
 import { wpW, wpH } from '../../helpers/helpers';
 import { iOSUIKit } from 'react-native-typography';
@@ -19,9 +20,11 @@ const SelectGender = props => {
 
   const handleNavigation = id => {
     if (id === 'woman') {
-      // send id to apireducer here
+      // send id of selected gender to apireducer here
+      props.chooseGender(id);
     } else {
       // send id to apireducer here
+      props.chooseGender(id);
     }
     props.navigation.navigate('SelectCategory');
   };
@@ -83,16 +86,16 @@ const mapStateToProps = state => {
   };
 };
 
-// const mapDispatchToProps = dispacth => {
-//   return {
-//     selectItem: key => dispacth(testAction(key))
-//   };
-// };
+const mapDispatchToProps = dispacth => {
+  return {
+    chooseGender: id => dispacth(chooseGenderCategory(id))
+  };
+};
 
 export default compose(
   connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
   ),
   withNavigation
 )(SelectGender);

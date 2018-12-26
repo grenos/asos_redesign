@@ -10,16 +10,26 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withNavigation } from 'react-navigation';
 import Carousel from 'react-native-snap-carousel';
-import { wpW, wpH } from '../../../helpers/helpers';
+import { wpW, wpH } from '../../../../helpers/helpers';
 import { iOSUIKit } from 'react-native-typography';
 
-class AccessoriesSlider extends Component {
+class ShoesSlider extends Component {
+  // constructor(props) {
+  //   super(props);
+
+  //   this.state = {
+  //     activeSlide: 0
+  //   };
+  //   this._renderItem = this._renderItem.bind(this);
+  // }
+
   constructor(props) {
     super(props);
     this._renderItem = this._renderItem.bind(this);
   }
 
   _renderItem({ item, index }) {
+    // if (index === this.state.activeSlide) {
     return (
       <View style={styles.slide}>
         <TouchableWithoutFeedback
@@ -40,26 +50,45 @@ class AccessoriesSlider extends Component {
         </TouchableWithoutFeedback>
       </View>
     );
+    // } else {
+    // return (
+    //   <View style={styles.slide}>
+    //     <ImageBackground
+    //       source={item.img}
+    //       style={styles.img}
+    //       resizeMode="cover"
+    //     >
+    //       <View style={styles.TextContainer}>
+    //         <Text style={[iOSUIKit.subheadEmphasized, styles.name]}>
+    //           {item.name.toUpperCase()}
+    //         </Text>
+    //       </View>
+    //     </ImageBackground>
+    //   </View>
+    // );
   }
 
   _handleNavigation() {
     this.props.navigation.navigate('Home');
   }
 
+  // _onSnap(index) {
+  //   this.setState({ activeSlide: index });
+  // }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={[iOSUIKit.largeTitleEmphasized, styles.header]}>
-          ACCESSORIES
+          SHOES
         </Text>
         <Carousel
-          data={this.props.accessories}
+          data={this.props.shoes}
           renderItem={this._renderItem}
           sliderWidth={wpW(100)}
           itemWidth={wpW(50)}
           inactiveSlideOpacity={1}
           enableSnap={false}
-          onSnapToItem={index => this._onSnap(index)}
         />
       </View>
     );
@@ -68,8 +97,7 @@ class AccessoriesSlider extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: wpH(5),
-    marginBottom: 100
+    marginTop: wpH(5)
   },
   header: {
     position: 'absolute',
@@ -94,7 +122,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    accessories: state.uiReducer.womanCategories.accessories
+    shoes: state.uiReducer.manCategories.shoes
   };
 };
 
@@ -110,4 +138,7 @@ export default compose(
     null
   ),
   withNavigation
-)(AccessoriesSlider);
+)(ShoesSlider);
+
+// this goes on carousel component
+// onSnapToItem={index => this._onSnap(index)}

@@ -49,5 +49,39 @@ export const UI_STATE = {
       { name: 'Scarves', img: images.scarve },
       { name: 'Sunglasses', img: images.sunglasses }
     ]
+  },
+  manCategories: {
+    clothing: [
+      { name: 'Coats', img: images.coatsM },
+      { name: 'Jackets', img: images.jacketsM },
+      { name: 'Hoodies', img: images.hoodiesM },
+      { name: 'Jeans', img: images.jeansM },
+      { name: 'Jumpers', img: images.jumpersM },
+      { name: 'Cardigans', img: images.cardigansM },
+      { name: 'Polos', img: images.polosM },
+      { name: 'Suits', img: images.suitsM },
+      { name: 'T-shirts', img: images.teesM },
+      { name: 'Tracksuits', img: images.tracksuitsM },
+      { name: 'Trousers', img: images.trousersM },
+      { name: 'Underwear', img: images.underwearM }
+    ],
+    shoes: [
+      { name: 'Boots', img: images.bootsM },
+      { name: 'Chelsea boots', img: images.chelseaM },
+      { name: 'Loafers', img: images.loafersM },
+      { name: 'Slippers', img: images.slippersM },
+      { name: 'Trainers', img: images.trainersM }
+    ],
+    accessories: [
+      { name: 'Bags', img: images.bagsM },
+      { name: 'Belts', img: images.beltsM },
+      { name: 'Hats', img: images.hatsM },
+      { name: 'Watches', img: images.watchesM },
+      { name: 'Scarves', img: images.scarvesM },
+      { name: 'Socks', img: images.socksM },
+      { name: 'Sunglasses', img: images.sunglassesM },
+      { name: 'Ties', img: images.tiesM },
+      { name: 'Wallets', img: images.walletsM }
+    ]
   }
 };

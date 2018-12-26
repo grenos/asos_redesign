@@ -32,7 +32,36 @@ const images = {
   glove: require('./categories/woman/accessories/gloves.jpg'),
   hat: require('./categories/woman/accessories/hats.jpg'),
   scarve: require('./categories/woman/accessories/scarve.jpg'),
-  sunglasses: require('./categories/woman/accessories/sunglasses.jpg')
+  sunglasses: require('./categories/woman/accessories/sunglasses.jpg'),
+  // man clothes
+  coatsM: require('./categories/men/clothes/coats.jpeg'),
+  jacketsM: require('./categories/men/clothes/jackets.jpeg'),
+  hoodiesM: require('./categories/men/clothes/hoodies.jpeg'),
+  jeansM: require('./categories/men/clothes/jeans.jpeg'),
+  jumpersM: require('./categories/men/clothes/jumpers.jpeg'),
+  cardigansM: require('./categories/men/clothes/cardigans.jpeg'),
+  polosM: require('./categories/men/clothes/polos.jpeg'),
+  suitsM: require('./categories/men/clothes/suits.jpeg'),
+  teesM: require('./categories/men/clothes/tees.jpeg'),
+  tracksuitsM: require('./categories/men/clothes/tracksuits.jpeg'),
+  trousersM: require('./categories/men/clothes/trousers.jpeg'),
+  underwearM: require('./categories/men/clothes/underwear.jpeg'),
+  // man shoes
+  bootsM: require('./categories/men/shoes/boots.jpeg'),
+  chelseaM: require('./categories/men/shoes/chelsea.jpeg'),
+  loafersM: require('./categories/men/shoes/loafersa.jpeg'),
+  slippersM: require('./categories/men/shoes/slippers.jpeg'),
+  trainersM: require('./categories/men/shoes/trainers.jpeg'),
+  // man accessories
+  bagsM: require('./categories/men/accessories/bags.jpeg'),
+  beltsM: require('./categories/men/accessories/belts.jpeg'),
+  hatsM: require('./categories/men/accessories/hats.jpeg'),
+  watchesM: require('./categories/men/accessories/watches.jpeg'),
+  scarvesM: require('./categories/men/accessories/scarves.jpeg'),
+  socksM: require('./categories/men/accessories/socks.jpeg'),
+  sunglassesM: require('./categories/men/accessories/sunglasses.jpeg'),
+  tiesM: require('./categories/men/accessories/ties.jpeg'),
+  walletsM: require('./categories/men/accessories/wallets.jpeg')
 };
 
 export default images;

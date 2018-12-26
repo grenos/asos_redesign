@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withNavigation } from 'react-navigation';
 import Carousel from 'react-native-snap-carousel';
-import { wpW, wpH } from '../../../helpers/helpers';
+import { wpW, wpH } from '../../../../helpers/helpers';
 import { iOSUIKit } from 'react-native-typography';
 
 class ClothesSlider extends Component {

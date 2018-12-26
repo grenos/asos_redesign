@@ -1,7 +1,4 @@
-const API_STATE = {
-  searchInput: '',
-  selectedCategiryId: ''
-};
+import { API_STATE } from '../state/defaultApiState';
 
 const reducer = (state = API_STATE, action) => {
   switch (action.type) {
@@ -10,10 +7,10 @@ const reducer = (state = API_STATE, action) => {
         ...state,
         searchInput: action.payload
       };
-    case 'SELECTED_GATEGORY':
+    case 'CHOOSE_GENDER':
       return {
         ...state,
-        selectedCategiryId: action.payload
+        chooseGender: action.payload
       };
     default:
       return state;
