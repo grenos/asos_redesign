@@ -9,6 +9,7 @@ import {
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withNavigation } from 'react-navigation';
+import { chooseNameCategory } from '../../../../store/actions/actions';
 import Carousel from 'react-native-snap-carousel';
 import { wpW, wpH } from '../../../../helpers/helpers';
 import { iOSUIKit } from 'react-native-typography';
@@ -24,7 +25,7 @@ class ClothesSlider extends Component {
       <View style={styles.slide}>
         <TouchableWithoutFeedback
           activeOpacity={0.6}
-          onPress={() => this._handleNavigation()}
+          onPress={() => this._handleNavigation(item.name)}
         >
           <ImageBackground
             source={item.img}
@@ -42,7 +43,8 @@ class ClothesSlider extends Component {
     );
   }
 
-  _handleNavigation() {
+  _handleNavigation(name) {
+    this.props.categoryName(name);
     this.props.navigation.navigate('Home');
   }
 
@@ -96,16 +98,16 @@ const mapStateToProps = state => {
   };
 };
 
-// const mapDispatchToProps = dispacth => {
-//   return {
-//     selectItem: key => dispacth(testAction(key))
-//   };
-// };
+const mapDispatchToProps = dispacth => {
+  return {
+    categoryName: name => dispacth(chooseNameCategory(name))
+  };
+};
 
 export default compose(
   connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
   ),
   withNavigation
 )(ClothesSlider);

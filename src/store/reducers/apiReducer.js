@@ -12,6 +12,11 @@ const reducer = (state = API_STATE, action) => {
         ...state,
         chooseGender: action.payload
       };
+    case 'CHOOSE_CATEGORY':
+      return {
+        ...state,
+        selectedCategoryName: action.payload
+      };
     default:
       return state;
   }

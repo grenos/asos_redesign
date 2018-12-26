@@ -14,6 +14,11 @@ export const chooseGenderCategory = id => ({
   payload: id
 });
 
+export const chooseNameCategory = name => ({
+  type: 'CHOOSE_CATEGORY',
+  payload: name
+});
+
 // @ @ @
 
 // UI ACTIONS
