@@ -61,7 +61,6 @@ class AccessoriesSlider extends Component {
           itemWidth={wpW(50)}
           inactiveSlideOpacity={1}
           enableSnap={false}
-          onSnapToItem={index => this._onSnap(index)}
         />
       </View>
     );

@@ -31,7 +31,6 @@ const SelectGender = props => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#fff" barStyle="light-content" />
       {genders.map(item => {
         return (
           <TouchableHighlight
@@ -55,13 +54,13 @@ const SelectGender = props => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center'
   },
   img: {
     width: wpW(100),
-    height: wpH(50)
+    height: wpH(40)
   },
   textContainer: {
     flex: 1,
