@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Animated, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import NavSearchBar from './NavSearchBar';
-import { toggleStateFalse } from '../../store/actions/actions';
+import { toggleStateFalse } from '../../store/actions/UiActions';
 
 class SearchContainer extends Component {
   constructor(props) {

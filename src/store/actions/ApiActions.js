@@ -23,12 +23,15 @@ export const chooseNameCategory = name => ({
 
 export const searchProducts = () => {
   return (dispatch, getState) => {
+    //
     const { apiReducer } = getState();
+
     const {
       selectedCategoryName = null,
       chooseGender = null,
       searchInput = null
     } = apiReducer;
+
     // wait for state to have category info then make call
     if (selectedCategoryName) {
       axios
@@ -38,6 +41,7 @@ export const searchProducts = () => {
         .then(res => {
           // handle success
           // then dispatch action with res
+          //res.data.products
           console.log(res);
         })
         .catch(error => {
@@ -51,4 +55,3 @@ export const searchProducts = () => {
     }
   };
 };
-s;

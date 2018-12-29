@@ -1,3 +1,4 @@
+//! react
 import React, { Component } from 'react';
 import {
   View,
@@ -7,13 +8,19 @@ import {
   TouchableWithoutFeedback,
   Dimensions
 } from 'react-native';
+
+//! redux
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { withNavigation } from 'react-navigation';
 import {
   chooseNameCategory,
   searchProducts
-} from '../../../../store/actions/actions';
+} from '../../../../store/actions/ApiActions';
+
+//! stylesheet
+
+//! libraries
+import { withNavigation } from 'react-navigation';
 import Carousel from 'react-native-snap-carousel';
 import { iOSUIKit } from 'react-native-typography';
 import {
@@ -104,9 +111,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    clothing: state.uiReducer.womanCategories.clothing,
-    gender: state.apiReducer.chooseGender,
-    category: state.apiReducer.selectedCategoryName
+    clothing: state.uiReducer.womanCategories.clothing
   };
 };
 

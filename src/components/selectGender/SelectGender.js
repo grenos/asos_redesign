@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { chooseGenderCategory } from '../../store/actions/actions';
+import { chooseGenderCategory } from '../../store/actions/ApiActions';
 import { withNavigation } from 'react-navigation';
 import { iOSUIKit } from 'react-native-typography';
 import {
@@ -20,7 +20,7 @@ const SelectGender = props => {
   const { genders } = props;
 
   const handleNavigation = id => {
-    if (id === 'woman') {
+    if (id === 'women') {
       // send id of selected gender to apiReducer here
       props.chooseGender(id);
     } else {

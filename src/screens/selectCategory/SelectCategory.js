@@ -13,7 +13,7 @@ class SelectCategory extends Component {
     return (
       <View>
         <SafeAreaView />
-        {this.props.genders == 'woman' ? <WomanCategory /> : <ManCategory />}
+        {this.props.genders == 'women' ? <WomanCategory /> : <ManCategory />}
       </View>
     );
   }

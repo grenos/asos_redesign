@@ -4,12 +4,12 @@ export const UI_STATE = {
   toggle: false,
   genders: [
     {
-      id: 'woman',
+      id: 'women',
       gender: 'woman',
       img: images.woman
     },
     {
-      id: 'man',
+      id: 'men',
       gender: 'man',
       img: images.man
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { searchInput } from '../../store/actions/actions';
+import { searchInput } from '../../store/actions/ApiActions';
 import SearchBar from 'react-native-material-design-searchbar';
 import { compose } from 'redux';
 import { withNavigation } from 'react-navigation';

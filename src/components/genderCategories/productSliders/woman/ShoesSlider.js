@@ -1,3 +1,4 @@
+//! react
 import React, { Component } from 'react';
 import {
   View,
@@ -7,11 +8,17 @@ import {
   TouchableWithoutFeedback,
   Dimensions
 } from 'react-native';
+
+//! redux
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { withNavigation } from 'react-navigation';
-import { chooseNameCategory } from '../../../../store/actions/actions';
+import {
+  chooseNameCategory,
+  searchProducts
+} from '../../../../store/actions/ApiActions';
 
+//! libraries
+import { withNavigation } from 'react-navigation';
 import Carousel from 'react-native-snap-carousel';
 import { iOSUIKit } from 'react-native-typography';
 import {
@@ -73,7 +80,11 @@ class ShoesSlider extends Component {
   }
 
   _handleSubmit(name) {
+    // dispatch data to state
     this.props.categoryName(name);
+    //call action
+    this.props.searchProducts();
+    // go to page
     this.props.navigation.navigate('Home');
   }
 
@@ -133,7 +144,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispacth => {
   return {
-    categoryName: name => dispacth(chooseNameCategory(name))
+    categoryName: name => dispacth(chooseNameCategory(name)),
+    searchProducts: () => dispacth(searchProducts())
   };
 };
 
