@@ -4,45 +4,42 @@ import {
   FlatList,
   ImageBackground,
   Text,
-  StyleSheet,
-  SafeAreaView
+  StyleSheet
 } from 'react-native';
 import { wpH, wpW } from '../../helpers/helpers';
 import { iOSUIKit } from 'react-native-typography';
-
-// import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default class ProductsView extends Component {
   state = {
     testData: [
       {
         key: 'a',
-        img: 'http://unsplash.it/250/400?random&gravity=center',
+        img: 'http://unsplash.it/180/200?gravity=center',
         title: 'Random Title'
       },
       {
         key: 'b',
-        img: 'http://unsplash.it/250/400?random&gravity=center',
+        img: 'http://unsplash.it/180/200?gravity=center',
         title: 'Random Title'
       },
       {
         key: 'c',
-        img: 'http://unsplash.it/250/400?random&gravity=center',
+        img: 'http://unsplash.it/180/200?gravity=center',
         title: 'Random Title'
       },
       {
         key: 'd',
-        img: 'http://unsplash.it/250/400?random&gravity=center',
+        img: 'http://unsplash.it/180/200?gravity=center',
         title: 'Random Title'
       },
       {
         key: 'e',
-        img: 'http://unsplash.it/250/400?random&gravity=center',
+        img: 'http://unsplash.it/180/200?gravity=center',
         title: 'Random Title'
       },
       {
         key: 'f',
-        img: 'http://unsplash.it/250/400?random&gravity=center',
+        img: 'http://unsplash.it/180/200?gravity=center',
         title: 'Random Title'
       },
       {

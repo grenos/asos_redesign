@@ -3,7 +3,6 @@ import { Animated, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import NavSearchBar from './NavSearchBar';
 import { toggleStateFalse } from '../../store/actions/actions';
-import { wpW } from '../../helpers/helpers';
 
 class SearchContainer extends Component {
   constructor(props) {

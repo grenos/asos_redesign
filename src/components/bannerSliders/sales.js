@@ -7,8 +7,11 @@ import {
   TouchableWithoutFeedback
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import { wpH, wpW } from '../../helpers/helpers';
 import { iOSUIKit } from 'react-native-typography';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
 
 export default class BannerSales extends Component {
   constructor(props) {
@@ -17,7 +20,7 @@ export default class BannerSales extends Component {
       banners: [
         {
           backgroundColor: '#ec407a',
-          header: 'Xmas Special!!',
+          header: 'Xmas Special!',
           text: `Free delivery until NYE!`
         },
         {
@@ -69,8 +72,8 @@ export default class BannerSales extends Component {
       <Carousel
         data={this.state.banners}
         renderItem={this._renderItem}
-        sliderWidth={wpW(100)}
-        itemWidth={wpW(100)}
+        sliderWidth={wp('100%')}
+        itemWidth={wp('100%')}
         inactiveSlideOpacity={1}
         inactiveSlideScale={1}
         loop={true}
@@ -85,35 +88,33 @@ export default class BannerSales extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: wpH(20)
+    height: wp('20%')
   },
   headerCenter: {
     justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#c2185b',
-    shadowOffset: { width: 5, height: 5 },
-    shadowOpacity: 1,
-    shadowRadius: 0
+    alignItems: 'center'
   },
   headerContainer: {
-    padding: 3,
-    width: '70%'
+    padding: hp('1%'),
+    width: wp('70%')
   },
   header: {
     color: '#ffff00',
     justifyContent: 'center',
     alignItems: 'center',
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: hp('4%')
   },
   textContainer: {
-    marginTop: 10,
-    marginLeft: 10,
-    marginRight: 10,
+    marginTop: hp('1%'),
+    marginLeft: wp('2%'),
+    marginRight: wp('2%'),
+    marginBottom: hp('1%'),
     backgroundColor: '#000'
   },
   text: {
     textAlign: 'center',
-    fontSize: 22,
+    fontSize: hp('3%'),
     color: '#fff'
   }
 });

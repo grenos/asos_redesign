@@ -4,26 +4,27 @@ import {
   ImageBackground,
   View,
   Text,
-  StyleSheet,
-  StatusBar
+  StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { chooseGenderCategory } from '../../store/actions/actions';
 import { withNavigation } from 'react-navigation';
-import { wpW, wpH } from '../../helpers/helpers';
 import { iOSUIKit } from 'react-native-typography';
-import { scaleFontSize } from '../../helpers/helpers';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
 
 const SelectGender = props => {
   const { genders } = props;
 
   const handleNavigation = id => {
     if (id === 'woman') {
-      // send id of selected gender to apireducer here
+      // send id of selected gender to apiReducer here
       props.chooseGender(id);
     } else {
-      // send id to apireducer here
+      // send id to apiReducer here
       props.chooseGender(id);
     }
     props.navigation.navigate('SelectCategory');
@@ -59,17 +60,16 @@ const SelectGender = props => {
 
 const styles = StyleSheet.create({
   container: {
-    height: wpH(50),
+    height: hp('50%'),
     justifyContent: 'flex-start'
-    // alignItems: 'center'
   },
   centerImages: {
-    height: wpH(25)
-    // justifyContent: 'center'
+    // center images verticaly
+    height: hp('25%')
   },
   img: {
-    width: wpW(100),
-    height: wpH(23)
+    width: wp('100%'),
+    height: hp('23.5%')
   },
   textContainer: {
     flex: 1,
@@ -79,11 +79,7 @@ const styles = StyleSheet.create({
   header: {
     color: '#fff',
     lineHeight: 100,
-    fontSize: scaleFontSize(55),
-    // left: wpW(1),
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
+    fontSize: hp('5%')
   }
 });
 

@@ -1,17 +1,22 @@
 import React from 'react';
 import { Text, View, StyleSheet, SafeAreaView } from 'react-native';
-import { BlurView, VibrancyView } from 'react-native-blur';
+import { BlurView } from 'react-native-blur';
 import { iOSUIKit } from 'react-native-typography';
 import SearchContainer from '../../components/searchBar/SearchContainer';
 import BackButon from '../../components/backButton/BackButton';
-import { wpW, wpH } from '../../helpers/helpers';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
 
 const SearchProductModal = props => {
   return (
     <View style={styles.container}>
       <SafeAreaView />
       <BlurView style={styles.absolute} blurType="light" blurAmount={20} />
-      <BackButon style={styles.button} />
+      <View style={styles.buttonContainer}>
+        <BackButon style={styles.button} />
+      </View>
       <Text style={[iOSUIKit.title3Emphasized, styles.header]}>
         Search our catalog here
       </Text>
@@ -24,15 +29,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+  buttonContainer: {
+    width: wp('10%'),
+    height: hp('6%'),
+    marginTop: hp('2%')
+  },
   button: {
-    width: '17%',
-    borderBottomWidth: 0,
-    marginTop: '3%'
+    width: wp('10%'),
+    borderBottomWidth: 0
   },
   header: {
-    marginLeft: wpW(7),
-    marginTop: wpH(5),
-    marginBottom: wpH(0)
+    marginLeft: wp('7%'),
+    marginTop: hp('5%'),
+    marginBottom: 0
   },
   absolute: {
     position: 'absolute',

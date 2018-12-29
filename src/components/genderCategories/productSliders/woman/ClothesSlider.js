@@ -4,15 +4,21 @@ import {
   Text,
   ImageBackground,
   StyleSheet,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Dimensions
 } from 'react-native';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withNavigation } from 'react-navigation';
 import { chooseNameCategory } from '../../../../store/actions/actions';
 import Carousel from 'react-native-snap-carousel';
-import { wpW, wpH } from '../../../../helpers/helpers';
 import { iOSUIKit } from 'react-native-typography';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
+
+const { height } = Dimensions.get('window');
 
 class ClothesSlider extends Component {
   constructor(props) {
@@ -24,7 +30,6 @@ class ClothesSlider extends Component {
     return (
       <View style={styles.slide}>
         <TouchableWithoutFeedback
-          activeOpacity={0.6}
           onPress={() => this._handleNavigation(item.name)}
         >
           <ImageBackground
@@ -57,8 +62,8 @@ class ClothesSlider extends Component {
         <Carousel
           data={this.props.clothing}
           renderItem={this._renderItem}
-          sliderWidth={wpW(100)}
-          itemWidth={wpW(50)}
+          sliderWidth={wp('100%')}
+          itemWidth={wp('50%')}
           inactiveSlideOpacity={1}
           enableSnap={false}
         />
@@ -69,20 +74,20 @@ class ClothesSlider extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: wpH(10)
+    marginTop: hp('10%')
   },
   header: {
     position: 'absolute',
     zIndex: 3,
-    top: -wpH(2)
+    top: height < 668 ? -hp('2.7%') : -hp('2.2%')
   },
   slide: {},
   name: {
     fontSize: 20
   },
   img: {
-    width: wpW(50),
-    height: wpH(30)
+    width: wp('50%'),
+    height: height < 737 ? hp('37%') : hp('35%')
   },
   TextContainer: {
     flex: 1,

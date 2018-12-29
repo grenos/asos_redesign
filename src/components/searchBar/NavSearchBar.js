@@ -3,9 +3,9 @@ import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { searchInput } from '../../store/actions/actions';
 import SearchBar from 'react-native-material-design-searchbar';
-import { wpW } from '../../helpers/helpers';
 import { compose } from 'redux';
 import { withNavigation } from 'react-navigation';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 class NavSearchBar extends Component {
   state = {
     input: ''
@@ -28,7 +28,7 @@ class NavSearchBar extends Component {
         iconColor="#000"
         inputStyle={styles.container}
         textStyle={styles.input}
-        placeholder="Search here..."
+        placeholder="Search here...."
         placeholderColor="#000"
       />
     );
@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     borderRightWidth: 0,
     borderBottomWidth: 1,
     borderBottomColor: '#000',
-    marginRight: wpW(5),
-    marginLeft: wpW(5)
+    marginRight: wp('5%'),
+    marginLeft: wp('5%')
   },
   input: {
     fontSize: 16,

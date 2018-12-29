@@ -1,16 +1,5 @@
 import React from 'react';
-import {
-  ScrollView,
-  View,
-  Text,
-  ImageBackground,
-  StyleSheet,
-  StatusBar
-} from 'react-native';
-
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { wpW, wpH } from '../../helpers/helpers';
+import { ScrollView, StatusBar } from 'react-native';
 
 import ClothesSlider from './productSliders/man/ClothesSlider';
 import ShoesSlider from './productSliders/man/ShoesSlider';
