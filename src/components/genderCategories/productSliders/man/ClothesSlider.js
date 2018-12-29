@@ -28,9 +28,7 @@ class ClothesSlider extends Component {
   _renderItem({ item, index }) {
     return (
       <View style={styles.slide}>
-        <TouchableWithoutFeedback
-          onPress={() => this._handleNavigation(item.name)}
-        >
+        <TouchableWithoutFeedback onPress={() => this._handleSubmit(item.name)}>
           <ImageBackground
             source={item.img}
             style={styles.img}
@@ -47,7 +45,7 @@ class ClothesSlider extends Component {
     );
   }
 
-  _handleNavigation(name) {
+  _handleSubmit(name) {
     this.props.categoryName(name);
     this.props.navigation.navigate('Home');
   }

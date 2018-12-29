@@ -10,7 +10,10 @@ import {
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withNavigation } from 'react-navigation';
-import { chooseNameCategory } from '../../../../store/actions/actions';
+import {
+  chooseNameCategory,
+  searchProducts
+} from '../../../../store/actions/actions';
 import Carousel from 'react-native-snap-carousel';
 import { iOSUIKit } from 'react-native-typography';
 import {
@@ -29,9 +32,7 @@ class ClothesSlider extends Component {
   _renderItem({ item, index }) {
     return (
       <View style={styles.slide}>
-        <TouchableWithoutFeedback
-          onPress={() => this._handleNavigation(item.name)}
-        >
+        <TouchableWithoutFeedback onPress={() => this._handleSubmit(item.name)}>
           <ImageBackground
             source={item.img}
             style={styles.img}
@@ -48,8 +49,12 @@ class ClothesSlider extends Component {
     );
   }
 
-  _handleNavigation(name) {
+  _handleSubmit(name) {
+    // dispatch data to state
     this.props.categoryName(name);
+    //call action
+    this.props.searchProducts();
+    // go to page
     this.props.navigation.navigate('Home');
   }
 
@@ -99,13 +104,16 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    clothing: state.uiReducer.womanCategories.clothing
+    clothing: state.uiReducer.womanCategories.clothing,
+    gender: state.apiReducer.chooseGender,
+    category: state.apiReducer.selectedCategoryName
   };
 };
 
 const mapDispatchToProps = dispacth => {
   return {
-    categoryName: name => dispacth(chooseNameCategory(name))
+    categoryName: name => dispacth(chooseNameCategory(name)),
+    searchProducts: () => dispacth(searchProducts())
   };
 };
 

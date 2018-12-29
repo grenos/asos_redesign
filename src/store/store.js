@@ -1,4 +1,5 @@
-import { createStore, combineReducers, compose } from 'redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import apiReducer from '../store/reducers/apiReducer';
 import uiReducer from '../store/reducers/uiReducer';
 
@@ -16,7 +17,7 @@ if (__DEV__) {
 }
 
 const configureStore = () => {
-  return createStore(rootReducer, composeEnhancer());
+  return createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)));
 };
 
 export default configureStore;
