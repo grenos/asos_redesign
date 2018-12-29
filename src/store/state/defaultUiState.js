@@ -44,7 +44,7 @@ export const UI_STATE = {
       { name: 'Trainers', img: images.trainers }
     ],
     accessories: [
-      { name: 'Bags and Purses', img: images.purse },
+      { name: 'Purses', img: images.purse },
       { name: 'Gloves', img: images.glove },
       { name: 'Hats', img: images.hat },
       { name: 'Scarves', img: images.scarve },

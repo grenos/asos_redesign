@@ -39,19 +39,20 @@ export const searchProducts = () => {
           `https://api.asos.com/product/search/v1/?q=${selectedCategoryName}+${chooseGender}${searchInput}&store=1&lang=en-GB&sizeschema=EU&currency=EUR&sort=freshness&channel=mobile-app&offset=0&limit=50`
         )
         .then(res => {
-          // handle success
-          // then dispatch action with res
-          //res.data.products
+          const results = res.data.products;
+          dispatch(setResultstoState(results));
           console.log(res);
         })
         .catch(error => {
           // handle error
           // dispatch error action
           console.log(error);
-        })
-        .then(function() {
-          // always executed
         });
     }
   };
 };
+
+const setResultstoState = results => ({
+  type: 'API_RESULTS',
+  payload: results
+});

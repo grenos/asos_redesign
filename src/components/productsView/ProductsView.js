@@ -6,65 +6,17 @@ import {
   Text,
   StyleSheet
 } from 'react-native';
-import { wpH, wpW } from '../../helpers/helpers';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withNavigation } from 'react-navigation';
 import { iOSUIKit } from 'react-native-typography';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
 
-export default class ProductsView extends Component {
-  state = {
-    testData: [
-      {
-        key: 'a',
-        img: 'http://unsplash.it/180/200?gravity=center',
-        title: 'Random Title'
-      },
-      {
-        key: 'b',
-        img: 'http://unsplash.it/180/200?gravity=center',
-        title: 'Random Title'
-      },
-      {
-        key: 'c',
-        img: 'http://unsplash.it/180/200?gravity=center',
-        title: 'Random Title'
-      },
-      {
-        key: 'd',
-        img: 'http://unsplash.it/180/200?gravity=center',
-        title: 'Random Title'
-      },
-      {
-        key: 'e',
-        img: 'http://unsplash.it/180/200?gravity=center',
-        title: 'Random Title'
-      },
-      {
-        key: 'f',
-        img: 'http://unsplash.it/180/200?gravity=center',
-        title: 'Random Title'
-      },
-      {
-        key: 'g',
-        img: 'http://unsplash.it/250/400?random&gravity=center',
-        title: 'Random Title'
-      },
-      {
-        key: 'h',
-        img: 'http://unsplash.it/250/400?random&gravity=center',
-        title: 'Random Title'
-      },
-      {
-        key: 'i',
-        img: 'http://unsplash.it/250/400?random&gravity=center',
-        title: 'Random Title'
-      },
-      {
-        key: 'j',
-        img: 'http://unsplash.it/250/400?random&gravity=center',
-        title: 'Random Title'
-      }
-    ]
-  };
-
+class ProductsView extends Component {
+  //
   // apply diferent styles based on index
   _renderItem = ({ item, index }) => {
     if (index % 2 == 0) {
@@ -72,10 +24,13 @@ export default class ProductsView extends Component {
       return (
         <View key={item.key} style={styles.viewContainerEven}>
           <ImageBackground
-            source={{ uri: `${item.img}` }}
+            source={{ uri: `${item.images[0].url}` }}
             style={styles.imgStyleEven}
+            resizeMode="cover"
           >
-            {/* <Text style={iOSUIKit.title3Emphasized}>{item.title}</Text> */}
+            <Text style={[iOSUIKit.title3Emphasized, styles.brandName]}>
+              {item.brandName.toUpperCase()}
+            </Text>
           </ImageBackground>
         </View>
       );
@@ -84,10 +39,13 @@ export default class ProductsView extends Component {
       return (
         <View key={item.key} style={styles.viewContainerOdd}>
           <ImageBackground
-            source={{ uri: `${item.img}` }}
+            source={{ uri: `${item.images[0].url}` }}
             style={styles.imgStyleOdd}
+            resizeMode="cover"
           >
-            {/* <Text style={iOSUIKit.title3Emphasized}>{item.title}</Text> */}
+            <Text style={[iOSUIKit.title3Emphasized, styles.brandName]}>
+              {item.brandName.toUpperCase()}
+            </Text>
           </ImageBackground>
         </View>
       );
@@ -103,8 +61,8 @@ export default class ProductsView extends Component {
   render() {
     return (
       <FlatList
-        style={{ paddingTop: wpH(13) }}
-        data={this.state.testData}
+        style={{ paddingTop: hp('13%') }}
+        data={this.props.apiResults}
         horizontal={false}
         numColumns={2}
         ListHeaderComponent={this._renderHeader}
@@ -117,37 +75,61 @@ export default class ProductsView extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    // backgroundColor: 'transparent',
     position: 'absolute',
-    top: wpH(2),
-    left: wpW(1)
+    top: hp('2%'),
+    left: wp('1%')
   },
   viewContainerEven: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    height: wpH(40),
+    alignItems: 'flex-start',
+    height: hp('40%'),
     zIndex: 2
   },
   viewContainerOdd: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    height: wpH(40)
+    alignItems: 'flex-start',
+    height: hp('40%')
+  },
+  brandName: {
+    transform: [{ rotate: '90deg' }]
+    // position: 'absolute',
+    // left: 0
+    // top: 130,
+    // padding: 0,
+    // margin: 0
   },
   imgStyleEven: {
-    width: wpW(55),
+    width: wp('45%'),
     height: '100%',
     position: 'absolute',
-    paddingTop: wpH(3),
-    top: wpH(10),
-    left: wpW(1)
+    paddingTop: hp('3%'),
+    top: hp('10%')
   },
   imgStyleOdd: {
-    width: wpW(55),
+    width: wp('45%'),
     height: '100%',
     position: 'absolute',
-    paddingTop: wpH(3),
-    right: wpW(1)
+    paddingTop: hp('3%')
   }
 });
+
+const mapStateToProps = state => {
+  return {
+    apiResults: state.apiReducer.apiResults
+  };
+};
+
+// const mapDispatchToProps = dispacth => {
+//   return {
+//     categoryName: name => dispacth(chooseNameCategory(name)),
+//     searchProducts: () => dispacth(searchProducts())
+//   };
+// };
+
+export default compose(
+  connect(
+    mapStateToProps,
+    null
+  ),
+  withNavigation
+)(ProductsView);

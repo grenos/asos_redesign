@@ -17,6 +17,11 @@ const reducer = (state = API_STATE, action) => {
         ...state,
         selectedCategoryName: action.payload
       };
+    case 'API_RESULTS':
+      return {
+        ...state,
+        apiResults: action.payload
+      };
     default:
       return state;
   }
