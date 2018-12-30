@@ -9,13 +9,15 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
+import ModalBackButton from '../../components/modalBackButton/modalBackButton';
+
 const SearchProductModal = props => {
   return (
     <View style={styles.container}>
       <SafeAreaView />
       <BlurView style={styles.absolute} blurType="light" blurAmount={20} />
       <View style={styles.buttonContainer}>
-        <BackButon style={styles.button} />
+        <ModalBackButton style={styles.button} />
       </View>
       <Text style={[iOSUIKit.title3Emphasized, styles.header]}>
         Search our catalog here

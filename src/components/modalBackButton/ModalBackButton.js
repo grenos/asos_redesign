@@ -3,19 +3,9 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { wpW } from '../../helpers/helpers';
 
-// redux
-import {
-  clearStateInput,
-  clearStateCategory
-} from '../../store/actions/ApiActions';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-
-const BackButon = props => {
+const ModalBackButton = props => {
   //
   const onGoBack = () => {
-    props.clearInput();
-    props.clearCategory();
     props.navigation.goBack();
   };
 
@@ -47,17 +37,4 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapDispatchToProps = dispacth => {
-  return {
-    clearInput: () => dispacth(clearStateInput()),
-    clearCategory: () => dispacth(clearStateCategory())
-  };
-};
-
-export default compose(
-  connect(
-    null,
-    mapDispatchToProps
-  ),
-  withNavigation
-)(BackButon);
+export default withNavigation(ModalBackButton);

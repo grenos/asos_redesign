@@ -33,10 +33,10 @@ export const searchProducts = () => {
     } = apiReducer;
 
     // wait for state to have category info then make call
-    if (selectedCategoryName) {
+    if (selectedCategoryName || searchInput) {
       axios
         .get(
-          `https://api.asos.com/product/search/v1/?q=${selectedCategoryName}+${chooseGender}${searchInput}&store=1&lang=en-GB&sizeschema=EU&currency=EUR&sort=freshness&channel=mobile-app&offset=0&limit=50`
+          `https://api.asos.com/product/search/v1/?q=${searchInput}${selectedCategoryName}+${chooseGender}&store=1&lang=en-GB&sizeschema=EU&currency=EUR&sort=freshness&channel=mobile-app&offset=0&limit=50`
         )
         .then(res => {
           const results = res.data.products;
@@ -52,7 +52,15 @@ export const searchProducts = () => {
   };
 };
 
-const setResultstoState = results => ({
+export const setResultstoState = results => ({
   type: 'API_RESULTS',
   payload: results
+});
+
+export const clearStateInput = () => ({
+  type: 'CLEAR_STATE_INPUT'
+});
+
+export const clearStateCategory = () => ({
+  type: 'CLEAR_STATE_CATEGORY'
 });

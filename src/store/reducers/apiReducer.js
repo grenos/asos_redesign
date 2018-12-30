@@ -22,6 +22,16 @@ const reducer = (state = API_STATE, action) => {
         ...state,
         apiResults: action.payload
       };
+    case 'CLEAR_STATE_INPUT':
+      return {
+        ...state,
+        searchInput: ''
+      };
+    case 'CLEAR_STATE_CATEGORY':
+      return {
+        ...state,
+        selectedCategoryName: ''
+      };
     default:
       return state;
   }

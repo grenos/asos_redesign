@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { searchInput } from '../../store/actions/ApiActions';
+import {
+  searchInput,
+  searchProducts,
+  clearStateCategory
+} from '../../store/actions/ApiActions';
 import SearchBar from 'react-native-material-design-searchbar';
 import { compose } from 'redux';
 import { withNavigation } from 'react-navigation';
@@ -13,6 +17,8 @@ class NavSearchBar extends Component {
 
   _onSubmit = input => {
     this.props.inputData(input);
+    this.props.clearCategory();
+    this.props.searchProducts();
     this.props.navigation.navigate('Home');
   };
 
@@ -51,15 +57,23 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = state => {
+  return {
+    inputData: state.apiReducer.searchInput
+  };
+};
+
 const mapDispatchToProps = dispacth => {
   return {
-    inputData: data => dispacth(searchInput(data))
+    inputData: data => dispacth(searchInput(data)),
+    searchProducts: () => dispacth(searchProducts()),
+    clearCategory: () => dispacth(clearStateCategory())
   };
 };
 
 export default compose(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   ),
   withNavigation
