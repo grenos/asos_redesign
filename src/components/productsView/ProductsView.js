@@ -86,6 +86,8 @@ class ProductsView extends Component {
 
   _productSelected = id => {
     this.props.searchProduct(id);
+    // navigate to page
+    this.props.navigation.navigate('Product');
   };
 
   _renderHeader = () => (
@@ -184,7 +186,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispacth => {
   return {
-    // categoryName: name => dispacth(chooseNameCategory(name)),
     searchProducts: () => dispacth(searchProducts()),
     updateOffset: offset => dispacth(setOffset(offset)),
     searchProduct: id => dispacth(searchProduct(id))

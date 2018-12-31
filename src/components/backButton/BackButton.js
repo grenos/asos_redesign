@@ -7,8 +7,7 @@ import { wpW } from '../../helpers/helpers';
 import {
   clearStateInput,
   clearStateCategory,
-  clearStateOffset,
-  clearStateApiResults
+  clearStateOffset
 } from '../../store/actions/ApiActions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -19,7 +18,6 @@ const BackButon = props => {
     props.clearInput();
     props.clearCategory();
     props.clearOffset();
-    props.clearApiResults();
     props.navigation.goBack();
   };
 
@@ -55,8 +53,7 @@ const mapDispatchToProps = dispacth => {
   return {
     clearInput: () => dispacth(clearStateInput()),
     clearCategory: () => dispacth(clearStateCategory()),
-    clearOffset: () => dispacth(clearStateOffset()),
-    clearApiResults: () => dispacth(clearStateApiResults())
+    clearOffset: () => dispacth(clearStateOffset())
   };
 };
 

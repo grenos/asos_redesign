@@ -14,7 +14,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import {
   chooseNameCategory,
-  searchProducts
+  searchProducts,
+  clearStateApiResults
 } from '../../../../store/actions/ApiActions';
 
 //! stylesheet
@@ -57,6 +58,7 @@ class ClothesSlider extends Component {
   }
 
   _handleSubmit(name) {
+    this.props.clearApiResults();
     // dispatch data to state
     this.props.categoryName(name);
     //call action
@@ -118,7 +120,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispacth => {
   return {
     categoryName: name => dispacth(chooseNameCategory(name)),
-    searchProducts: () => dispacth(searchProducts())
+    searchProducts: () => dispacth(searchProducts()),
+    clearApiResults: () => dispacth(clearStateApiResults())
   };
 };
 
