@@ -3,13 +3,11 @@ import { Text, View, StyleSheet, SafeAreaView } from 'react-native';
 import { BlurView } from 'react-native-blur';
 import { iOSUIKit } from 'react-native-typography';
 import SearchContainer from '../../components/searchBar/SearchContainer';
-import BackButon from '../../components/backButton/BackButton';
+import ModalBackButton from '../../components/modalBackButton/ModalBackButton';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
-
-import ModalBackButton from '../../components/modalBackButton/modalBackButton';
 
 const SearchProductModal = props => {
   return (

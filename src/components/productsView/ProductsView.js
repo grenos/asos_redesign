@@ -78,11 +78,17 @@ class ProductsView extends Component {
 
   _renderHeader = () => (
     <Text style={[iOSUIKit.largeTitleEmphasized, styles.header]}>
-      OUR CATALOGUE
+      {this.props.categoryName
+        ? this.props.categoryName.toUpperCase()
+        : this.props.searchName.toUpperCase()}
     </Text>
   );
 
   _keyExtractor = (item, index) => item.id;
+
+  _onEndReached = () => {
+    alert('end reached');
+  };
 
   render() {
     return (
@@ -95,6 +101,7 @@ class ProductsView extends Component {
         keyExtractor={this._keyExtractor}
         stickyHeaderIndices={[0]}
         renderItem={this._renderItem}
+        onEndReached={this._onEndReached}
       />
     );
   }
@@ -155,7 +162,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    apiResults: state.apiReducer.apiResults
+    apiResults: state.apiReducer.apiResults,
+    categoryName: state.apiReducer.selectedCategoryName,
+    searchName: state.apiReducer.searchInput
   };
 };
 
