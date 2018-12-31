@@ -7,8 +7,13 @@ import {
   StyleSheet,
   TouchableWithoutFeedback
 } from 'react-native';
+
+//! redux
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { setOffset, searchProducts } from '../../store/actions/ApiActions';
+
+//! libraries
 import { withNavigation } from 'react-navigation';
 import { iOSUIKit } from 'react-native-typography';
 import {
@@ -19,6 +24,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 class ProductsView extends Component {
   //
+
   // apply diferent styles based on index
   _renderItem = ({ item, index }) => {
     if (index % 2 == 0) {
@@ -84,10 +90,12 @@ class ProductsView extends Component {
     </Text>
   );
 
-  _keyExtractor = (item, index) => item.id;
+  _keyExtractor = item => item.id;
 
   _onEndReached = () => {
-    alert('end reached');
+    this.props.updateOffset(50);
+    // make api call
+    this.props.searchProducts();
   };
 
   render() {
@@ -168,17 +176,18 @@ const mapStateToProps = state => {
   };
 };
 
-// const mapDispatchToProps = dispacth => {
-//   return {
-//     categoryName: name => dispacth(chooseNameCategory(name)),
-//     searchProducts: () => dispacth(searchProducts())
-//   };
-// };
+const mapDispatchToProps = dispacth => {
+  return {
+    // categoryName: name => dispacth(chooseNameCategory(name)),
+    searchProducts: () => dispacth(searchProducts()),
+    updateOffset: offset => dispacth(setOffset(offset))
+  };
+};
 
 export default compose(
   connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
   ),
   withNavigation
 )(ProductsView);

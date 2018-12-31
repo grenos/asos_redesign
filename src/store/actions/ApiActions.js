@@ -21,6 +21,11 @@ export const chooseNameCategory = name => ({
   payload: name
 });
 
+export const setOffset = offset => ({
+  type: 'UPDATE_OFFSET',
+  payload: offset
+});
+
 export const searchProducts = () => {
   return (dispatch, getState) => {
     //
@@ -29,14 +34,15 @@ export const searchProducts = () => {
     const {
       selectedCategoryName = null,
       chooseGender = null,
-      searchInput = null
+      searchInput = null,
+      apiOffset = 0
     } = apiReducer;
 
-    // wait for state to have category info then make call
+    // wait for state to have category or search info then make call
     if (selectedCategoryName || searchInput) {
       axios
         .get(
-          `https://api.asos.com/product/search/v1/?q=${searchInput}${selectedCategoryName}+${chooseGender}&store=1&lang=en-GB&sizeschema=EU&currency=EUR&sort=freshness&channel=mobile-app&offset=0&limit=50`
+          `https://api.asos.com/product/search/v1/?q=${searchInput}${selectedCategoryName}+${chooseGender}&store=1&lang=en-GB&sizeschema=EU&currency=EUR&sort=freshness&channel=mobile-app&offset=${apiOffset}&limit=50`
         )
         .then(res => {
           const results = res.data.products;
@@ -63,4 +69,12 @@ export const clearStateInput = () => ({
 
 export const clearStateCategory = () => ({
   type: 'CLEAR_STATE_CATEGORY'
+});
+
+export const clearStateOffset = () => ({
+  type: 'CLEAR_STATE_OFFSET'
+});
+
+export const clearStateApiResults = () => ({
+  type: 'CLEAR_STATE_API_RESULTS'
 });

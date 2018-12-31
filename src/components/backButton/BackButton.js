@@ -6,7 +6,9 @@ import { wpW } from '../../helpers/helpers';
 // redux
 import {
   clearStateInput,
-  clearStateCategory
+  clearStateCategory,
+  clearStateOffset,
+  clearStateApiResults
 } from '../../store/actions/ApiActions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -16,6 +18,8 @@ const BackButon = props => {
   const onGoBack = () => {
     props.clearInput();
     props.clearCategory();
+    props.clearOffset();
+    props.clearApiResults();
     props.navigation.goBack();
   };
 
@@ -50,7 +54,9 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = dispacth => {
   return {
     clearInput: () => dispacth(clearStateInput()),
-    clearCategory: () => dispacth(clearStateCategory())
+    clearCategory: () => dispacth(clearStateCategory()),
+    clearOffset: () => dispacth(clearStateOffset()),
+    clearApiResults: () => dispacth(clearStateApiResults())
   };
 };
 

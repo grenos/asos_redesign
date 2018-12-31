@@ -17,10 +17,16 @@ const reducer = (state = API_STATE, action) => {
         ...state,
         selectedCategoryName: action.payload
       };
+    case 'UPDATE_OFFSET':
+      return {
+        ...state,
+        apiOffset: state.apiOffset + action.payload
+      };
     case 'API_RESULTS':
       return {
         ...state,
-        apiResults: action.payload
+        // spread existing state.apiResults + new results from pagination
+        apiResults: [...state.apiResults, ...action.payload]
       };
     case 'CLEAR_STATE_INPUT':
       return {
@@ -31,6 +37,16 @@ const reducer = (state = API_STATE, action) => {
       return {
         ...state,
         selectedCategoryName: ''
+      };
+    case 'CLEAR_STATE_OFFSET':
+      return {
+        ...state,
+        apiOffset: 0
+      };
+    case 'CLEAR_STATE_API_RESULTS':
+      return {
+        ...state,
+        apiResults: []
       };
     default:
       return state;
