@@ -23,7 +23,7 @@ class NavSearchBar extends Component {
     this.props.clearOffset();
     this.props.searchProducts();
     this.props.clearApiResults();
-    this.props.navigation.navigate('Home');
+    this.props.navigation.navigate('Products');
   };
 
   render() {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import ProductsView from '../../components/productsView/ProductsView';
 
-export default class Home extends Component {
+export default class Products extends Component {
   //
 
   render() {

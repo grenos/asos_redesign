@@ -59,7 +59,7 @@ class AccessoriesSlider extends Component {
     //call action
     this.props.searchProducts();
     // go to page
-    this.props.navigation.navigate('Home');
+    this.props.navigation.navigate('Products');
   }
 
   render() {

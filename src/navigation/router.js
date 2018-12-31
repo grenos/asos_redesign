@@ -10,10 +10,11 @@ import {
 } from 'react-navigation';
 
 // screens
-import App from '../screens/app/App';
+// import App from '../screens/app/App';
 import GenderView from '../screens/genderView/GenderView';
 import SelectCategory from '../screens/selectCategory/SelectCategory';
-import Home from '../screens/home/home';
+import Products from '../screens/products/Products';
+import Product from '../screens/product/Product';
 import SearchProductModal from '../screens/modals/SearchProductModal';
 
 //components
@@ -29,8 +30,11 @@ const AppStack = createStackNavigator(
     SelectCategory: {
       screen: SelectCategory
     },
-    Home: {
-      screen: Home
+    Products: {
+      screen: Products
+    },
+    Product: {
+      screen: Product
     }
   },
   {

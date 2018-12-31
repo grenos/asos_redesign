@@ -12,7 +12,7 @@ export default class App extends Component {
         <Text style={styles.welcome}>Welcome to Asos Redesign project</Text>
         <Button
           title="navigation"
-          onPress={() => this.props.navigation.navigate('Home')}
+          onPress={() => this.props.navigation.navigate('Products')}
         />
       </View>
     );
