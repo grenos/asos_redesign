@@ -11,7 +11,11 @@ import {
 //! redux
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { setOffset, searchProducts } from '../../store/actions/ApiActions';
+import {
+  setOffset,
+  searchProducts,
+  searchProduct
+} from '../../store/actions/ApiActions';
 
 //! libraries
 import { withNavigation } from 'react-navigation';
@@ -27,10 +31,12 @@ class ProductsView extends Component {
 
   // apply diferent styles based on index
   _renderItem = ({ item, index }) => {
+    let id = item.id;
+
     if (index % 2 == 0) {
       //even 0 2 4 6 etc
       return (
-        <TouchableWithoutFeedback onPress={() => this._productSelected()}>
+        <TouchableWithoutFeedback onPress={() => this._productSelected(id)}>
           <View style={styles.viewContainerEven}>
             <ImageBackground
               source={{ uri: `${item.images[0].url}` }}
@@ -54,7 +60,7 @@ class ProductsView extends Component {
     } else {
       //odd 1 3 5 7 etc
       return (
-        <TouchableWithoutFeedback onPress={() => this._productSelected()}>
+        <TouchableWithoutFeedback onPress={() => this._productSelected(id)}>
           <View style={styles.viewContainerOdd}>
             <ImageBackground
               source={{ uri: `${item.images[0].url}` }}
@@ -78,8 +84,8 @@ class ProductsView extends Component {
     }
   };
 
-  _productSelected = () => {
-    alert('item clicked');
+  _productSelected = id => {
+    this.props.searchProduct(id);
   };
 
   _renderHeader = () => (
@@ -180,7 +186,8 @@ const mapDispatchToProps = dispacth => {
   return {
     // categoryName: name => dispacth(chooseNameCategory(name)),
     searchProducts: () => dispacth(searchProducts()),
-    updateOffset: offset => dispacth(setOffset(offset))
+    updateOffset: offset => dispacth(setOffset(offset)),
+    searchProduct: id => dispacth(searchProduct(id))
   };
 };
 

@@ -3,5 +3,6 @@ export const API_STATE = {
   selectedCategoryName: '',
   chooseGender: '',
   apiOffset: 0,
-  apiResults: []
+  apiResults: [],
+  apiResult: {}
 };

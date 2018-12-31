@@ -33,6 +33,11 @@ const reducer = (state = API_STATE, action) => {
         ...state,
         searchInput: ''
       };
+    case 'API_RESULT':
+      return {
+        ...state,
+        apiResult: action.payload
+      };
     case 'CLEAR_STATE_CATEGORY':
       return {
         ...state,

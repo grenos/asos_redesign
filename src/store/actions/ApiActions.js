@@ -47,12 +47,10 @@ export const searchProducts = () => {
         .then(res => {
           const results = res.data.products;
           dispatch(setResultstoState(results));
-          console.log(res);
         })
         .catch(error => {
           // handle error
           // dispatch error action
-          console.log(error);
         });
     }
   };
@@ -60,6 +58,31 @@ export const searchProducts = () => {
 
 export const setResultstoState = results => ({
   type: 'API_RESULTS',
+  payload: results
+});
+
+export const searchProduct = id => {
+  return (dispatch, getState) => {
+    //
+    axios
+      .get(
+        `https://api.asos.com/product/catalogue/v2/products/${id}?store=COM&lang=en-GB&sizeSchema=EU&currency=EUR`
+      )
+      .then(res => {
+        const results = res.data;
+        dispatch(setResultToState(results));
+        console.log(res);
+      })
+      .catch(error => {
+        // handle error
+        // dispatch error action
+        console.log(error);
+      });
+  };
+};
+
+export const setResultToState = results => ({
+  type: 'API_RESULT',
   payload: results
 });
 
