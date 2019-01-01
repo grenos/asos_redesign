@@ -23,7 +23,10 @@ class ProductVideo extends Component {
           source={{ uri: `https://${video[0].url}.m3u8` }}
           maxBitRate={1199628}
           resizeMode="cover"
-          repeat={true}
+          repeat={false}
+          onEnd={() => {
+            this.player.seek(0);
+          }}
           ref={ref => {
             this.player = ref;
           }}
