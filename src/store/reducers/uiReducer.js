@@ -2,20 +2,15 @@ import { UI_STATE } from '../state/defaultUiState';
 
 const reducer = (state = UI_STATE, action) => {
   switch (action.type) {
-    case 'TOGGLE_STATE':
+    case 'TOGGLE_VIDEO_TRUE':
       return {
         ...state,
-        toggle: !state.toggle
+        isVideo: true
       };
-    case 'TOGGLE_STATE_TRUE':
+    case 'TOGGLE_VIDEO_FALSE':
       return {
         ...state,
-        toggle: true
-      };
-    case 'TOGGLE_STATE_FALSE':
-      return {
-        ...state,
-        toggle: false
+        isVideo: false
       };
     default:
       return state;

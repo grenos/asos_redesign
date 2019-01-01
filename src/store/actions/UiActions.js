@@ -5,14 +5,10 @@
 // @ @ @
 
 // shorthand of writting actions
-export const toggleState = () => ({
-  type: 'TOGGLE_STATE'
+export const toggleVideoTrue = () => ({
+  type: 'TOGGLE_VIDEO_TRUE'
 });
 
-export const toggleStateTrue = () => ({
-  type: 'TOGGLE_STATE_TRUE'
-});
-
-export const toggleStateFalse = () => ({
-  type: 'TOGGLE_STATE_FALSE'
+export const toggleVideoFalse = () => ({
+  type: 'TOGGLE_VIDEO_FALSE'
 });

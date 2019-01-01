@@ -87,7 +87,7 @@ class ProductsView extends Component {
   _productSelected = id => {
     this.props.searchProduct(id);
     // navigate to page
-    this.props.navigation.navigate('Product');
+    // this.props.navigation.navigate('Product');
   };
 
   _renderHeader = () => (

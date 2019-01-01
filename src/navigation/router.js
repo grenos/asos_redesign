@@ -1,13 +1,7 @@
 import React from 'react';
 import { iOSUIKit } from 'react-native-typography';
 
-import {
-  createStackNavigator,
-  createAppContainer,
-  createBottomTabNavigator,
-  StackActions,
-  NavigationActions
-} from 'react-navigation';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 // screens
 // import App from '../screens/app/App';
@@ -73,4 +67,6 @@ const CompleteStack = createStackNavigator(
   }
 );
 
-export default (AppContainer = createAppContainer(CompleteStack));
+const AppContainer = createAppContainer(CompleteStack);
+
+export default AppContainer;

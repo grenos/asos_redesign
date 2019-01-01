@@ -1,22 +1,17 @@
 //! react
 import React, { Component } from 'react';
 import {
-  View,
   Text,
-  ImageBackground,
+  View,
   StyleSheet,
-  TouchableWithoutFeedback,
-  Dimensions
+  Dimensions,
+  ImageBackground
 } from 'react-native';
-
 //! redux
 import { connect } from 'react-redux';
-import { compose } from 'redux';
-
 //! libraries
-import { withNavigation } from 'react-navigation';
-import Carousel from 'react-native-snap-carousel';
-import { iOSUIKit } from 'react-native-typography';
+import Swiper from 'react-native-swiper';
+import get from 'lodash.get';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
@@ -25,59 +20,83 @@ import {
 const { height, width } = Dimensions.get('window');
 
 class ProductSlider extends Component {
-  constructor() {
-    super();
-    this._renderItem = this._renderItem.bind(this);
-  }
-
-  _renderItem({ item }) {
-    return (
-      <ImageBackground
-        source={item.img}
-        style={styles.img}
-        resizeMode="cover"
-      />
-    );
-  }
-
   render() {
-    return (
-      <Carousel
-        data={this.props.clothing}
-        renderItem={this._renderItem}
-        sliderWidth={wp('100%')}
-        itemWidth={wp('50%')}
-        inactiveSlideOpacity={1}
-        enableSnap={false}
-      />
-    );
+    const images = get(this.props.apiResult, 'media.images', 'loading');
+
+    if (images) {
+      return (
+        <View style={styles.wrapper}>
+          <Swiper
+            showsButtons={false}
+            activeDotColor="#000"
+            paginationStyle={styles.pagination}
+          >
+            <View style={styles.slide}>
+              <ImageBackground
+                style={styles.img}
+                source={{ uri: `https://${images[0].url}` }}
+                resizeMode="cover"
+              />
+            </View>
+            <View style={styles.slide}>
+              <ImageBackground
+                style={styles.img}
+                source={{ uri: `https://${images[1].url}` }}
+                resizeMode="cover"
+              />
+            </View>
+            <View style={styles.slide}>
+              <ImageBackground
+                style={styles.img}
+                source={{ uri: `https://${images[2].url}` }}
+                resizeMode="cover"
+              />
+            </View>
+            <View style={styles.slide}>
+              <ImageBackground
+                style={styles.img}
+                source={{ uri: `https://${images[3].url}` }}
+                resizeMode="cover"
+              />
+            </View>
+          </Swiper>
+        </View>
+      );
+    } else {
+      // use loading component
+      return <Text>LOADING</Text>;
+    }
   }
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    height: hp('100%'),
+    width: wp('100%')
+  },
   img: {
-    width: wp('100%'),
-    height: hp('100%')
+    height: hp('100%'),
+    width: wp('100%')
+  },
+  slide: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  pagination: {
+    justifyContent: 'flex-start',
+    marginLeft: wp('7%'),
+    marginBottom: hp('4.5%')
   }
 });
 
 const mapStateToProps = state => {
   return {
-    clothing: state.uiReducer.manCategories.clothing
+    apiResult: state.apiReducer.apiResult
   };
 };
 
-// const mapDispatchToProps = dispacth => {
-//   return {
-//     categoryName: name => dispacth(chooseNameCategory(name)),
-//     searchProducts: () => dispacth(searchProducts())
-//   };
-// };
-
-export default compose(
-  connect(
-    mapStateToProps,
-    null
-  ),
-  withNavigation
+export default connect(
+  mapStateToProps,
+  null
 )(ProductSlider);

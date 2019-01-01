@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+
+import ProductView from '../../components/productView/ProductView';
 
 export default class Product extends Component {
+  //
+  static navigationOptions = {
+    header: null
+  };
   //
   render() {
     return (
       <View>
-        <Text>THIS IS PRODUCT VIEW</Text>
+        <ProductView />
       </View>
     );
   }

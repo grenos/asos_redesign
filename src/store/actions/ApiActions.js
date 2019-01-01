@@ -1,5 +1,8 @@
 import axios from 'axios';
-
+// navigation off screen or component
+// two other parts of this are :
+// the import and on index.js
+import * as NavigationService from '../../navigation/NavigationService';
 // @ @ @
 
 // API ACTIONS
@@ -62,7 +65,7 @@ export const setResultstoState = results => ({
 });
 
 export const searchProduct = id => {
-  return (dispatch, getState) => {
+  return dispatch => {
     //
     axios
       .get(
@@ -71,12 +74,13 @@ export const searchProduct = id => {
       .then(res => {
         const results = res.data;
         dispatch(setResultToState(results));
-        console.log(res);
+      })
+      .then(() => {
+        NavigationService.navigate('Product');
       })
       .catch(error => {
         // handle error
         // dispatch error action
-        console.log(error);
       });
   };
 };

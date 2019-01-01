@@ -1,7 +1,7 @@
 import images from '../../assets/img/index';
 
 export const UI_STATE = {
-  toggle: false,
+  isVideo: true,
   genders: [
     {
       id: 'women',
