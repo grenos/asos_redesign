@@ -1,12 +1,16 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 
 import ProductHero from './ProductHero';
+import ProductDetails from './ProductDetails';
 
-export default () => {
+const ProductView = () => {
   return (
     <ScrollView>
       <ProductHero />
+      <ProductDetails />
     </ScrollView>
   );
 };
+
+export default ProductView;
