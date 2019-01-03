@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
 //!redux
 import { connect } from 'react-redux';
@@ -19,14 +19,13 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import get from 'lodash.get';
 import HTML from 'react-native-render-html';
-import { linkSync } from 'fs';
+
+//!components
+import AddToCartButton from '../addToCartButton/AddToCartButton';
 
 class ProductDetails extends Component {
   //
   render() {
-    let { description } = this.props.apiResult;
-    const ItemDescription = description;
-
     const brand = get(this.props.apiResult, 'brand.name', 'loading');
 
     return (
@@ -36,26 +35,14 @@ class ProductDetails extends Component {
             {brand}
           </Text>
         </View>
-
-        <View style={styles.descContainer}>
-          <HTML
-            html={ItemDescription}
-            style={[iOSUIKit.body]}
-            containerStyle={null}
-            listsPrefixesRenderers={{
-              ul: () => {
-                return null;
-              },
-              li: () => {
-                return null;
-              }
-            }}
-            tagsStyles={{
-              tagsStyles: {
-                a: { textAlign: 'center', fontStyle: 'italic', color: 'yellow' }
-              }
-            }}
-          />
+        <View style={styles.addToCartContainer}>
+          <AddToCartButton />
+          <TouchableWithoutFeedback onPress={() => null}>
+            <Icon name="ios-heart-empty" size={28} />
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => null}>
+            <Icon name="ios-share-alt" size={33} />
+          </TouchableWithoutFeedback>
         </View>
       </View>
     );
@@ -69,8 +56,12 @@ const styles = StyleSheet.create({
     marginTop: hp('5%'),
     marginBottom: hp('5%')
   },
-  descContainer: {},
-  brand: {}
+  brand: {},
+  addToCartContainer: {
+    width: wp('100%'),
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  }
 });
 
 const mapStateToProps = state => {
