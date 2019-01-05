@@ -4,10 +4,6 @@ import { View, Text, StyleSheet } from 'react-native';
 //!redux
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import {
-  toggleVideoTrue,
-  toggleVideoFalse
-} from '../../store/actions/UiActions';
 
 //!libraries
 import { iOSUIKit } from 'react-native-typography';
@@ -21,7 +17,6 @@ import get from 'lodash.get';
 //!components
 import ProductVideo from './ProductVideo';
 import ProductSlider from './ProductSlider';
-import ProductHeader from './ProductHeader';
 
 class ProductHero extends Component {
   //
@@ -35,7 +30,6 @@ class ProductHero extends Component {
 
     return (
       <View>
-        <ProductHeader />
         {isVideo && videoExists != 0 ? <ProductVideo /> : <ProductSlider />}
 
         <View style={styles.priceContainer}>

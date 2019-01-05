@@ -11,7 +11,7 @@ import {
 
 //!libraries
 import { iOSUIKit } from 'react-native-typography';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, SafeAreaView } from 'react-navigation';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
@@ -30,10 +30,64 @@ class ProductDetails extends Component {
 
     return (
       <View>
+        <SafeAreaView />
         <View style={styles.brandContainer}>
           <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
             {brand}
           </Text>
+        </View>
+        <View style={styles.brandContainer}>
+          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
+            {brand}
+          </Text>
+        </View>
+        <View style={styles.brandContainer}>
+          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
+            {brand}
+          </Text>
+        </View>
+        <View style={styles.brandContainer}>
+          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
+            {brand}
+          </Text>
+        </View>
+        <View style={styles.brandContainer}>
+          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
+            {brand}
+          </Text>
+        </View>
+        <View style={styles.brandContainer}>
+          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
+            {brand}
+          </Text>
+        </View>
+        <View style={styles.brandContainer}>
+          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
+            {brand}
+          </Text>
+        </View>
+        <View style={styles.brandContainer}>
+          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
+            {brand}
+          </Text>
+        </View>
+        <View style={styles.addToCartContainer}>
+          <AddToCartButton />
+          <TouchableWithoutFeedback onPress={() => null}>
+            <Icon name="ios-heart-empty" size={28} />
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => null}>
+            <Icon name="ios-share-alt" size={33} />
+          </TouchableWithoutFeedback>
+        </View>
+        <View style={styles.addToCartContainer}>
+          <AddToCartButton />
+          <TouchableWithoutFeedback onPress={() => null}>
+            <Icon name="ios-heart-empty" size={28} />
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => null}>
+            <Icon name="ios-share-alt" size={33} />
+          </TouchableWithoutFeedback>
         </View>
         <View style={styles.addToCartContainer}>
           <AddToCartButton />

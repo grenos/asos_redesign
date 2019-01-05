@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Animated,
-  View,
-  StyleSheet,
-  TouchableWithoutFeedback
-} from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
 //!redux
 import { connect } from 'react-redux';
@@ -15,7 +10,8 @@ import {
 } from '../../store/actions/UiActions';
 
 //!libraries
-import { withNavigation } from 'react-navigation';
+
+import { withNavigation, SafeAreaView } from 'react-navigation';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
@@ -62,63 +58,76 @@ class ProductHeader extends Component {
     }
 
     return (
-      <View style={styles.absoluteContainer}>
-        {isVideo ? cameraIcon : videoIcon}
+      <SafeAreaView forceInset={{ top: hp('7%') }}>
+        <View style={styles.absoluteContainer}>
+          <View style={styles.flexAlignLeft}>
+            <View style={styles.backArrowContainer}>
+              <TouchableWithoutFeedback onPress={() => this.onBackButton()}>
+                <Icon name="ios-arrow-round-back" size={40} />
+              </TouchableWithoutFeedback>
+            </View>
+          </View>
 
-        <View style={styles.backArrowContainer}>
-          <TouchableWithoutFeedback onPress={() => this.onBackButton()}>
-            <Icon name="ios-arrow-round-back" size={40} />
-          </TouchableWithoutFeedback>
-        </View>
+          <View style={styles.flexAlignRigt}>
+            <View style={styles.iconsContainer}>
+              {isVideo ? cameraIcon : videoIcon}
 
-        <View style={styles.shareContainer}>
-          <TouchableWithoutFeedback
-            onPress={() => alert('will open share to social menu')}
-          >
-            <Icon name="ios-share-alt" size={33} />
-          </TouchableWithoutFeedback>
-        </View>
+              <View style={styles.shareContainer}>
+                <TouchableWithoutFeedback
+                  onPress={() => alert('will open share to social menu')}
+                >
+                  <Icon name="ios-share-alt" size={33} />
+                </TouchableWithoutFeedback>
+              </View>
 
-        <View style={styles.heartContainer}>
-          <TouchableWithoutFeedback
-            onPress={() => alert('will save to favorites')}
-          >
-            <Icon name="ios-heart-empty" size={28} />
-          </TouchableWithoutFeedback>
+              <View style={styles.heartContainer}>
+                <TouchableWithoutFeedback
+                  onPress={() => alert('will save to favorites')}
+                >
+                  <Icon name="ios-heart-empty" size={28} />
+                </TouchableWithoutFeedback>
+              </View>
+            </View>
+          </View>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   absoluteContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    width: wp('100%'),
-    zIndex: 5
+    flex: 1,
+    flexDirection: 'row'
   },
-  iconContainer: {
-    position: 'absolute',
-    right: wp('38%'),
-    top: hp('7%')
+  flexAlignLeft: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+  },
+  flexAlignRigt: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
+  },
+  iconsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   backArrowContainer: {
-    position: 'absolute',
-    left: wp('7%'),
-    top: hp('7%')
+    marginLeft: wp('7%'),
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  iconContainer: {
+    marginRight: wp('7%')
   },
   shareContainer: {
-    position: 'absolute',
-    right: wp('7%'),
-    top: hp('7.5%')
+    marginRight: wp('7%')
   },
   heartContainer: {
-    position: 'absolute',
-    right: wp('22%'),
-    top: hp('8%')
+    marginRight: wp('7%')
   }
 });
 
