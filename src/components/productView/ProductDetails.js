@@ -30,73 +30,14 @@ class ProductDetails extends Component {
 
     return (
       <View>
-        <SafeAreaView />
         <View style={styles.brandContainer}>
           <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
             {brand}
           </Text>
         </View>
-        <View style={styles.brandContainer}>
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
-            {brand}
-          </Text>
-        </View>
-        <View style={styles.brandContainer}>
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
-            {brand}
-          </Text>
-        </View>
-        <View style={styles.brandContainer}>
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
-            {brand}
-          </Text>
-        </View>
-        <View style={styles.brandContainer}>
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
-            {brand}
-          </Text>
-        </View>
-        <View style={styles.brandContainer}>
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
-            {brand}
-          </Text>
-        </View>
-        <View style={styles.brandContainer}>
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
-            {brand}
-          </Text>
-        </View>
-        <View style={styles.brandContainer}>
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
-            {brand}
-          </Text>
-        </View>
+
         <View style={styles.addToCartContainer}>
           <AddToCartButton />
-          <TouchableWithoutFeedback onPress={() => null}>
-            <Icon name="ios-heart-empty" size={28} />
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={() => null}>
-            <Icon name="ios-share-alt" size={33} />
-          </TouchableWithoutFeedback>
-        </View>
-        <View style={styles.addToCartContainer}>
-          <AddToCartButton />
-          <TouchableWithoutFeedback onPress={() => null}>
-            <Icon name="ios-heart-empty" size={28} />
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={() => null}>
-            <Icon name="ios-share-alt" size={33} />
-          </TouchableWithoutFeedback>
-        </View>
-        <View style={styles.addToCartContainer}>
-          <AddToCartButton />
-          <TouchableWithoutFeedback onPress={() => null}>
-            <Icon name="ios-heart-empty" size={28} />
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={() => null}>
-            <Icon name="ios-share-alt" size={33} />
-          </TouchableWithoutFeedback>
         </View>
       </View>
     );

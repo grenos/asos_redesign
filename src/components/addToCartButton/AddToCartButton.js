@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
-import { wpW } from '../../helpers/helpers';
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
 // redux
 import {
   clearStateInput,
@@ -26,28 +28,30 @@ const AddToCartButton = props => {
     <TouchableOpacity onPress={() => onGoBack()}>
       <View {...props} style={[styles.buttonContainer, props.style]}>
         <Text style={styles.text}>ADD TO CART</Text>
-        <Icon name="ios-cart" size={30} />
+        <Icon name="ios-cart" size={23} style={styles.icon} />
       </View>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffffff'
-  },
   buttonContainer: {
     flexDirection: 'row',
-    borderBottomColor: '#000',
-    paddingBottom: 2,
-    marginLeft: wpW(7)
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#000',
+    paddingTop: hp('1.5%'),
+    paddingBottom: hp('1.5%'),
+    paddingLeft: wp('10%'),
+    paddingRight: wp('10%')
   },
   text: {
     fontSize: 18,
-    fontWeight: 'bold'
+    color: '#fff'
+  },
+  icon: {
+    color: '#fff',
+    paddingLeft: wp('3%')
   }
 });
 
