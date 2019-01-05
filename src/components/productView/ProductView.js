@@ -43,6 +43,7 @@ class ProductView extends Component {
         <Animated.View style={styles.absoluteContainer}>
           <ProductHeader style={[styles.headerContainer]} />
         </Animated.View>
+
         <ProductHero />
         <ProductDetails />
       </ScrollView>

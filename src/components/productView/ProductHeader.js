@@ -98,36 +98,44 @@ class ProductHeader extends Component {
 const styles = StyleSheet.create({
   absoluteContainer: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    zIndex: 5
   },
   flexAlignLeft: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    zIndex: 5
   },
   flexAlignRigt: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    zIndex: 5
   },
   iconsContainer: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    zIndex: 5
   },
   backArrowContainer: {
     marginLeft: wp('7%'),
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
+    zIndex: 5
   },
   iconContainer: {
-    marginRight: wp('7%')
+    marginRight: wp('7%'),
+    zIndex: 5
   },
   shareContainer: {
-    marginRight: wp('7%')
+    marginRight: wp('7%'),
+    zIndex: 5
   },
   heartContainer: {
-    marginRight: wp('7%')
+    marginRight: wp('7%'),
+    zIndex: 5
   }
 });
 
