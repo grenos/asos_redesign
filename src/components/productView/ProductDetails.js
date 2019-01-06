@@ -6,8 +6,9 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import {
   toggleVideoTrue,
-  toggleVideoFalse
-} from '../../store/actions/UiActions';
+  toggleVideoFalse,
+  getSimilar
+} from '../../store/actions/ApiActions';
 
 //!libraries
 import { iOSUIKit } from 'react-native-typography';
@@ -22,6 +23,10 @@ import HTML from 'react-native-render-html';
 
 class ProductDetails extends Component {
   //
+
+  componentDidMount() {
+    this.props.testRun();
+  }
 
   render() {
     const brand = get(this.props.apiResult, 'brand.name', 'loading');
@@ -86,15 +91,6 @@ class ProductDetails extends Component {
         </View>
 
         {model}
-
-        {/* <View style={styles.instructionsContainer}>
-          <Icon name="ios-body" size={40} style={styles.icon} />
-          <HTML
-            html={sizeAndFit}
-            containerStyle={htmlStyles.container}
-            ignoredTags={['br']}
-          />
-        </View> */}
       </View>
     );
   }
@@ -138,8 +134,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispacth => {
   return {
-    videoTrue: () => dispacth(toggleVideoTrue()),
-    videoFalse: () => dispacth(toggleVideoFalse())
+    // videoTrue: () => dispacth(toggleVideoTrue()),
+    // videoFalse: () => dispacth(toggleVideoFalse())
+    testRun: () => dispacth(getSimilar())
   };
 };
 

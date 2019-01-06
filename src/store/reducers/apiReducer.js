@@ -38,6 +38,16 @@ const reducer = (state = API_STATE, action) => {
         ...state,
         apiResult: action.payload
       };
+    case 'SIMILAR_ITEMS':
+      return {
+        ...state,
+        similarItems: [...state.similarItems, action.payload]
+      };
+    case 'CLEAR_STATE_SIMILAR_ITEMS':
+      return {
+        ...state,
+        similarItems: ''
+      };
     case 'CLEAR_STATE_CATEGORY':
       return {
         ...state,

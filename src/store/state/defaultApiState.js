@@ -4,5 +4,6 @@ export const API_STATE = {
   chooseGender: '',
   apiOffset: 0,
   apiResults: [],
-  apiResult: {}
+  apiResult: {},
+  similarItems: []
 };

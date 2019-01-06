@@ -3,6 +3,8 @@ import axios from 'axios';
 // two other parts of this are :
 // the import and on index.js
 import * as NavigationService from '../../navigation/NavigationService';
+import get from 'lodash.get';
+
 // @ @ @
 
 // API ACTIONS
@@ -104,4 +106,48 @@ export const clearStateOffset = () => ({
 
 export const clearStateApiResults = () => ({
   type: 'CLEAR_STATE_API_RESULTS'
+});
+
+export const getSimilar = () => {
+  return (dispatch, getState) => {
+    //
+    const { apiReducer } = getState();
+
+    const associatedProductGroups = get(
+      apiReducer,
+      'apiResult.associatedProductGroups',
+      'change me'
+    );
+
+    let itemURL = null;
+    if (associatedProductGroups) {
+      associatedProductGroups.map(item => {
+        itemURL = item.url;
+
+        axios
+          .get(`https://${itemURL}`)
+          .then(res => {
+            const results = res.data.products;
+            results.map(product => {
+              let item = product.product;
+              console.log(item);
+              dispatch(setItemsToState(item));
+            });
+          })
+          .catch(error => {
+            // handle error
+            // dispatch error action
+          });
+      });
+    }
+  };
+};
+
+export const setItemsToState = results => ({
+  type: 'SIMILAR_ITEMS',
+  payload: results
+});
+
+export const clearStateSimilarItems = () => ({
+  type: 'CLEAR_STATE_SIMILAR_ITEMS'
 });

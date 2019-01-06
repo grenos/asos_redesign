@@ -8,6 +8,7 @@ import {
   toggleVideoTrue,
   toggleVideoFalse
 } from '../../store/actions/UiActions';
+import { clearStateSimilarItems } from '../../store/actions/ApiActions';
 
 //!libraries
 
@@ -25,6 +26,7 @@ class ProductHeader extends Component {
   onBackButton = () => {
     this.props.navigation.goBack();
     this.props.videoTrue();
+    this.props.clearSimilar();
   };
 
   render() {
@@ -149,7 +151,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispacth => {
   return {
     videoTrue: () => dispacth(toggleVideoTrue()),
-    videoFalse: () => dispacth(toggleVideoFalse())
+    videoFalse: () => dispacth(toggleVideoFalse()),
+    clearSimilar: () => dispacth(clearStateSimilarItems())
   };
 };
 
