@@ -12,11 +12,7 @@ import {
 //! redux
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import {
-  chooseNameCategory,
-  searchProducts,
-  clearStateApiResults
-} from '../../../../store/actions/ApiActions';
+import { clearStateSimilarItems } from '../../store/actions/ApiActions';
 
 //! libraries
 import { withNavigation } from 'react-navigation';
@@ -38,15 +34,15 @@ class AssociatedProductsSlider extends Component {
   _renderItem({ item, index }) {
     return (
       <View style={styles.slide}>
-        <TouchableWithoutFeedback onPress={() => this._handleSubmit(item.name)}>
+        <TouchableWithoutFeedback onPress={() => this._handleSubmit(item.id)}>
           <ImageBackground
-            source={item.img}
+            source={{ uri: `https://${item.images[1].url}` }}
             style={styles.img}
             resizeMode="cover"
           >
             <View style={styles.TextContainer}>
               <Text style={[iOSUIKit.subheadEmphasized, styles.name]}>
-                {item.name.toUpperCase()}
+                {item.brandName.toUpperCase()}
               </Text>
             </View>
           </ImageBackground>
@@ -69,15 +65,14 @@ class AssociatedProductsSlider extends Component {
     return (
       <View style={styles.container}>
         <Text style={[iOSUIKit.largeTitleEmphasized, styles.header]}>
-          CLOTHES
+          COMPLETE THE LOOK
         </Text>
         <Carousel
-          data={this.props.clothing}
+          data={this.props.similarItems}
           renderItem={this._renderItem}
           sliderWidth={wp('100%')}
           itemWidth={wp('50%')}
           inactiveSlideOpacity={1}
-          enableSnap={false}
         />
       </View>
     );
@@ -111,15 +106,14 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    clothing: state.uiReducer.womanCategories.clothing
+    similarItems: state.apiReducer.similarItems
   };
 };
 
 const mapDispatchToProps = dispacth => {
   return {
-    categoryName: name => dispacth(chooseNameCategory(name)),
-    searchProducts: () => dispacth(searchProducts()),
-    clearApiResults: () => dispacth(clearStateApiResults())
+    // searchProducts: () => dispacth(searchProducts()),
+    clearSimilar: () => dispacth(clearStateSimilarItems())
   };
 };
 

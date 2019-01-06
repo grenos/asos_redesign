@@ -4,11 +4,7 @@ import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 //!redux
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import {
-  toggleVideoTrue,
-  toggleVideoFalse,
-  getSimilar
-} from '../../store/actions/ApiActions';
+import { getSimilar } from '../../store/actions/ApiActions';
 
 //!libraries
 import { iOSUIKit } from 'react-native-typography';
@@ -21,11 +17,13 @@ import get from 'lodash.get';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HTML from 'react-native-render-html';
 
+import AssociatedProductsSlider from './AssociatedProductSlider';
+
 class ProductDetails extends Component {
   //
 
   componentDidMount() {
-    this.props.testRun();
+    this.props.completeTheLook();
   }
 
   render() {
@@ -63,7 +61,7 @@ class ProductDetails extends Component {
     }
 
     return (
-      <View>
+      <View style={{ paddingBottom: 100 }}>
         <View style={styles.brandContainer}>
           <Text style={iOSUIKit.largeTitleEmphasized}>{brand}</Text>
         </View>
@@ -91,6 +89,10 @@ class ProductDetails extends Component {
         </View>
 
         {model}
+
+        <View>
+          <AssociatedProductsSlider />
+        </View>
       </View>
     );
   }
@@ -127,16 +129,13 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    isVideo: state.uiReducer.isVideo,
     apiResult: state.apiReducer.apiResult
   };
 };
 
 const mapDispatchToProps = dispacth => {
   return {
-    // videoTrue: () => dispacth(toggleVideoTrue()),
-    // videoFalse: () => dispacth(toggleVideoFalse())
-    testRun: () => dispacth(getSimilar())
+    completeTheLook: () => dispacth(getSimilar())
   };
 };
 
