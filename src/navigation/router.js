@@ -10,6 +10,7 @@ import SelectCategory from '../screens/selectCategory/SelectCategory';
 import Products from '../screens/products/Products';
 import Product from '../screens/product/Product';
 import SearchProductModal from '../screens/modals/SearchProductModal';
+import FindSizeModal from '../screens/modals/FindSizeModal';
 
 //components
 import BackButton from '../components/backButton/BackButton';
@@ -57,6 +58,9 @@ const CompleteStack = createStackNavigator(
     },
     SearchProductModal: {
       screen: SearchProductModal
+    },
+    FindSizeModal: {
+      screen: FindSizeModal
     }
   },
   {

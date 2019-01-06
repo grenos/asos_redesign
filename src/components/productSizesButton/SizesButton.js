@@ -5,30 +5,23 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
+
 // redux
-import {
-  clearStateInput,
-  clearStateCategory,
-  clearStateOffset
-} from '../../store/actions/ApiActions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const AddToCartButton = props => {
+const SizesButton = props => {
   //
-  const onGoBack = () => {
-    props.clearInput();
-    props.clearCategory();
-    props.clearOffset();
-    props.navigation.goBack();
+  const openModal = () => {
+    props.navigation.navigate('FindSizeModal');
   };
 
   return (
-    <TouchableWithoutFeedback onPress={() => onGoBack()}>
+    <TouchableWithoutFeedback onPress={() => openModal()}>
       <View {...props} style={[styles.buttonContainer, props.style]}>
-        <Text style={styles.text}>CART</Text>
-        <Icon name="ios-cart" size={23} style={styles.icon} />
+        <Text style={styles.text}>SIZES</Text>
+        <Icon name="ios-shirt" size={23} style={styles.icon} />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -36,6 +29,7 @@ const AddToCartButton = props => {
 
 const styles = StyleSheet.create({
   buttonContainer: {
+    position: 'relative',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -57,18 +51,14 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapDispatchToProps = dispacth => {
+const mapStateToProps = state => {
   return {
-    clearInput: () => dispacth(clearStateInput()),
-    clearCategory: () => dispacth(clearStateCategory()),
-    clearOffset: () => dispacth(clearStateOffset())
+    isVideo: state.uiReducer.isVideo,
+    apiResult: state.apiReducer.apiResult
   };
 };
 
 export default compose(
-  connect(
-    null,
-    mapDispatchToProps
-  ),
+  connect(mapStateToProps),
   withNavigation
-)(AddToCartButton);
+)(SizesButton);

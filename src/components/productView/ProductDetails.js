@@ -11,20 +11,19 @@ import {
 
 //!libraries
 import { iOSUIKit } from 'react-native-typography';
-import { withNavigation, SafeAreaView } from 'react-navigation';
+import { withNavigation } from 'react-navigation';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
-import Icon from 'react-native-vector-icons/Ionicons';
 import get from 'lodash.get';
-import HTML from 'react-native-render-html';
 
 //!components
-import AddToCartButton from '../addToCartButton/AddToCartButton';
+// import AddToCartButton from '../addToCartButton/AddToCartButton';
 
 class ProductDetails extends Component {
   //
+
   render() {
     const brand = get(this.props.apiResult, 'brand.name', 'loading');
 
@@ -36,8 +35,46 @@ class ProductDetails extends Component {
           </Text>
         </View>
 
-        <View style={styles.addToCartContainer}>
-          <AddToCartButton />
+        <View style={styles.brandContainer}>
+          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
+            {brand}
+          </Text>
+        </View>
+
+        <View style={styles.brandContainer}>
+          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
+            {brand}
+          </Text>
+        </View>
+
+        <View style={styles.brandContainer}>
+          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
+            {brand}
+          </Text>
+        </View>
+
+        <View style={styles.brandContainer}>
+          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
+            {brand}
+          </Text>
+        </View>
+
+        <View style={styles.brandContainer}>
+          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
+            {brand}
+          </Text>
+        </View>
+
+        <View style={styles.brandContainer}>
+          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
+            {brand}
+          </Text>
+        </View>
+
+        <View style={styles.brandContainer}>
+          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
+            {brand}
+          </Text>
         </View>
       </View>
     );
@@ -48,14 +85,14 @@ const styles = StyleSheet.create({
   brandContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: hp('5%'),
-    marginBottom: hp('5%')
+    marginTop: hp('3%'),
+    marginBottom: hp('3%')
   },
   brand: {},
   addToCartContainer: {
-    width: wp('100%'),
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    marginBottom: hp('3%')
   }
 });
 

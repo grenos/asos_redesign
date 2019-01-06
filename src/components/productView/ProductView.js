@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, ScrollView, StyleSheet, Animated } from 'react-native';
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Animated,
+  Dimensions
+} from 'react-native';
 
 import {
   widthPercentageToDP as wp,
@@ -10,6 +16,10 @@ import Blur from '../blur/BlurComponent';
 import ProductHero from './ProductHero';
 import ProductDetails from './ProductDetails';
 import ProductHeader from './ProductHeader';
+import AddToCartButton from '../addToCartButton/AddToCartButton';
+import SizesButton from '../productSizesButton/SizesButton';
+
+const { height, width } = Dimensions.get('window');
 
 class ProductView extends Component {
   state = {
@@ -26,27 +36,45 @@ class ProductView extends Component {
       extrapolate: 'clamp'
     });
 
+    const footerTranslate = this.state.scrollY.interpolate({
+      inputRange: [hp('12%'), hp('17%')],
+      outputRange: [100, 0],
+      extrapolate: 'clamp'
+    });
+
     return (
-      <ScrollView
-        stickyHeaderIndices={[0, 1]}
-        scrollEventThrottle={20}
-        onScroll={Animated.event([
-          { nativeEvent: { contentOffset: { y: this.state.scrollY } } }
-        ])}
-      >
-        <Animated.View
-          style={[styles.hiddenContainer, { opacity: headerBackground }]}
+      <View>
+        <ScrollView
+          stickyHeaderIndices={[0, 1]}
+          scrollEventThrottle={20}
+          onScroll={Animated.event([
+            { nativeEvent: { contentOffset: { y: this.state.scrollY } } }
+          ])}
         >
-          <Blur />
-        </Animated.View>
+          <Animated.View
+            style={[styles.hiddenContainer, { opacity: headerBackground }]}
+          >
+            <Blur />
+          </Animated.View>
 
-        <Animated.View style={styles.absoluteContainer}>
-          <ProductHeader style={[styles.headerContainer]} />
-        </Animated.View>
+          <View style={styles.absoluteContainer}>
+            <ProductHeader style={[styles.headerContainer]} />
+          </View>
 
-        <ProductHero />
-        <ProductDetails />
-      </ScrollView>
+          <ProductHero />
+          <ProductDetails />
+        </ScrollView>
+
+        <Animated.View
+          style={[
+            styles.footerContainer,
+            { transform: [{ translateY: footerTranslate }] }
+          ]}
+        >
+          <SizesButton style={styles.addToCartButton} />
+          <AddToCartButton style={styles.addToCartButton} />
+        </Animated.View>
+      </View>
     );
   }
 }
@@ -69,6 +97,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     height: hp('14%'),
     zIndex: 2
+  },
+  footerContainer: {
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: wp('100%'),
+    zIndex: 5
+  },
+  addToCartButton: {
+    width: wp('50%'),
+    paddingBottom: height < 737 ? hp('1.5%') : hp('3.5%')
   }
 });
 
