@@ -17,81 +17,114 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 import get from 'lodash.get';
-
-//!components
-// import AddToCartButton from '../addToCartButton/AddToCartButton';
+import Icon from 'react-native-vector-icons/Ionicons';
+import HTML from 'react-native-render-html';
 
 class ProductDetails extends Component {
   //
 
   render() {
     const brand = get(this.props.apiResult, 'brand.name', 'loading');
+    const about = get(this.props.apiResult, 'info.aboutMe', 'loading');
+    const careInfo = get(this.props.apiResult, 'info.careInfo', 'loading');
+    const sizeAndFit = get(this.props.apiResult, 'info.sizeAndFit', null);
+    const inStock = get(this.props.apiResult, 'isInStock', null);
+
+    let isInStock = null;
+    if (inStock) {
+      isInStock = (
+        <Text style={[iOSUIKit.title3, { color: '#689f38' }]}>In Stock</Text>
+      );
+    } else {
+      isInStock = (
+        <Text style={[iOSUIKit.title3, { color: '#e53935' }]}>
+          Out of Stock
+        </Text>
+      );
+    }
+
+    let model = null;
+    if (sizeAndFit) {
+      model = (
+        <View style={styles.instructionsContainer}>
+          <Icon name="ios-body" size={40} style={styles.icon} />
+          <HTML
+            html={sizeAndFit}
+            containerStyle={htmlStyles.container}
+            ignoredTags={['br']}
+          />
+        </View>
+      );
+    }
 
     return (
       <View>
         <View style={styles.brandContainer}>
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
-            {brand}
-          </Text>
+          <Text style={iOSUIKit.largeTitleEmphasized}>{brand}</Text>
         </View>
 
-        <View style={styles.brandContainer}>
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
-            {brand}
-          </Text>
+        <View style={styles.stockContainer}>
+          <Text>{isInStock}</Text>
         </View>
 
-        <View style={styles.brandContainer}>
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
-            {brand}
-          </Text>
+        <View style={styles.instructionsContainer}>
+          <Icon name="ios-flower" size={40} style={styles.icon} />
+          <HTML
+            html={about}
+            containerStyle={htmlStyles.container}
+            ignoredTags={['br']}
+          />
         </View>
 
-        <View style={styles.brandContainer}>
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
-            {brand}
-          </Text>
+        <View style={styles.instructionsContainer}>
+          <Icon name="ios-color-filter" size={40} style={styles.icon} />
+          <HTML
+            html={careInfo}
+            containerStyle={htmlStyles.container}
+            ignoredTags={['br']}
+          />
         </View>
 
-        <View style={styles.brandContainer}>
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
-            {brand}
-          </Text>
-        </View>
+        {model}
 
-        <View style={styles.brandContainer}>
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
-            {brand}
-          </Text>
-        </View>
-
-        <View style={styles.brandContainer}>
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
-            {brand}
-          </Text>
-        </View>
-
-        <View style={styles.brandContainer}>
-          <Text style={[iOSUIKit.largeTitleEmphasized, styles.brand]}>
-            {brand}
-          </Text>
-        </View>
+        {/* <View style={styles.instructionsContainer}>
+          <Icon name="ios-body" size={40} style={styles.icon} />
+          <HTML
+            html={sizeAndFit}
+            containerStyle={htmlStyles.container}
+            ignoredTags={['br']}
+          />
+        </View> */}
       </View>
     );
   }
 }
+
+const htmlStyles = {
+  container: {
+    width: wp('70%')
+  }
+};
 
 const styles = StyleSheet.create({
   brandContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: hp('3%'),
-    marginBottom: hp('3%')
+    marginBottom: hp('1.5%')
   },
-  brand: {},
-  addToCartContainer: {
+  stockContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: hp('1.5%'),
+    marginBottom: hp('1.5%')
+  },
+  icon: {
+    margin: 20
+  },
+  instructionsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    alignItems: 'center',
     marginBottom: hp('3%')
   }
 });

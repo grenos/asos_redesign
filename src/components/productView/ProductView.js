@@ -11,6 +11,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
+import get from 'lodash.get';
 
 import Blur from '../blur/BlurComponent';
 import ProductHero from './ProductHero';
@@ -29,6 +30,7 @@ class ProductView extends Component {
 
   render() {
     //
+    // const sizes = get(this.props.apiResult, 'sizeGuide', 'loading');
 
     const headerBackground = this.state.scrollY.interpolate({
       inputRange: [hp('45%'), hp('50%'), hp('55%')],

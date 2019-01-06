@@ -17,12 +17,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const AddToCartButton = props => {
   //
-  const onGoBack = () => {
-    props.clearInput();
-    props.clearCategory();
-    props.clearOffset();
-    props.navigation.goBack();
-  };
+  const onGoBack = () => {};
 
   return (
     <TouchableWithoutFeedback onPress={() => onGoBack()}>

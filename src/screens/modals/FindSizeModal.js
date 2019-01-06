@@ -1,17 +1,11 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
+import ProductSizes from '../../components/productView/ProductSizes';
 
 export default () => {
   return (
-    <View style={styles.container}>
-      <Text>MODAL TESTT</Text>
+    <View>
+      <ProductSizes />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff'
-  }
-});
