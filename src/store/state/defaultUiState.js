@@ -2,6 +2,8 @@ import images from '../../assets/img/index';
 
 export const UI_STATE = {
   isVideo: true,
+  isSize: ['s', 'm', 'l', 'xl'],
+  sizeChosen: null,
   genders: [
     {
       id: 'women',

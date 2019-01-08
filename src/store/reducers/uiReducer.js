@@ -12,6 +12,11 @@ const reducer = (state = UI_STATE, action) => {
         ...state,
         isVideo: false
       };
+    case 'CHOOSE_SIZE':
+      return {
+        ...state,
+        sizeChosen: action.payload
+      };
     default:
       return state;
   }

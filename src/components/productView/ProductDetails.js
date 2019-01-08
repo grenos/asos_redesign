@@ -23,6 +23,7 @@ class ProductDetails extends Component {
   //
 
   componentDidMount() {
+    // call action
     this.props.completeTheLook();
   }
 

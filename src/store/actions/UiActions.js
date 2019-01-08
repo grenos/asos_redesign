@@ -12,3 +12,8 @@ export const toggleVideoTrue = () => ({
 export const toggleVideoFalse = () => ({
   type: 'TOGGLE_VIDEO_FALSE'
 });
+
+export const chooseSize = size => ({
+  type: 'CHOOSE_SIZE',
+  payload: size
+});

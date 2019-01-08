@@ -9,6 +9,7 @@ import {
 
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { chooseSize } from '../../store/actions/UiActions';
 
 import { withNavigation } from 'react-navigation';
 import {
@@ -22,7 +23,18 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 class ProductSizes extends Component {
   //
+  onSizeSelect = size => {
+    // call action
+    this.props.sizeSelection(size);
+
+    setTimeout(() => {
+      this.props.navigation.goBack();
+    }, 800);
+  };
+
   render() {
+    const isSize = this.props.sizes;
+
     return (
       <View>
         <View style={styles.topView}>
@@ -40,27 +52,34 @@ class ProductSizes extends Component {
         </View>
 
         <View style={styles.bottomView}>
-          <TouchableOpacity>
-            <View style={styles.sizeView}>
-              <Text style={styles.sizes}>S</Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity>
-            <View style={styles.sizeView}>
-              <Text style={styles.sizes}>M</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <View style={styles.sizeView}>
-              <Text style={styles.sizes}>L</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <View style={styles.sizeView}>
-              <Text style={styles.sizes}>XL</Text>
-            </View>
-          </TouchableOpacity>
+          {isSize.map(size => {
+            return (
+              <TouchableOpacity
+                key={size}
+                onPress={() => this.onSizeSelect(size)}
+              >
+                <View
+                  style={
+                    this.props.isSizeSelected &&
+                    this.props.isSizeSelected === size
+                      ? styles.sizeViewSel
+                      : styles.sizeViewUn
+                  }
+                >
+                  <Text
+                    style={
+                      this.props.isSizeSelected &&
+                      this.props.isSizeSelected === size
+                        ? styles.sizesSel
+                        : styles.sizesUn
+                    }
+                  >
+                    {size.toUpperCase()}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            );
+          })}
         </View>
       </View>
     );
@@ -91,12 +110,21 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingLeft: wp('7%')
   },
-  sizeView: {
+  sizeViewUn: {
     width: wp('100%'),
     paddingVertical: hp('3%')
   },
-  sizes: {
+  sizeViewSel: {
+    paddingVertical: hp('3%'),
+    borderBottomWidth: 1,
+    borderBottomColor: '#1b5e20'
+  },
+  sizesUn: {
     ...iOSUIKit.title3
+  },
+  sizesSel: {
+    ...iOSUIKit.title3,
+    color: '#1b5e20'
   },
   backButton: {
     position: 'absolute',
@@ -105,16 +133,22 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = state => {
+  return {
+    sizes: state.uiReducer.isSize,
+    isSizeSelected: state.uiReducer.sizeChosen
+  };
+};
+
 const mapDispatchToProps = dispacth => {
   return {
-    videoTrue: () => dispacth(toggleVideoTrue()),
-    videoFalse: () => dispacth(toggleVideoFalse())
+    sizeSelection: size => dispacth(chooseSize(size))
   };
 };
 
 export default compose(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   ),
   withNavigation
