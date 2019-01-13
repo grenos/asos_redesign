@@ -26,7 +26,6 @@ export const scaleFontSize = fontSize => {
   return newSize;
 };
 
-// doesnt work
 export const substring = [
   'boots',
   'boot',
