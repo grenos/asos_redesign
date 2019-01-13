@@ -38,6 +38,10 @@ export const substring = [
   'slider',
   'trainers',
   'trainer',
-  'All Star',
-  'football'
+  'plimsolls',
+  'football',
+  'heels',
+  'heeled',
+  'shoes',
+  'shoe'
 ];

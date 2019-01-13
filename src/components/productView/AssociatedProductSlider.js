@@ -17,11 +17,6 @@ import {
   searchProduct
 } from '../../store/actions/ApiActions';
 
-import {
-  toggleShoeCategoryTrue,
-  toggleShoeCategoryFalse
-} from '../../store/actions/UiActions';
-
 //! libraries
 import { withNavigation } from 'react-navigation';
 import Carousel from 'react-native-snap-carousel';
@@ -65,23 +60,6 @@ class AssociatedProductsSlider extends Component {
   _productSelected = id => {
     //make new search based on product id
     this.props.searchProduct(id);
-
-    //! THIS GET NAME OF CURRENT PRODUCT AND NOT THE ONE CLICKED!!!!
-    //? NEEDS TO BE FIXED!!!!
-    //* CHECK IF IT CAN GO TO ACTIONS
-    // get name hack from helpers find if user has clicked
-    // on shoes category
-    const { name } = this.props.apiResult;
-    console.log(name);
-    // if keyword exists in array
-    if (substring.indexOf(name) > -1) {
-      //set shoe true for sizes component
-      this.props.toggleShoeTrue();
-    } else {
-      //togle sue false action
-      this.props.toggleShoeFalse();
-    }
-
     // clear similar from store
     this.props.clearSimilar();
   };
@@ -131,7 +109,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    apiResult: state.apiReducer.apiResult,
     similarItems: state.apiReducer.similarItems
   };
 };
@@ -139,9 +116,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispacth => {
   return {
     clearSimilar: () => dispacth(clearStateSimilarItems()),
-    searchProduct: id => dispacth(searchProduct(id)),
-    toggleShoeTrue: () => dispacth(toggleShoeCategoryTrue()),
-    toggleShoeFalse: () => dispacth(toggleShoeCategoryFalse())
+    searchProduct: id => dispacth(searchProduct(id))
   };
 };
 

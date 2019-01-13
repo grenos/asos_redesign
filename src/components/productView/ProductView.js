@@ -7,15 +7,22 @@ import {
   Dimensions
 } from 'react-native';
 
+//!redux
 import { connect } from 'react-redux';
-
+import { compose } from 'redux';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
+import {
+  toggleShoeCategoryTrue,
+  toggleShoeCategoryFalse
+} from '../../store/actions/UiActions';
 
+//!libraries
 import get from 'lodash.get';
 
+//!components
 import Blur from '../blur/BlurComponent';
 import ProductHero from './ProductHero';
 import ProductDetails from './ProductDetails';
@@ -23,6 +30,8 @@ import ProductHeader from './ProductHeader';
 import AddToCartButton from '../addToCartButton/AddToCartButton';
 import SizesButton from '../productSizesButton/SizesButton';
 
+//!helpers
+import { substring } from '../../helpers/helpers';
 const { height, width } = Dimensions.get('window');
 
 class ProductView extends Component {
@@ -30,6 +39,25 @@ class ProductView extends Component {
     scrollY: new Animated.Value(0)
   };
   //
+
+  componentDidMount() {
+    // get array from helpers find if user has clicked
+    // on shoes product
+    //get product title to see if it contains keyword
+    const { name } = this.props.apiResult;
+    // split string to compare with helpers array
+    const split = name.split(' ');
+    //compare arrays
+    let found = substring.some(r => split.indexOf(r) >= 0);
+    // if keyword exists in array
+    if (found) {
+      //set shoe true for sizes component
+      this.props.toggleShoeTrue();
+    } else {
+      //togle sue false action
+      this.props.toggleShoeFalse();
+    }
+  }
 
   render() {
     //
@@ -121,11 +149,19 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    isNoSize: state.apiReducer.apiResult
+    isNoSize: state.apiReducer.apiResult,
+    apiResult: state.apiReducer.apiResult
+  };
+};
+
+const mapDispatchToProps = dispacth => {
+  return {
+    toggleShoeTrue: () => dispacth(toggleShoeCategoryTrue()),
+    toggleShoeFalse: () => dispacth(toggleShoeCategoryFalse())
   };
 };
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(ProductView);
