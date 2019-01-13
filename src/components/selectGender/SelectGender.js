@@ -60,16 +60,16 @@ const SelectGender = props => {
 
 const styles = StyleSheet.create({
   container: {
-    height: hp('50%'),
+    height: hp('55%'),
     justifyContent: 'flex-start'
   },
   centerImages: {
     // center images verticaly
-    height: hp('25%')
+    height: hp('27.5%')
   },
   img: {
     width: wp('100%'),
-    height: hp('23.5%')
+    height: hp('26%')
   },
   textContainer: {
     flex: 1,

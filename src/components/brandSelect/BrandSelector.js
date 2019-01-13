@@ -4,7 +4,8 @@ import {
   ImageBackground,
   Text,
   StyleSheet,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Dimensions
 } from 'react-native';
 import images from '../../assets/img/index';
 import { iOSUIKit } from 'react-native-typography';
@@ -12,6 +13,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
+
+const { height, width } = Dimensions.get('window');
 
 export default class BrandSelector extends Component {
   render() {
@@ -37,12 +40,12 @@ export default class BrandSelector extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: hp('30%'),
+    height: height <= 737 ? hp('35%') : hp('32%'),
     justifyContent: 'flex-end'
   },
   img: {
     width: wp('100%'),
-    height: hp('28%')
+    height: height <= 737 ? hp('34%') : hp('31%')
   },
   header: {
     fontSize: hp('7%'),
