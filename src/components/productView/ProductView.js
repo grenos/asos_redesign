@@ -48,7 +48,7 @@ class ProductView extends Component {
     // split string to compare with helpers array
     const split = name.split(' ');
     //compare arrays
-    let found = substring.some(r => split.indexOf(r) >= 0);
+    const found = substring.some(r => split.indexOf(r) >= 0);
     // if keyword exists in array
     if (found) {
       //set shoe true for sizes component

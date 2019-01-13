@@ -18,8 +18,6 @@ import {
   clearStateApiResults
 } from '../../../../store/actions/ApiActions';
 
-import { toggleShoeCategoryTrue } from '../../../../store/actions/UiActions';
-
 //! libraries
 import { withNavigation } from 'react-navigation';
 import Carousel from 'react-native-snap-carousel';
@@ -92,8 +90,6 @@ class ShoesSlider extends Component {
     this.props.searchProducts();
     // go to page
     this.props.navigation.navigate('Products');
-    //set shoe for sizes component
-    this.props.toggleShoeTrue();
   }
 
   // _onSnap(index) {
@@ -154,8 +150,7 @@ const mapDispatchToProps = dispacth => {
   return {
     categoryName: description => dispacth(chooseNameCategory(description)),
     searchProducts: () => dispacth(searchProducts()),
-    clearApiResults: () => dispacth(clearStateApiResults()),
-    toggleShoeTrue: () => dispacth(toggleShoeCategoryTrue())
+    clearApiResults: () => dispacth(clearStateApiResults())
   };
 };
 
