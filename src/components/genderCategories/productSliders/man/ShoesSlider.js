@@ -18,6 +18,8 @@ import {
   clearStateApiResults
 } from '../../../../store/actions/ApiActions';
 
+import { toggleShoeCategoryTrue } from '../../../../store/actions/UiActions';
+
 //! libraries
 import { withNavigation } from 'react-navigation';
 import Carousel from 'react-native-snap-carousel';
@@ -27,7 +29,9 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
+//!helpers
 const { height, width } = Dimensions.get('window');
+
 class ShoesSlider extends Component {
   // constructor(props) {
   //   super(props);
@@ -47,7 +51,9 @@ class ShoesSlider extends Component {
     // if (index === this.state.activeSlide) {
     return (
       <View style={styles.slide}>
-        <TouchableWithoutFeedback onPress={() => this._handleSubmit(item.name)}>
+        <TouchableWithoutFeedback
+          onPress={() => this._handleSubmit(item.description)}
+        >
           <ImageBackground
             source={item.img}
             style={styles.img}
@@ -55,7 +61,7 @@ class ShoesSlider extends Component {
           >
             <View style={styles.TextContainer}>
               <Text style={[iOSUIKit.subheadEmphasized, styles.name]}>
-                {item.name.toUpperCase()}
+                {item.description.toUpperCase()}
               </Text>
             </View>
           </ImageBackground>
@@ -80,14 +86,16 @@ class ShoesSlider extends Component {
     // );
   }
 
-  _handleSubmit(name) {
+  _handleSubmit(description) {
     this.props.clearApiResults();
     // dispatch data to state
-    this.props.categoryName(name);
+    this.props.categoryName(description);
     //call action
     this.props.searchProducts();
     // go to page
     this.props.navigation.navigate('Products');
+    //set shoe for sizes component
+    this.props.toggleShoeTrue();
   }
 
   // _onSnap(index) {
@@ -146,9 +154,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispacth => {
   return {
-    categoryName: name => dispacth(chooseNameCategory(name)),
+    categoryName: description => dispacth(chooseNameCategory(description)),
     searchProducts: () => dispacth(searchProducts()),
-    clearApiResults: () => dispacth(clearStateApiResults())
+    clearApiResults: () => dispacth(clearStateApiResults()),
+    toggleShoeTrue: () => dispacth(toggleShoeCategoryTrue())
   };
 };
 

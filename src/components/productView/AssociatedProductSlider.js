@@ -12,7 +12,15 @@ import {
 //! redux
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { clearStateSimilarItems } from '../../store/actions/ApiActions';
+import {
+  clearStateSimilarItems,
+  searchProduct
+} from '../../store/actions/ApiActions';
+
+import {
+  toggleShoeCategoryTrue,
+  toggleShoeCategoryFalse
+} from '../../store/actions/UiActions';
 
 //! libraries
 import { withNavigation } from 'react-navigation';
@@ -23,6 +31,8 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
+//!helpers
+import { substring } from '../../helpers/helpers';
 const { height } = Dimensions.get('window');
 
 class AssociatedProductsSlider extends Component {
@@ -32,9 +42,10 @@ class AssociatedProductsSlider extends Component {
   }
 
   _renderItem({ item, index }) {
+    let id = item.id;
     return (
       <View style={styles.slide}>
-        <TouchableWithoutFeedback onPress={() => this._handleSubmit(item.id)}>
+        <TouchableWithoutFeedback onPress={() => this._productSelected(id)}>
           <ImageBackground
             source={{ uri: `https://${item.images[1].url}` }}
             style={styles.img}
@@ -51,15 +62,29 @@ class AssociatedProductsSlider extends Component {
     );
   }
 
-  _handleSubmit(name) {
-    this.props.clearApiResults();
-    // dispatch data to state
-    this.props.categoryName(name);
-    //call action
-    this.props.searchProducts();
-    // go to page
-    this.props.navigation.navigate('Products');
-  }
+  _productSelected = id => {
+    //make new search based on product id
+    this.props.searchProduct(id);
+
+    //! THIS GET NAME OF CURRENT PRODUCT AND NOT THE ONE CLICKED!!!!
+    //? NEEDS TO BE FIXED!!!!
+    //* CHECK IF IT CAN GO TO ACTIONS
+    // get name hack from helpers find if user has clicked
+    // on shoes category
+    const { name } = this.props.apiResult;
+    console.log(name);
+    // if keyword exists in array
+    if (substring.indexOf(name) > -1) {
+      //set shoe true for sizes component
+      this.props.toggleShoeTrue();
+    } else {
+      //togle sue false action
+      this.props.toggleShoeFalse();
+    }
+
+    // clear similar from store
+    this.props.clearSimilar();
+  };
 
   render() {
     return (
@@ -106,14 +131,17 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
+    apiResult: state.apiReducer.apiResult,
     similarItems: state.apiReducer.similarItems
   };
 };
 
 const mapDispatchToProps = dispacth => {
   return {
-    // searchProducts: () => dispacth(searchProducts()),
-    clearSimilar: () => dispacth(clearStateSimilarItems())
+    clearSimilar: () => dispacth(clearStateSimilarItems()),
+    searchProduct: id => dispacth(searchProduct(id)),
+    toggleShoeTrue: () => dispacth(toggleShoeCategoryTrue()),
+    toggleShoeFalse: () => dispacth(toggleShoeCategoryFalse())
   };
 };
 

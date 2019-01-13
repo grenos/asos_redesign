@@ -17,3 +17,11 @@ export const chooseSize = size => ({
   type: 'CHOOSE_SIZE',
   payload: size
 });
+
+export const toggleShoeCategoryTrue = () => ({
+  type: 'SHOE_CATEGORY_TRUE'
+});
+
+export const toggleShoeCategoryFalse = () => ({
+  type: 'SHOE_CATEGORY_FALSE'
+});

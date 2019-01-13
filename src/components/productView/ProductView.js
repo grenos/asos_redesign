@@ -7,10 +7,13 @@ import {
   Dimensions
 } from 'react-native';
 
+import { connect } from 'react-redux';
+
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
+
 import get from 'lodash.get';
 
 import Blur from '../blur/BlurComponent';
@@ -30,7 +33,7 @@ class ProductView extends Component {
 
   render() {
     //
-    // const sizes = get(this.props.apiResult, 'sizeGuide', 'loading');
+    const { isNoSize } = this.props.isNoSize;
 
     const headerBackground = this.state.scrollY.interpolate({
       inputRange: [hp('45%'), hp('50%'), hp('55%')],
@@ -73,7 +76,7 @@ class ProductView extends Component {
             { transform: [{ translateY: footerTranslate }] }
           ]}
         >
-          <SizesButton style={styles.addToCartButton} />
+          {isNoSize ? null : <SizesButton style={styles.addToCartButton} />}
           <AddToCartButton style={styles.addToCartButton} />
         </Animated.View>
       </View>
@@ -110,9 +113,19 @@ const styles = StyleSheet.create({
     zIndex: 5
   },
   addToCartButton: {
-    width: wp('50%'),
+    // width: wp('50%'),
+    flex: 1,
     paddingBottom: height < 737 ? hp('1.5%') : hp('3.5%')
   }
 });
 
-export default ProductView;
+const mapStateToProps = state => {
+  return {
+    isNoSize: state.apiReducer.apiResult
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(ProductView);

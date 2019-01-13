@@ -37,7 +37,9 @@ class ClothesSlider extends Component {
   _renderItem({ item, index }) {
     return (
       <View style={styles.slide}>
-        <TouchableWithoutFeedback onPress={() => this._handleSubmit(item.name)}>
+        <TouchableWithoutFeedback
+          onPress={() => this._handleSubmit(item.description)}
+        >
           <ImageBackground
             source={item.img}
             style={styles.img}
@@ -45,7 +47,7 @@ class ClothesSlider extends Component {
           >
             <View style={styles.TextContainer}>
               <Text style={[iOSUIKit.subheadEmphasized, styles.name]}>
-                {item.name.toUpperCase()}
+                {item.description.toUpperCase()}
               </Text>
             </View>
           </ImageBackground>
@@ -54,10 +56,10 @@ class ClothesSlider extends Component {
     );
   }
 
-  _handleSubmit(name) {
+  _handleSubmit(description) {
     this.props.clearApiResults();
     // dispatch data to state
-    this.props.categoryName(name);
+    this.props.categoryName(description);
     //call action
     this.props.searchProducts();
     // go to page
@@ -116,7 +118,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispacth => {
   return {
-    categoryName: name => dispacth(chooseNameCategory(name)),
+    categoryName: description => dispacth(chooseNameCategory(description)),
     searchProducts: () => dispacth(searchProducts()),
     clearApiResults: () => dispacth(clearStateApiResults())
   };

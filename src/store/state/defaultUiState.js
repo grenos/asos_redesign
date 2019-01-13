@@ -2,7 +2,10 @@ import images from '../../assets/img/index';
 
 export const UI_STATE = {
   isVideo: true,
+  isShoe: null,
   isSize: ['s', 'm', 'l', 'xl'],
+  isShoeSize: ['37', '38', '39', '40', '41', '42', '43', '44', '45', '46'],
+
   sizeChosen: null,
   genders: [
     {
@@ -19,72 +22,72 @@ export const UI_STATE = {
   brand: images.brand,
   womanCategories: {
     clothing: [
-      { name: 'Activewear', img: images.activewear },
-      { name: 'Coats', img: images.coats },
-      { name: 'Jackets', img: images.jackets },
-      { name: 'Hoodies', img: images.hoodies },
-      { name: 'Jeans', img: images.jeans },
-      { name: 'Jumpers', img: images.jumpers },
-      { name: 'Cardigans', img: images.cardigans },
-      { name: 'Jumpsuits', img: images.jumpsuits },
-      { name: 'Lingerie', img: images.lingerie },
-      { name: 'Loungewear', img: images.loungewear },
-      { name: 'Shorts', img: images.shorts },
-      { name: 'Skirts', img: images.skirts },
-      { name: 'Socks', img: images.socks },
-      { name: 'Trousers', img: images.trousers },
-      { name: 'Leggings', img: images.leggings }
+      { description: 'Activewear', img: images.activewear },
+      { description: 'Coats', img: images.coats },
+      { description: 'Jackets', img: images.jackets },
+      { description: 'Hoodies', img: images.hoodies },
+      { description: 'Jeans', img: images.jeans },
+      { description: 'Jumpers', img: images.jumpers },
+      { description: 'Cardigans', img: images.cardigans },
+      { description: 'Jumpsuits', img: images.jumpsuits },
+      { description: 'Lingerie', img: images.lingerie },
+      { description: 'Loungewear', img: images.loungewear },
+      { description: 'Shorts', img: images.shorts },
+      { description: 'Skirts', img: images.skirts },
+      { description: 'Socks', img: images.socks },
+      { description: 'Trousers', img: images.trousers },
+      { description: 'Leggings', img: images.leggings }
     ],
     shoes: [
-      { name: 'Boots', img: images.boots },
-      { name: 'Chelsea boots', img: images.chelsea },
-      { name: 'Flat shoes', img: images.flat },
-      { name: 'Heels', img: images.heels },
-      { name: 'Loafers', img: images.loafers },
-      { name: 'Sandals', img: images.sandals },
-      { name: 'Slippers', img: images.slippers },
-      { name: 'Trainers', img: images.trainers }
+      { description: 'Boots', img: images.boots },
+      { description: 'Chelsea boots', img: images.chelsea },
+      { description: 'Flat shoes', img: images.flat },
+      { description: 'Heels', img: images.heels },
+      { description: 'Loafers', img: images.loafers },
+      { description: 'Sandals', img: images.sandals },
+      { description: 'Slippers', img: images.slippers },
+      { description: 'Trainers', img: images.trainers }
     ],
     accessories: [
-      { name: 'Purses', img: images.purse },
-      { name: 'Gloves', img: images.glove },
-      { name: 'Hats', img: images.hat },
-      { name: 'Scarves', img: images.scarve },
-      { name: 'Sunglasses', img: images.sunglasses }
+      { description: 'Purses', img: images.purse },
+      { description: 'Gloves', img: images.glove },
+      { description: 'Hats', img: images.hat },
+      { description: 'Scarves', img: images.scarve },
+      { description: 'Sunglasses', img: images.sunglasses }
     ]
   },
   manCategories: {
     clothing: [
-      { name: 'Coats', img: images.coatsM },
-      { name: 'Jackets', img: images.jacketsM },
-      { name: 'Hoodies', img: images.hoodiesM },
-      { name: 'Jeans', img: images.jeansM },
-      { name: 'Jumpers', img: images.jumpersM },
-      { name: 'Cardigans', img: images.cardigansM },
-      { name: 'Polos', img: images.polosM },
-      { name: 'Suits', img: images.suitsM },
-      { name: 'T-shirts', img: images.teesM },
-      { name: 'Tracksuits', img: images.tracksuitsM },
-      { name: 'Trousers', img: images.trousersM },
-      { name: 'Underwear', img: images.underwearM }
+      { description: 'Coats', img: images.coatsM },
+      { description: 'Jackets', img: images.jacketsM },
+      { description: 'Hoodies', img: images.hoodiesM },
+      { description: 'Jeans', img: images.jeansM },
+      { description: 'Jumpers', img: images.jumpersM },
+      { description: 'Cardigans', img: images.cardigansM },
+      { description: 'Polos', img: images.polosM },
+      { description: 'Suits', img: images.suitsM },
+      { description: 'T-shirts', img: images.teesM },
+      { description: 'Tracksuits', img: images.tracksuitsM },
+      { description: 'Trousers', img: images.trousersM },
+      { description: 'Underwear', img: images.underwearM }
     ],
     shoes: [
-      { name: 'Boots', img: images.bootsM },
-      { name: 'Chelsea boots', img: images.chelseaM },
-      { name: 'Loafers', img: images.loafersM },
-      { name: 'Slippers', img: images.slippersM },
-      { name: 'Trainers', img: images.trainersM }
+      { description: 'Boots', img: images.bootsM },
+      { description: 'Chelsea boots', img: images.chelseaM },
+      { description: 'Loafers', img: images.loafersM },
+      { description: 'Slippers', img: images.slippersM },
+      { description: 'Trainers', img: images.trainersM }
     ],
     accessories: [
-      { name: 'Bags', img: images.bagsM },
-      { name: 'Belts', img: images.beltsM },
-      { name: 'Hats', img: images.hatsM },
-      { name: 'Watches', img: images.watchesM },
-      { name: 'Scarves', img: images.scarvesM },
-      { name: 'Socks', img: images.socksM },
-      { name: 'Sunglasses', img: images.sunglassesM },
-      { name: 'Ties', img: images.tiesM },
-      { name: 'Wallets', img: images.walletsM }
+      { description: 'Bags', img: images.bagsM },
+      { description: 'Belts', img: images.beltsM },
+      { description: 'Hats', img: images.hatsM },
+      { description: 'Watches', img: images.watchesM },
+      { description: 'Scarves', img: images.scarvesM },
+      { description: 'Socks', img: images.socksM },
+      { description: 'Sunglasses', img: images.sunglassesM },
+      { description: 'Ties', img: images.tiesM },
+      { description: 'Wallets', img: images.walletsM }
     ]
   }
 };

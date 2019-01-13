@@ -21,9 +21,9 @@ export const chooseGenderCategory = id => ({
   payload: id
 });
 
-export const chooseNameCategory = name => ({
+export const chooseNameCategory = description => ({
   type: 'CHOOSE_CATEGORY',
-  payload: name
+  payload: description
 });
 
 export const setOffset = offset => ({
@@ -78,7 +78,7 @@ export const searchProduct = id => {
         dispatch(setResultToState(results));
       })
       .then(() => {
-        NavigationService.navigate('Product');
+        NavigationService.push('Product');
       })
       .catch(error => {
         // handle error
@@ -116,7 +116,7 @@ export const getSimilar = () => {
     const associatedProductGroups = get(
       apiReducer,
       'apiResult.associatedProductGroups',
-      'change me'
+      null
     );
 
     let itemURL = null;
@@ -130,7 +130,6 @@ export const getSimilar = () => {
             const results = res.data.products;
             results.map(product => {
               let item = product.product;
-              console.log(item);
               dispatch(setItemsToState(item));
             });
           })

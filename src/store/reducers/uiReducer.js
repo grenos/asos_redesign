@@ -17,6 +17,16 @@ const reducer = (state = UI_STATE, action) => {
         ...state,
         sizeChosen: action.payload
       };
+    case 'SHOE_CATEGORY_TRUE':
+      return {
+        ...state,
+        isShoe: true
+      };
+    case 'SHOE_CATEGORY_FALSE':
+      return {
+        ...state,
+        isShoe: false
+      };
     default:
       return state;
   }

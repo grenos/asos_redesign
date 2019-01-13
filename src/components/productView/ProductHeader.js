@@ -24,7 +24,11 @@ class ProductHeader extends Component {
   //
 
   onBackButton = () => {
-    this.props.navigation.goBack();
+    //this needs to be goBack but
+    // there are problems with the similar item slider and
+    // redux store. For now functionality is as is.
+    this.props.navigation.navigate('Products');
+
     this.props.videoTrue();
     this.props.clearSimilar();
   };

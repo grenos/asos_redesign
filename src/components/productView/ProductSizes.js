@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
+  ScrollView,
   StyleSheet,
   TouchableWithoutFeedback,
   TouchableOpacity
@@ -33,7 +34,17 @@ class ProductSizes extends Component {
   };
 
   render() {
+    //find if category is shoes or clothes and display right sizes
     const isSize = this.props.sizes;
+    const isShoeSize = this.props.shoeSizes;
+    const { isShoeSelected } = this.props;
+
+    let renderSizes = null;
+    if (isShoeSelected) {
+      renderSizes = isShoeSize;
+    } else {
+      renderSizes = isSize;
+    }
 
     return (
       <View>
@@ -52,34 +63,36 @@ class ProductSizes extends Component {
         </View>
 
         <View style={styles.bottomView}>
-          {isSize.map(size => {
-            return (
-              <TouchableOpacity
-                key={size}
-                onPress={() => this.onSizeSelect(size)}
-              >
-                <View
-                  style={
-                    this.props.isSizeSelected &&
-                    this.props.isSizeSelected === size
-                      ? styles.sizeViewSel
-                      : styles.sizeViewUn
-                  }
+          <ScrollView>
+            {renderSizes.map(size => {
+              return (
+                <TouchableOpacity
+                  key={size}
+                  onPress={() => this.onSizeSelect(size)}
                 >
-                  <Text
+                  <View
                     style={
                       this.props.isSizeSelected &&
                       this.props.isSizeSelected === size
-                        ? styles.sizesSel
-                        : styles.sizesUn
+                        ? styles.sizeViewSel
+                        : styles.sizeViewUn
                     }
                   >
-                    {size.toUpperCase()}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            );
-          })}
+                    <Text
+                      style={
+                        this.props.isSizeSelected &&
+                        this.props.isSizeSelected === size
+                          ? styles.sizesSel
+                          : styles.sizesUn
+                      }
+                    >
+                      {size.toUpperCase()}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
         </View>
       </View>
     );
@@ -108,23 +121,24 @@ const styles = StyleSheet.create({
     height: hp('50%'),
     justifyContent: 'center',
     alignItems: 'flex-start',
-    paddingLeft: wp('7%')
+    paddingTop: 30,
+    paddingBottom: 20
   },
   sizeViewUn: {
     width: wp('100%'),
     paddingVertical: hp('3%')
   },
   sizeViewSel: {
-    paddingVertical: hp('3%'),
-    borderBottomWidth: 1,
-    borderBottomColor: '#1b5e20'
+    paddingVertical: hp('3%')
   },
   sizesUn: {
-    ...iOSUIKit.title3
+    ...iOSUIKit.title3,
+    paddingLeft: wp('7%')
   },
   sizesSel: {
     ...iOSUIKit.title3,
-    color: '#1b5e20'
+    color: '#1b5e20',
+    paddingLeft: wp('7%')
   },
   backButton: {
     position: 'absolute',
@@ -136,7 +150,9 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     sizes: state.uiReducer.isSize,
-    isSizeSelected: state.uiReducer.sizeChosen
+    isSizeSelected: state.uiReducer.sizeChosen,
+    shoeSizes: state.uiReducer.isShoeSize,
+    isShoeSelected: state.uiReducer.isShoe
   };
 };
 
