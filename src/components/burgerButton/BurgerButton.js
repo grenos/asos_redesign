@@ -13,13 +13,15 @@ import {
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
+
 const BurgerButton = props => {
   //
   const onGoBack = () => {
-    props.clearInput();
-    props.clearCategory();
-    props.clearOffset();
-    props.navigation.goBack();
+    props.navigation.openDrawer();
   };
 
   return (
@@ -38,11 +40,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#ffffff'
   },
-  // icon: {
-  //   // transform: [{ rotate: '90deg' }]
-  // },
+  icon: {
+    transform: [{ rotate: '90deg' }]
+  },
   buttonContainer: {
-    marginLeft: wpW(7)
+    marginLeft: wp('4%')
   }
 });
 

@@ -1,7 +1,12 @@
 import React from 'react';
+import { View } from 'react-native';
 import { iOSUIKit } from 'react-native-typography';
 
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import {
+  createStackNavigator,
+  createAppContainer,
+  createDrawerNavigator
+} from 'react-navigation';
 
 // screens
 // import App from '../screens/app/App';
@@ -16,6 +21,12 @@ import FindSizeModal from '../screens/modals/FindSizeModal';
 import BackButton from '../components/backButton/BackButton';
 import SearchButton from '../components/searchButton/SearchButton';
 import Blur from '../components/blur/BlurComponent';
+import BurgerButton from '../components/burgerButton/BurgerButton';
+
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
 
 const AppStack = createStackNavigator(
   {
@@ -30,6 +41,9 @@ const AppStack = createStackNavigator(
     },
     Product: {
       screen: Product
+      // navigationOptions: ({ navigation }) => ({
+      //   drawerLockMode: 'locked-closed'
+      // })
     }
   },
   {
@@ -38,6 +52,7 @@ const AppStack = createStackNavigator(
       headerStyle: {
         borderBottomWidth: 0
       },
+      gesturesEnabled: false,
       headerTransparent: true,
       headerBackground: <Blur />,
       headerLeft: <BackButton />,
@@ -71,6 +86,17 @@ const CompleteStack = createStackNavigator(
   }
 );
 
-const AppContainer = createAppContainer(CompleteStack);
+const AppDrawer = createDrawerNavigator(
+  {
+    Home: {
+      screen: CompleteStack
+    }
+  },
+  {
+    contentOptions: {}
+  }
+);
+
+const AppContainer = createAppContainer(AppDrawer);
 
 export default AppContainer;

@@ -24,7 +24,6 @@ class GenderView extends Component {
       <View
         style={{ flex: 1, paddingTop: height <= 737 ? hp('11%') : hp('13%') }}
       >
-        {/* <BannerSales /> */}
         <SelectGender />
         <BrandSelector />
       </View>

@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { wpW } from '../../helpers/helpers';
 import { withNavigation } from 'react-navigation';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const SearchButton = props => {
   return (
@@ -10,7 +11,7 @@ const SearchButton = props => {
       onPress={() => props.navigation.navigate('SearchProductModal')}
     >
       <View style={styles.buttonContainer}>
-        <Text style={styles.text}>SEARCH</Text>
+        <Icon name="ios-search" size={30} />
       </View>
     </TouchableOpacity>
   );
@@ -24,9 +25,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff'
   },
   buttonContainer: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#000',
-    paddingBottom: 2,
     marginRight: wpW(7)
   },
   text: {

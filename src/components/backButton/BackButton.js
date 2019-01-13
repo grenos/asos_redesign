@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { wpW } from '../../helpers/helpers';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 // redux
 import {
@@ -24,7 +25,7 @@ const BackButon = props => {
   return (
     <TouchableOpacity onPress={() => onGoBack()}>
       <View {...props} style={[styles.buttonContainer, props.style]}>
-        <Text style={styles.text}>BACK</Text>
+        <Icon name="ios-arrow-round-back" size={40} />
       </View>
     </TouchableOpacity>
   );
@@ -38,9 +39,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff'
   },
   buttonContainer: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#000',
-    paddingBottom: 2,
     marginLeft: wpW(7)
   },
   text: {

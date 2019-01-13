@@ -25,12 +25,6 @@ const mapStateToProps = state => {
   };
 };
 
-// const mapDispatchToProps = dispacth => {
-//   return {
-//     chooseGender: id => dispacth(chooseGenderCategory(id))
-//   };
-// };
-
 export default compose(
   connect(
     mapStateToProps,
