@@ -31,34 +31,17 @@ class ProductSlider extends Component {
             activeDotColor="#000"
             paginationStyle={styles.pagination}
           >
-            <View style={styles.slide}>
-              <ImageBackground
-                style={styles.img}
-                source={{ uri: `https://${images[0].url}` }}
-                resizeMode="cover"
-              />
-            </View>
-            <View style={styles.slide}>
-              <ImageBackground
-                style={styles.img}
-                source={{ uri: `https://${images[1].url}` }}
-                resizeMode="cover"
-              />
-            </View>
-            <View style={styles.slide}>
-              <ImageBackground
-                style={styles.img}
-                source={{ uri: `https://${images[2].url}` }}
-                resizeMode="cover"
-              />
-            </View>
-            <View style={styles.slide}>
-              <ImageBackground
-                style={styles.img}
-                source={{ uri: `https://${images[3].url}` }}
-                resizeMode="cover"
-              />
-            </View>
+            {images.map((image, index) => {
+              return (
+                <View style={styles.slide} key={index}>
+                  <ImageBackground
+                    style={styles.img}
+                    source={{ uri: `https://${image.url}` }}
+                    resizeMode="cover"
+                  />
+                </View>
+              );
+            })}
           </Swiper>
         </View>
       );

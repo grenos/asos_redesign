@@ -16,6 +16,7 @@ import {
   clearStateSimilarItems,
   searchProduct
 } from '../../store/actions/ApiActions';
+import { toggleVideoTrue } from '../../store/actions/UiActions';
 
 //! libraries
 import { withNavigation } from 'react-navigation';
@@ -62,6 +63,9 @@ class AssociatedProductsSlider extends Component {
     this.props.searchProduct(id);
     // clear similar from store
     this.props.clearSimilar();
+    //set video to true for next related
+    // if it was previously  set to false
+    this.props.videoTrue();
   };
 
   render() {
@@ -116,7 +120,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispacth => {
   return {
     clearSimilar: () => dispacth(clearStateSimilarItems()),
-    searchProduct: id => dispacth(searchProduct(id))
+    searchProduct: id => dispacth(searchProduct(id)),
+    videoTrue: () => dispacth(toggleVideoTrue())
   };
 };
 
