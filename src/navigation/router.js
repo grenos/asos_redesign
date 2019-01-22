@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import { iOSUIKit } from 'react-native-typography';
 
 import {
@@ -21,12 +20,7 @@ import FindSizeModal from '../screens/modals/FindSizeModal';
 import BackButton from '../components/backButton/BackButton';
 import SearchButton from '../components/searchButton/SearchButton';
 import Blur from '../components/blur/BlurComponent';
-import BurgerButton from '../components/burgerButton/BurgerButton';
-
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp
-} from 'react-native-responsive-screen';
+import CustomDrawerContentComponent from '../components/drawerComponent/DrawerMain'
 
 const AppStack = createStackNavigator(
   {
@@ -38,12 +32,6 @@ const AppStack = createStackNavigator(
     },
     Products: {
       screen: Products
-    },
-    Product: {
-      screen: Product
-      // navigationOptions: ({ navigation }) => ({
-      //   drawerLockMode: 'locked-closed'
-      // })
     }
   },
   {
@@ -66,10 +54,46 @@ const AppStack = createStackNavigator(
   }
 );
 
+const AppDrawer = createDrawerNavigator(
+  {
+    Home: {
+      screen: AppStack
+    }
+  },
+  {
+    contentComponent: CustomDrawerContentComponent,
+    contentOptions: {},
+  }
+);
+
+const NoDrawerStack = createStackNavigator(
+  {
+    Product: {
+      screen: Product
+    },
+  },
+)
+
+const CardStyleStck = createStackNavigator(
+  {
+    AppDrawer: {
+      screen: AppDrawer
+    },
+    Product: {
+      screen: NoDrawerStack
+    },
+  },
+  {
+    mode: 'card',
+    headerMode: 'none',
+  }
+)
+
+
 const CompleteStack = createStackNavigator(
   {
-    AppStack: {
-      screen: AppStack
+    MainScreens: {
+      screen: CardStyleStck
     },
     SearchProductModal: {
       screen: SearchProductModal
@@ -77,26 +101,20 @@ const CompleteStack = createStackNavigator(
     FindSizeModal: {
       screen: FindSizeModal
     }
+
   },
   {
     mode: 'modal',
     headerMode: 'none',
     cardOverlayEnabled: true,
     transparentCard: true
-  }
-);
-
-const AppDrawer = createDrawerNavigator(
-  {
-    Home: {
-      screen: CompleteStack
-    }
   },
-  {
-    contentOptions: {}
-  }
+  { headerMode: 'none' },
+
 );
 
-const AppContainer = createAppContainer(AppDrawer);
+
+
+const AppContainer = createAppContainer(CompleteStack);
 
 export default AppContainer;
