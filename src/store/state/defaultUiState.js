@@ -89,5 +89,32 @@ export const UI_STATE = {
       { description: 'Ties', img: images.tiesM },
       { description: 'Wallets', img: images.walletsM }
     ]
-  }
+  },
+  topBrands: [
+    'ASOS',
+    'ASOS Design',
+    'ASOS EDITION',
+    'ASOS WHITE',
+    'ASOS 4505',
+    'COLLUSION',
+    'Jack & Jones',
+    'Reclaimed Vintage',
+    'Selected Homme',
+    'Nike',
+    'Adidas',
+    'Reebok',
+    'Under Armour',
+    'Puma',
+    'ASICS',
+    'Diadora',
+    'Vans',
+    'Fila',
+    'New Balance',
+    'Berska',
+    'Dr Martens',
+    'Ellesse',
+    'Fred Perry',
+    'Religion',
+    'Tommy Hilfiger'
+  ]
 };

@@ -13,15 +13,18 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
+import { withNavigation } from 'react-navigation';
+
+
 
 const { height, width } = Dimensions.get('window');
 
-export default class BrandSelector extends Component {
+class BrandSelector extends Component {
   render() {
     return (
       <View style={styles.container}>
         <TouchableWithoutFeedback
-          onPress={() => alert('will lead to brand directory')}
+          onPress={() => this.props.navigation.navigate('Brands')}
         >
           <ImageBackground
             source={images.brand}
@@ -54,3 +57,5 @@ const styles = StyleSheet.create({
     zIndex: 2
   }
 });
+
+export default withNavigation(BrandSelector);

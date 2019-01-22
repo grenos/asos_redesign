@@ -15,6 +15,7 @@ import Products from '../screens/products/Products';
 import Product from '../screens/product/Product';
 import SearchProductModal from '../screens/modals/SearchProductModal';
 import FindSizeModal from '../screens/modals/FindSizeModal';
+import Brands from '../screens/brands/Brands'
 
 //components
 import BackButton from '../components/backButton/BackButton';
@@ -32,6 +33,9 @@ const AppStack = createStackNavigator(
     },
     Products: {
       screen: Products
+    },
+    Brands: {
+      screen: Brands
     }
   },
   {

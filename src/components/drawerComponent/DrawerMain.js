@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  ImageBackground,
+  StyleSheet,
+  TouchableOpacity
+} from 'react-native';
 
 //!redux
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-
 
 import { DrawerItems, SafeAreaView, withNavigation } from 'react-navigation';
 import images from '../../assets/img/index';
@@ -15,10 +21,8 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import { iOSUIKit } from 'react-native-typography';
 
-
-const CustomDrawerContentComponent = (props) => (
+const CustomDrawerContentComponent = props => (
   <ScrollView stickyHeaderIndices={[0]}>
-
     <ImageBackground
       source={images.brand}
       style={styles.img}
@@ -27,10 +31,10 @@ const CustomDrawerContentComponent = (props) => (
       <View style={styles.imgTextContainer}>
         <Text style={[styles.text, { color: 'red' }]}>Hello Name</Text>
       </View>
-
     </ImageBackground>
 
-    <SafeAreaView style={styles.container}
+    <SafeAreaView
+      style={styles.container}
       forceInset={{ top: 'always', horizontal: 'never' }}
     >
       {/* <DrawerItems {...props} /> */}
@@ -71,8 +75,12 @@ const CustomDrawerContentComponent = (props) => (
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => alert('leads to faq page..probably not thought  because im bored')}>
-        < View style={styles.buttonContainer} >
+      <TouchableOpacity
+        onPress={() =>
+          alert('leads to faq page..probably not thought  because im bored')
+        }
+      >
+        <View style={styles.buttonContainer}>
           <Icon style={styles.icon} name="ios-pizza" size={20} />
           <Text style={styles.text}>FAQ</Text>
         </View>
@@ -84,15 +92,14 @@ const CustomDrawerContentComponent = (props) => (
           <Text style={styles.text}>Follow Us</Text>
         </View>
       </TouchableOpacity>
-
-    </SafeAreaView >
-  </ScrollView >
+    </SafeAreaView>
+  </ScrollView>
 );
 
 const styles = StyleSheet.create({
   container: {
     // height: hp('100%'),
-    flex: 1,
+    flex: 1
     // justifyContent: 'center',
     // alignItems: 'flex-start',
     // margin: '8%'
@@ -115,15 +122,11 @@ const styles = StyleSheet.create({
   },
   text: {
     ...iOSUIKit.title3
-
   },
   icon: {
     marginRight: wp('3%')
   }
 });
-
-
-
 
 const mapStateToProps = state => {
   return {
@@ -145,4 +148,3 @@ export default compose(
   ),
   withNavigation
 )(CustomDrawerContentComponent);
-
