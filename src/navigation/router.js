@@ -15,13 +15,14 @@ import Products from '../screens/products/Products';
 import Product from '../screens/product/Product';
 import SearchProductModal from '../screens/modals/SearchProductModal';
 import FindSizeModal from '../screens/modals/FindSizeModal';
-import Brands from '../screens/brands/Brands'
+import Brands from '../screens/brands/Brands';
+import CartScreen from '../screens/cart/CartScreen';
 
 //components
 import BackButton from '../components/backButton/BackButton';
 import SearchButton from '../components/searchButton/SearchButton';
 import Blur from '../components/blur/BlurComponent';
-import CustomDrawerContentComponent from '../components/drawerComponent/DrawerMain'
+import CustomDrawerContentComponent from '../components/drawerComponent/DrawerMain';
 
 const AppStack = createStackNavigator(
   {
@@ -36,6 +37,9 @@ const AppStack = createStackNavigator(
     },
     Brands: {
       screen: Brands
+    },
+    CartScreen: {
+      screen: CartScreen
     }
   },
   {
@@ -66,17 +70,15 @@ const AppDrawer = createDrawerNavigator(
   },
   {
     contentComponent: CustomDrawerContentComponent,
-    contentOptions: {},
+    contentOptions: {}
   }
 );
 
-const NoDrawerStack = createStackNavigator(
-  {
-    Product: {
-      screen: Product
-    },
-  },
-)
+const NoDrawerStack = createStackNavigator({
+  Product: {
+    screen: Product
+  }
+});
 
 const CardStyleStck = createStackNavigator(
   {
@@ -85,14 +87,13 @@ const CardStyleStck = createStackNavigator(
     },
     Product: {
       screen: NoDrawerStack
-    },
+    }
   },
   {
     mode: 'card',
-    headerMode: 'none',
+    headerMode: 'none'
   }
-)
-
+);
 
 const CompleteStack = createStackNavigator(
   {
@@ -105,7 +106,6 @@ const CompleteStack = createStackNavigator(
     FindSizeModal: {
       screen: FindSizeModal
     }
-
   },
   {
     mode: 'modal',
@@ -113,11 +113,8 @@ const CompleteStack = createStackNavigator(
     cardOverlayEnabled: true,
     transparentCard: true
   },
-  { headerMode: 'none' },
-
+  { headerMode: 'none' }
 );
-
-
 
 const AppContainer = createAppContainer(CompleteStack);
 

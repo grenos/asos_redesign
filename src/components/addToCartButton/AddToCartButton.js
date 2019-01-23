@@ -6,21 +6,38 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 // redux
-import {
-  clearStateInput,
-  clearStateCategory,
-  clearStateOffset
-} from '../../store/actions/ApiActions';
+import { addToCart } from '../../store/actions/ApiActions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Cart from '../cart/Cart';
 
 const AddToCartButton = props => {
   //
-  const onGoBack = () => {};
+  const onAddToCart = () => {
+    let id = props.id;
+    let image = props.image;
+    let name = props.name;
+    let size = props.size;
+    let price = props.price;
+    let cart = props.cart;
+
+    let itemId = [];
+    cart.map(item => {
+      itemId.push(item.id);
+    });
+
+    if (!size) {
+      alert('please select a size first');
+    } else if (itemId > 0 && itemId.includes(id)) {
+      alert('item is already in your cart');
+    } else {
+      props.addItemToCart(id, image, name, size, price);
+    }
+  };
 
   return (
-    <TouchableWithoutFeedback onPress={() => onGoBack()}>
+    <TouchableWithoutFeedback onPress={() => onAddToCart()}>
       <View {...props} style={[styles.buttonContainer, props.style]}>
         <Text style={styles.text}>CART</Text>
         <Icon name="ios-cart" size={23} style={styles.icon} />
@@ -52,17 +69,27 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = state => {
+  return {
+    name: state.apiReducer.apiResult.name,
+    id: state.apiReducer.apiResult.id,
+    image: state.apiReducer.apiResult.media.images[0].url,
+    price: state.apiReducer.apiResult.price.current.text,
+    size: state.uiReducer.sizeChosen,
+    cart: state.apiReducer.cart
+  };
+};
+
 const mapDispatchToProps = dispacth => {
   return {
-    clearInput: () => dispacth(clearStateInput()),
-    clearCategory: () => dispacth(clearStateCategory()),
-    clearOffset: () => dispacth(clearStateOffset())
+    addItemToCart: (id, image, name, size, price) =>
+      dispacth(addToCart(id, image, name, size, price))
   };
 };
 
 export default compose(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   ),
   withNavigation

@@ -30,7 +30,7 @@ const ButtonSet = props => {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => onGoBack()}>
+      <TouchableOpacity onPress={() => props.navigation.navigate('CartScreen')}>
         <View {...props} style={[styles.buttonContainer, props.style]}>
           <Icon name="ios-cart" size={28} style={styles.icon} />
         </View>

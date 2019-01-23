@@ -160,3 +160,14 @@ export const clearStateSimilarItems = () => ({
 export const clearBrands = () => ({
   type: 'CLEAR_BRANDS'
 });
+
+export const addToCart = (id, image, name, size, price) => ({
+  type: 'ADD_TO_CART',
+  payload: {
+    id,
+    image,
+    name,
+    size,
+    price
+  }
+});

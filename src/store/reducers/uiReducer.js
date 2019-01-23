@@ -17,6 +17,11 @@ const reducer = (state = UI_STATE, action) => {
         ...state,
         sizeChosen: action.payload
       };
+    case 'CLEAR_SIZE':
+      return {
+        ...state,
+        sizeChosen: ''
+      };
     case 'SHOE_CATEGORY_TRUE':
       return {
         ...state,

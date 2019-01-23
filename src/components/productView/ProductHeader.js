@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import {
   toggleVideoTrue,
-  toggleVideoFalse
+  toggleVideoFalse,
+  clearSize
 } from '../../store/actions/UiActions';
 import { clearStateSimilarItems } from '../../store/actions/ApiActions';
 
@@ -31,6 +32,7 @@ class ProductHeader extends Component {
 
     this.props.videoTrue();
     this.props.clearSimilar();
+    this.props.clearSizes();
   };
 
   render() {
@@ -83,6 +85,14 @@ class ProductHeader extends Component {
                   onPress={() => alert('will open share to social menu')}
                 >
                   <Icon name="ios-share-alt" size={33} />
+                </TouchableWithoutFeedback>
+              </View>
+
+              <View style={styles.shareContainer}>
+                <TouchableWithoutFeedback
+                  onPress={() => this.props.navigation.navigate('CartScreen')}
+                >
+                  <Icon name="ios-cart" size={33} />
                 </TouchableWithoutFeedback>
               </View>
 
@@ -156,7 +166,8 @@ const mapDispatchToProps = dispacth => {
   return {
     videoTrue: () => dispacth(toggleVideoTrue()),
     videoFalse: () => dispacth(toggleVideoFalse()),
-    clearSimilar: () => dispacth(clearStateSimilarItems())
+    clearSimilar: () => dispacth(clearStateSimilarItems()),
+    clearSizes: () => dispacth(clearSize())
   };
 };
 

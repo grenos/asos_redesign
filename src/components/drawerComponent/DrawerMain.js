@@ -61,7 +61,7 @@ const CustomDrawerContentComponent = props => (
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => null}>
+      <TouchableOpacity onPress={() => props.navigation.navigate('CartScreen')}>
         <View style={styles.buttonContainer}>
           <Icon style={styles.icon} name="ios-cart" size={20} />
           <Text style={styles.text}>Cart</Text>

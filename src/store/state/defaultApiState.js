@@ -3,6 +3,7 @@ export const API_STATE = {
   selectedCategoryName: '',
   chooseGender: '',
   selectBrandName: '',
+  cart: [],
   apiOffset: 0,
   apiResults: [],
   apiResult: {},

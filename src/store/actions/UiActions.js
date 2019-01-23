@@ -18,6 +18,10 @@ export const chooseSize = size => ({
   payload: size
 });
 
+export const clearSize = () => ({
+  type: 'CLEAR_SIZE'
+});
+
 export const toggleShoeCategoryTrue = () => ({
   type: 'SHOE_CATEGORY_TRUE'
 });

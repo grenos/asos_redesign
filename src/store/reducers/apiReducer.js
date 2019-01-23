@@ -73,6 +73,21 @@ const reducer = (state = API_STATE, action) => {
         ...state,
         selectBrandName: ''
       };
+    case 'ADD_TO_CART':
+      return {
+        ...state,
+        // ...action.payload,
+        cart: [
+          ...state.cart,
+          {
+            id: action.payload.id,
+            image: action.payload.image,
+            name: action.payload.name,
+            size: action.payload.size,
+            price: action.payload.price
+          }
+        ]
+      };
     default:
       return state;
   }
