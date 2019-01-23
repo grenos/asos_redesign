@@ -26,10 +26,9 @@ const AddToCartButton = props => {
     cart.map(item => {
       itemId.push(item.id);
     });
-
     if (!size) {
       alert('please select a size first');
-    } else if (itemId > 0 && itemId.includes(id)) {
+    } else if (itemId.includes(id)) {
       alert('item is already in your cart');
     } else {
       props.addItemToCart(id, image, name, size, price);
