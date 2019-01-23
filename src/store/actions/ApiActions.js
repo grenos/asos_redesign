@@ -1,6 +1,6 @@
 import axios from 'axios';
 // navigation off screen or component
-// two other parts of this are :
+// two other parts of this are at:
 // the import and on index.js
 import * as NavigationService from '../../navigation/NavigationService';
 import get from 'lodash.get';
@@ -26,6 +26,11 @@ export const chooseNameCategory = description => ({
   payload: description
 });
 
+export const chooseBrandName = name => ({
+  type: 'CHOOSE_BRAND',
+  payload: name
+});
+
 export const setOffset = offset => ({
   type: 'UPDATE_OFFSET',
   payload: offset
@@ -40,14 +45,15 @@ export const searchProducts = () => {
       selectedCategoryName = null,
       chooseGender = null,
       searchInput = null,
+      selectBrandName = null,
       apiOffset = 0
     } = apiReducer;
 
     // wait for state to have category or search info then make call
-    if (selectedCategoryName || searchInput) {
+    if (selectedCategoryName || searchInput || chooseBrandName) {
       axios
         .get(
-          `https://api.asos.com/product/search/v1/?q=${searchInput}${selectedCategoryName}+${chooseGender}&store=1&lang=en-GB&sizeschema=EU&currency=EUR&sort=freshness&channel=mobile-app&offset=${apiOffset}&limit=50`
+          `https://api.asos.com/product/search/v1/?q=${searchInput}${selectedCategoryName}${selectBrandName}+${chooseGender}&store=1&lang=en-GB&sizeschema=EU&currency=EUR&sort=freshness&channel=mobile-app&offset=${apiOffset}&limit=50`
         )
         .then(res => {
           const results = res.data.products;
@@ -149,4 +155,8 @@ export const setItemsToState = results => ({
 
 export const clearStateSimilarItems = () => ({
   type: 'CLEAR_STATE_SIMILAR_ITEMS'
+});
+
+export const clearBrands = () => ({
+  type: 'CLEAR_BRANDS'
 });

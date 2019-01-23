@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
 //!redux
 import { connect } from 'react-redux';
@@ -16,12 +16,20 @@ import { iOSUIKit } from 'react-native-typography';
 //! Components
 import GenderSelector from '../../components/brandContent/GenderSelector';
 import BrandList from '../../components/brandContent/BrandList';
+import ButtonSet from '../../components/buttonSet/ButtonSet';
 
-export default () => {
-  return (
-    <View style={{ paddingTop: hp('11%') }}>
-      <GenderSelector />
-      <BrandList />
-    </View>
-  );
-};
+class Brands extends Component {
+  static navigationOptions = {
+    headerRight: <ButtonSet />
+  };
+  render() {
+    return (
+      <View style={{ paddingTop: hp('11%') }}>
+        <GenderSelector />
+        <BrandList />
+      </View>
+    );
+  }
+}
+
+export default Brands;

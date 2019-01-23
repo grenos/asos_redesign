@@ -8,7 +8,10 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { chooseGenderCategory } from '../../store/actions/ApiActions';
+import {
+  chooseGenderCategory,
+  clearBrands
+} from '../../store/actions/ApiActions';
 import { withNavigation } from 'react-navigation';
 import { iOSUIKit } from 'react-native-typography';
 import {
@@ -28,6 +31,7 @@ const SelectGender = props => {
       props.chooseGender(id);
     }
     props.navigation.navigate('SelectCategory');
+    props.clearBrands();
   };
 
   return (
@@ -92,7 +96,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispacth => {
   return {
-    chooseGender: id => dispacth(chooseGenderCategory(id))
+    chooseGender: id => dispacth(chooseGenderCategory(id)),
+    clearBrands: () => dispacth(clearBrands())
   };
 };
 

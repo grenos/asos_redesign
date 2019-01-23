@@ -9,6 +9,10 @@ import {
 //!redux
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import {
+  chooseBrandName,
+  searchProducts
+} from '../../store/actions/ApiActions';
 //! libraries
 import { withNavigation } from 'react-navigation';
 import {
@@ -22,10 +26,19 @@ class BrandList extends Component {
   //
   _renderBrands = ({ item }) => {
     return (
-      <TouchableOpacity style={styles.brandContainer}>
+      <TouchableOpacity
+        style={styles.brandContainer}
+        onPress={() => this.makeApiCall(item)}
+      >
         <Text style={styles.brandText}>{item}</Text>
       </TouchableOpacity>
     );
+  };
+
+  makeApiCall = item => {
+    this.props.brandName(item);
+    this.props.searchBrands();
+    this.props.navigation.navigate('Products');
   };
 
   _keyExtractor = item => item;
@@ -36,13 +49,23 @@ class BrandList extends Component {
     </View>
   );
 
-  _seperator = () => <View style={{ textDecorationLine: 'underline' }} />;
+  _seperator = () => (
+    <View
+      style={{
+        height: 1,
+        backgroundColor: '#F5F5F5'
+      }}
+    />
+  );
 
   render() {
+    let { brands } = this.props;
+    let brandsShorted = brands.sort();
+
     return (
-      <View>
+      <View style={{ paddingBottom: 150 }}>
         <FlatList
-          data={this.props.brands}
+          data={brandsShorted}
           renderItem={this._renderBrands}
           keyExtractor={this._keyExtractor}
           ListHeaderComponent={this._brandsHeader}
@@ -57,7 +80,7 @@ class BrandList extends Component {
 const styles = StyleSheet.create({
   headerContainer: {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     borderBottomWidth: 1,
     borderColor: '#F5F5F5',
     backgroundColor: '#fff',
@@ -82,7 +105,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispacth => {
   return {
-    completeTheLook: () => dispacth(getSimilar())
+    brandName: item => dispacth(chooseBrandName(item)),
+    searchBrands: () => dispacth(searchProducts())
   };
 };
 

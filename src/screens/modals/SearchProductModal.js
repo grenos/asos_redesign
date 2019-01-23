@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, SafeAreaView } from 'react-native';
 import { BlurView } from 'react-native-blur';
 import { iOSUIKit } from 'react-native-typography';
 import SearchContainer from '../../components/searchBar/SearchContainer';
-import BackButon from '../../components/backButton/BackButton';
+import ModalBackButton from '../../components/modalBackButton/ModalBackButton';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
@@ -15,7 +15,7 @@ const SearchProductModal = props => {
       <SafeAreaView />
       <BlurView style={styles.absolute} blurType="light" blurAmount={20} />
       <View style={styles.buttonContainer}>
-        <BackButon style={styles.button} />
+        <ModalBackButton style={styles.button} />
       </View>
       <Text style={[iOSUIKit.title3Emphasized, styles.header]}>
         Search our catalog here
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     width: wp('10%'),
-    height: hp('6%'),
+    height: hp('6%')
   },
   button: {
     width: wp('10%'),

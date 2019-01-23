@@ -17,6 +17,11 @@ const reducer = (state = API_STATE, action) => {
         ...state,
         selectedCategoryName: action.payload
       };
+    case 'CHOOSE_BRAND':
+      return {
+        ...state,
+        selectBrandName: action.payload
+      };
     case 'UPDATE_OFFSET':
       return {
         ...state,
@@ -62,6 +67,11 @@ const reducer = (state = API_STATE, action) => {
       return {
         ...state,
         apiResults: []
+      };
+    case 'CLEAR_BRANDS':
+      return {
+        ...state,
+        selectBrandName: ''
       };
     default:
       return state;

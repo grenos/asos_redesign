@@ -8,7 +8,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {
   clearStateInput,
   clearStateCategory,
-  clearStateOffset
+  clearStateOffset,
+  clearStateApiResults
 } from '../../store/actions/ApiActions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -20,6 +21,7 @@ const BackButon = props => {
     props.clearCategory();
     props.clearOffset();
     props.navigation.goBack();
+    props.clearApiResults();
   };
 
   return (
@@ -51,7 +53,8 @@ const mapDispatchToProps = dispacth => {
   return {
     clearInput: () => dispacth(clearStateInput()),
     clearCategory: () => dispacth(clearStateCategory()),
-    clearOffset: () => dispacth(clearStateOffset())
+    clearOffset: () => dispacth(clearStateOffset()),
+    clearApiResults: () => dispacth(clearStateApiResults())
   };
 };
 

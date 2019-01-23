@@ -57,7 +57,7 @@ const CustomDrawerContentComponent = props => (
       <TouchableOpacity onPress={() => null}>
         <View style={styles.buttonContainer}>
           <Icon style={styles.icon} name="ios-cog" size={20} />
-          <Text style={styles.text}>Setting</Text>
+          <Text style={styles.text}>Settings</Text>
         </View>
       </TouchableOpacity>
 

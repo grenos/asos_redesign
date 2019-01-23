@@ -2,17 +2,31 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { wpW } from '../../helpers/helpers';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+// redux
+import {
+  clearStateInput,
+  clearStateCategory,
+  clearStateOffset,
+  clearStateApiResults
+} from '../../store/actions/ApiActions';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 const ModalBackButton = props => {
   //
   const onGoBack = () => {
+    props.clearInput();
+    props.clearCategory();
+    props.clearOffset();
     props.navigation.goBack();
   };
 
   return (
     <TouchableOpacity onPress={() => onGoBack()}>
       <View {...props} style={[styles.buttonContainer, props.style]}>
-        <Text style={styles.text}>BACK</Text>
+        <Icon name="ios-arrow-round-back" size={40} />
       </View>
     </TouchableOpacity>
   );
@@ -26,9 +40,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff'
   },
   buttonContainer: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#000',
-    paddingBottom: 2,
     marginLeft: wpW(7)
   },
   text: {
@@ -37,4 +48,18 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withNavigation(ModalBackButton);
+const mapDispatchToProps = dispacth => {
+  return {
+    clearInput: () => dispacth(clearStateInput()),
+    clearCategory: () => dispacth(clearStateCategory()),
+    clearOffset: () => dispacth(clearStateOffset())
+  };
+};
+
+export default compose(
+  connect(
+    null,
+    mapDispatchToProps
+  ),
+  withNavigation
+)(ModalBackButton);

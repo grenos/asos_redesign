@@ -27,7 +27,6 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import get from 'lodash.get';
 
-
 class ProductsView extends Component {
   //
 
@@ -91,7 +90,6 @@ class ProductsView extends Component {
   };
 
   _renderHeader = () => {
-
     const brand = get(this.props.apiResults[0], 'brandName', 'Uhmmm...');
 
     return (
@@ -100,7 +98,7 @@ class ProductsView extends Component {
           ? this.props.categoryName.toUpperCase()
           : brand.toUpperCase()}
       </Text>
-    )
+    );
   };
 
   _keyExtractor = item => item.id;

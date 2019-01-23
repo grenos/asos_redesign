@@ -6,7 +6,8 @@ import {
   searchProducts,
   clearStateCategory,
   clearStateOffset,
-  clearStateApiResults
+  clearStateApiResults,
+  clearBrands
 } from '../../store/actions/ApiActions';
 import SearchBar from 'react-native-material-design-searchbar';
 import { compose } from 'redux';
@@ -20,6 +21,7 @@ class NavSearchBar extends Component {
   _onSubmit = input => {
     this.props.inputData(input);
     this.props.clearCategory();
+    this.props.clearBrands();
     this.props.clearOffset();
     this.props.searchProducts();
     this.props.clearApiResults();
@@ -73,7 +75,8 @@ const mapDispatchToProps = dispacth => {
     searchProducts: () => dispacth(searchProducts()),
     clearCategory: () => dispacth(clearStateCategory()),
     clearOffset: () => dispacth(clearStateOffset()),
-    clearApiResults: () => dispacth(clearStateApiResults())
+    clearApiResults: () => dispacth(clearStateApiResults()),
+    clearBrands: () => dispacth(clearBrands())
   };
 };
 
