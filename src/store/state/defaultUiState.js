@@ -106,7 +106,6 @@ export const UI_STATE = {
     'Under Armour',
     'Puma',
     'ASICS',
-    'Diadora',
     'Vans',
     'Fila',
     'New Balance',

@@ -112,7 +112,7 @@ class ProductsView extends Component {
   render() {
     return (
       <FlatList
-        style={{ paddingTop: hp('13%') }}
+        style={{ paddingTop: hp('13%'), height: '100%' }}
         data={this.props.apiResults}
         horizontal={false}
         numColumns={2}

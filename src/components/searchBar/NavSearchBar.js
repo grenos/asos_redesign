@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import {
   searchInput,
@@ -13,19 +13,27 @@ import SearchBar from 'react-native-material-design-searchbar';
 import { compose } from 'redux';
 import { withNavigation } from 'react-navigation';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+// import validate from 'validate.js';
+
 class NavSearchBar extends Component {
   state = {
     input: ''
   };
 
   _onSubmit = input => {
-    this.props.inputData(input);
-    this.props.clearCategory();
-    this.props.clearBrands();
-    this.props.clearOffset();
-    this.props.searchProducts();
-    this.props.clearApiResults();
-    this.props.navigation.navigate('Products');
+    let searchLenght = this.state.input.length;
+
+    if (searchLenght < 3) {
+      alert('too small');
+    } else {
+      this.props.inputData(input);
+      this.props.clearCategory();
+      this.props.clearBrands();
+      this.props.clearOffset();
+      this.props.searchProducts();
+      this.props.clearApiResults();
+      this.props.navigation.navigate('Products');
+    }
   };
 
   render() {
@@ -33,16 +41,17 @@ class NavSearchBar extends Component {
     const { input } = this.state;
 
     return (
-      <SearchBar
-        onSearchChange={data => this.setState({ input: data })}
-        onSubmitEditing={() => this._onSubmit(input)}
-        height={40}
-        iconColor="#000"
-        inputStyle={styles.container}
-        textStyle={styles.input}
-        placeholder="Search here...."
-        placeholderColor="#000"
-      />
+      <View>
+        <SearchBar
+          onSearchChange={data => this.setState({ input: data })}
+          onSubmitEditing={() => this._onSubmit(input)}
+          height={40}
+          iconColor="#000"
+          inputStyle={styles.container}
+          textStyle={styles.input}
+          placeholderColor="#000"
+        />
+      </View>
     );
   }
 }
