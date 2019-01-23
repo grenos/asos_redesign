@@ -74,11 +74,18 @@ const AppDrawer = createDrawerNavigator(
   }
 );
 
-const NoDrawerStack = createStackNavigator({
-  Product: {
-    screen: Product
+const NoDrawerStack = createStackNavigator(
+  {
+    Product: {
+      screen: Product
+    }
+  },
+  {
+    navigationOptions: {
+      gesturesEnabled: false
+    }
   }
-});
+);
 
 const CardStyleStck = createStackNavigator(
   {

@@ -17,7 +17,8 @@ import { compose } from 'redux';
 const CartBackButon = props => {
   //
   const onGoBack = () => {
-    props.navigation.navigate('Product');
+    // props.navigation.navigate('Product');
+    props.navigation.goBack();
   };
 
   return (

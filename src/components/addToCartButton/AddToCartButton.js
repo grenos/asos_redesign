@@ -10,7 +10,7 @@ import { addToCart } from '../../store/actions/ApiActions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Cart from '../cart/Cart';
+import get from 'lodash.get';
 
 const AddToCartButton = props => {
   //
@@ -21,6 +21,13 @@ const AddToCartButton = props => {
     let size = props.size;
     let price = props.price;
     let cart = props.cart;
+
+    // const id = get(this.props.apiResult, 'id', 'loading');
+    // const image = get(this.props.apiResult, 'media.images[0].url', 'loading');
+    // const name = get(this.props.apiResult, 'name', 'loading');
+    // const size = get(this.props.uiReducer, 'sizeChosen', 'loading');
+    // const price = get(this.props.apiResult, 'price.current.text', 'loading');
+    // const cart = get(this.props.apiResult, 'cart', 'loading');
 
     let itemId = [];
     cart.map(item => {
