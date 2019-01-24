@@ -16,7 +16,12 @@ import { compose } from 'redux';
 
 const CartBackButon = props => {
   //
+
   const onGoBack = () => {
+    //! here need to find way to get nav state history
+    //! and navigate conditionally to back if any place
+    //! to product page if went to cart from product page
+    // https://reactnavigation.org/docs/en/screen-tracking.html
     // props.navigation.navigate('Product');
     props.navigation.goBack();
   };

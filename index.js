@@ -16,6 +16,8 @@ class appWrapper extends React.Component {
     NavigationService.setNavigator(this.navigator);
   }
   render() {
+    //
+
     return (
       <Provider store={store}>
         <AppContainer

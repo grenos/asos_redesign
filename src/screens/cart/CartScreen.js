@@ -15,34 +15,17 @@ class CartScreen extends Component {
     headerRight: <SearchButton />
   };
   render() {
-
-    const renderer = 
-
-    return(
-      <View>
-        {}
-      </View>
-    )
+    if (this.props.cart < 1) {
+      return (
+        <View style={styles.container}>
+          <Text>This cart is empty! Go do some shopping!</Text>
+        </View>
+      );
+    } else {
+      return <Cart />;
+    }
   }
-
-  
-  if (this.props.cart < 1) {
-    
-    <View style={styles.container}>
-      <Text>This cart is empty! Go do some shopping!</Text>
-    </View>
-
-} else {
- <Cart />
 }
-
-
-
-
-  
-
-
-
 
 const styles = StyleSheet.create({
   container: {
