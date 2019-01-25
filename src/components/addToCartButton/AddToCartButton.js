@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import {
   widthPercentageToDP as wp,
@@ -22,13 +22,6 @@ const AddToCartButton = props => {
     let price = props.price;
     let cart = props.cart;
 
-    // const id = get(this.props.apiResult, 'id', 'loading');
-    // const image = get(this.props.apiResult, 'media.images[0].url', 'loading');
-    // const name = get(this.props.apiResult, 'name', 'loading');
-    // const size = get(this.props.uiReducer, 'sizeChosen', 'loading');
-    // const price = get(this.props.apiResult, 'price.current.text', 'loading');
-    // const cart = get(this.props.apiResult, 'cart', 'loading');
-
     let itemId = [];
     cart.map(item => {
       itemId.push(item.id);
@@ -43,12 +36,12 @@ const AddToCartButton = props => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={() => onAddToCart()}>
+    <TouchableHighlight onPress={() => onAddToCart()}>
       <View {...props} style={[styles.buttonContainer, props.style]}>
         <Text style={styles.text}>CART</Text>
         <Icon name="ios-cart" size={23} style={styles.icon} />
       </View>
-    </TouchableWithoutFeedback>
+    </TouchableHighlight>
   );
 };
 

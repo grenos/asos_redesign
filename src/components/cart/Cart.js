@@ -5,7 +5,8 @@ import {
   StyleSheet,
   FlatList,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Animated
 } from 'react-native';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -15,8 +16,27 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
+import { iOSUIKit } from 'react-native-typography';
+
+import Checkout from './Checkout';
 
 class Cart extends Component {
+  state = {
+    slideUp: new Animated.Value(hp('15%'))
+  };
+
+  componentDidMount() {
+    Animated.timing(
+      // Animate over time
+      this.state.slideUp,
+      {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: true
+      }
+    ).start();
+  }
+
   _renderItems = ({ item }) => {
     return (
       <TouchableOpacity>
@@ -26,12 +46,16 @@ class Cart extends Component {
             style={styles.img}
             resizeMode="cover"
           />
-          <Text>{item.name}</Text>
+
+          <View style={styles.nameContainer}>
+            <Text>{item.name}</Text>
+            <Text>Size: {item.size.toUpperCase()}</Text>
+          </View>
+
           <View style={styles.detialsContainer}>
             <Text>{item.price}</Text>
             <View style={styles.iconsContainer}>
-              <Text>{item.size.toUpperCase()}</Text>
-              <Icon />
+              <Icon name="ios-close" size={40} style={styles.icon} />
             </View>
           </View>
         </View>
@@ -43,7 +67,7 @@ class Cart extends Component {
 
   _brandsHeader = () => (
     <View style={styles.headerContainer}>
-      <Text style={styles.header}>TOP BRANDS</Text>
+      <Text style={styles.header}>YOUR PRODUCTS</Text>
     </View>
   );
 
@@ -51,15 +75,18 @@ class Cart extends Component {
     <View
       style={{
         height: 1,
-        backgroundColor: '#F5F5F5'
+        backgroundColor: '#F5F5F5',
+        marginLeft: wp('30.5%')
       }}
     />
   );
 
   render() {
     let { items } = this.props;
+    let { slideUp } = this.state;
+
     return (
-      <View style={{ paddingBottom: 150 }}>
+      <View style={{ paddingTop: hp('13%') }}>
         <FlatList
           data={items}
           renderItem={this._renderItems}
@@ -67,27 +94,68 @@ class Cart extends Component {
           ListHeaderComponent={this._brandsHeader}
           ItemSeparatorComponent={this._seperator}
           stickyHeaderIndices={[0]}
+          style={styles.flatlist}
         />
+        <Animated.View
+          style={[
+            styles.checkoutAnimation,
+            { transform: [{ translateY: slideUp }] }
+          ]}
+        >
+          <Checkout />
+        </Animated.View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  header: {
+    ...iOSUIKit.largeTitleEmphasized,
+    backgroundColor: '#fff',
+    paddingBottom: hp('3%'),
+    marginLeft: wp('1%')
+  },
+  flatlist: {
+    height: '100%'
+  },
   itemContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    marginVertical: hp('0.5%'),
+    marginHorizontal: wp('1%')
+  },
+  nameContainer: {
+    flex: 3,
+
+    paddingLeft: wp('2%'),
+    paddingRight: wp('1%')
   },
   detialsContainer: {
-    flexDirection: 'column'
+    flex: 2,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   iconsContainer: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-end'
   },
   img: {
     height: hp('10%'),
-    width: wp('10%')
+    width: wp('25%')
+  },
+  name: { ...iOSUIKit.body },
+  price: { ...iOSUIKit.bodyEmphasized, fontSize: 20 },
+  size: { ...iOSUIKit.body },
+  icon: {},
+  checkoutAnimation: {
+    // transform: [{ translateY: -hp('100%') }],
+    position: 'absolute',
+    bottom: 0
   }
 });
 
