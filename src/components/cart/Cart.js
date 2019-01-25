@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { getTotalPrice } from '../../store/actions/UiActions';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { withNavigation } from 'react-navigation';
 import {
@@ -19,6 +20,7 @@ import {
 import { iOSUIKit } from 'react-native-typography';
 
 import Checkout from './Checkout';
+import { deleteEuro, doMath } from '../../helpers/helpers';
 
 class Cart extends Component {
   state = {
@@ -26,6 +28,17 @@ class Cart extends Component {
   };
 
   componentDidMount() {
+    this.props.items.map(item => {
+      let price = item.price;
+
+      // helper functions
+      let priceNoEu = deleteEuro(price);
+      let makeNumber = doMath(priceNoEu);
+
+      // dispatch action
+      this.props.getTotal(makeNumber);
+    });
+
     Animated.timing(
       // Animate over time
       this.state.slideUp,
@@ -102,7 +115,7 @@ class Cart extends Component {
             { transform: [{ translateY: slideUp }] }
           ]}
         >
-          <Checkout />
+          <Checkout total={this.props.total} />
         </Animated.View>
       </View>
     );
@@ -153,7 +166,6 @@ const styles = StyleSheet.create({
   size: { ...iOSUIKit.body },
   icon: {},
   checkoutAnimation: {
-    // transform: [{ translateY: -hp('100%') }],
     position: 'absolute',
     bottom: 0
   }
@@ -161,12 +173,15 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    items: state.apiReducer.cart
+    items: state.apiReducer.cart,
+    total: state.uiReducer.totalPrice
   };
 };
 
 const mapDispatchToProps = dispacth => {
-  return {};
+  return {
+    getTotal: price => dispacth(getTotalPrice(price))
+  };
 };
 
 export default compose(

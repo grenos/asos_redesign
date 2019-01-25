@@ -38,6 +38,11 @@ const AddToCartButton = props => {
   return (
     <TouchableHighlight onPress={() => onAddToCart()}>
       <View {...props} style={[styles.buttonContainer, props.style]}>
+        {props.cart.length < 1 ? null : (
+          <View style={styles.itemQuantityContainer}>
+            <Text style={styles.itemQuantityText}>{props.cart.length}</Text>
+          </View>
+        )}
         <Text style={styles.text}>CART</Text>
         <Icon name="ios-cart" size={23} style={styles.icon} />
       </View>
@@ -65,6 +70,20 @@ const styles = StyleSheet.create({
   icon: {
     color: '#000',
     paddingLeft: wp('3%')
+  },
+  itemQuantityContainer: {
+    backgroundColor: 'red',
+    position: 'absolute',
+    right: wp('10%'),
+    bottom: hp('5%'),
+    height: 20,
+    width: 20,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  itemQuantityText: {
+    color: '#fff'
   }
 });
 

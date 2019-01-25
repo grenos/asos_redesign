@@ -44,3 +44,18 @@ export const substring = [
   'shoes',
   'shoe'
 ];
+
+export const deleteEuro = string => {
+  const sliceEuro = string.replace(/€/g, '');
+  return sliceEuro;
+};
+
+export const doMath = price => {
+  const makeNumber = parseFloat(price);
+  return makeNumber;
+};
+
+export const makeAddition = (x, y = null) => {
+  const addition = x + y;
+  return addition;
+};

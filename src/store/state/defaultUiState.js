@@ -115,5 +115,6 @@ export const UI_STATE = {
     'Fred Perry',
     'Religion',
     'Tommy Hilfiger'
-  ]
+  ],
+  totalPrice: null
 };

@@ -65,6 +65,11 @@ const CustomDrawerContentComponent = props => (
         <View style={styles.buttonContainer}>
           <Icon style={styles.icon} name="ios-cart" size={20} />
           <Text style={styles.text}>Cart</Text>
+          {props.cart.length < 1 ? null : (
+            <View style={styles.itemQuantityContainer}>
+              <Text style={styles.itemQuantityText}>{props.cart.length}</Text>
+            </View>
+          )}
         </View>
       </TouchableOpacity>
 
@@ -125,13 +130,26 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: wp('3%')
+  },
+  itemQuantityContainer: {
+    backgroundColor: 'red',
+    height: 20,
+    width: 20,
+    marginLeft: wp('10%'),
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  itemQuantityText: {
+    color: '#fff'
   }
 });
 
 const mapStateToProps = state => {
   return {
     apiResult: state.apiReducer.apiResult,
-    similarItems: state.apiReducer.similarItems
+    similarItems: state.apiReducer.similarItems,
+    cart: state.apiReducer.cart
   };
 };
 

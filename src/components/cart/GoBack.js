@@ -5,12 +5,7 @@ import { wpW } from '../../helpers/helpers';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 // redux
-import {
-  clearStateInput,
-  clearStateCategory,
-  clearStateOffset,
-  clearStateApiResults
-} from '../../store/actions/ApiActions';
+import { clearSize } from '../../store/actions/UiActions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -23,6 +18,7 @@ const CartBackButon = props => {
     //! to product page if went to cart from product page
     // https://reactnavigation.org/docs/en/screen-tracking.html
     // props.navigation.navigate('Product');
+    props.clearSizes();
     props.navigation.goBack();
   };
 
@@ -53,9 +49,7 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispacth => {
   return {
-    // clearInput: () => dispacth(clearStateInput()),
-    // clearCategory: () => dispacth(clearStateCategory()),
-    // clearOffset: () => dispacth(clearStateOffset())
+    clearSizes: () => dispacth(clearSize())
   };
 };
 

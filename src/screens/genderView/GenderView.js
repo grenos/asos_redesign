@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Dimensions } from 'react-native';
 import SelectGender from '../../components/selectGender/SelectGender';
-// import BannerSales from '../../components/bannerSliders/sales';
 import BrandSelector from '../../components/brandSelect/BrandSelector';
 import BurgerButton from '../../components/burgerButton/BurgerButton';
 import ButtonSet from '../../components/buttonSet/ButtonSet';

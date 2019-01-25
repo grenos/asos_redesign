@@ -27,10 +27,10 @@ const reducer = (state = UI_STATE, action) => {
         ...state,
         isShoe: true
       };
-    case 'SHOE_CATEGORY_FALSE':
+    case 'TOTAL_PRICE':
       return {
         ...state,
-        isShoe: false
+        totalPrice: action.payload
       };
     default:
       return state;

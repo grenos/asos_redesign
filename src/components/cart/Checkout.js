@@ -18,7 +18,7 @@ export default class Checkout extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.totalContainer}>
-          <Text style={styles.totalText}>Total: 32.15€</Text>
+          <Text style={styles.totalText}>Total: €{this.props.total}</Text>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button}>

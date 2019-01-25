@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
-import { wpW } from '../../helpers/helpers';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
 
 // redux
 import {
@@ -34,6 +37,11 @@ const ButtonSet = props => {
         <View {...props} style={[styles.buttonContainer, props.style]}>
           <Icon name="ios-cart" size={28} style={styles.icon} />
         </View>
+        {props.cart.length < 1 ? null : (
+          <View style={styles.itemQuantityContainer}>
+            <Text style={styles.itemQuantityText}>{props.cart.length}</Text>
+          </View>
+        )}
       </TouchableOpacity>
     </View>
   );
@@ -48,9 +56,29 @@ const styles = StyleSheet.create({
   },
   icon: {},
   buttonContainer: {
-    marginRight: wpW(7)
+    marginRight: wp('7%')
+  },
+  itemQuantityContainer: {
+    backgroundColor: 'red',
+    position: 'absolute',
+    right: wp('3%'),
+    top: hp('2%'),
+    height: 20,
+    width: 20,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  itemQuantityText: {
+    color: '#fff'
   }
 });
+
+const mapStateToProps = state => {
+  return {
+    cart: state.apiReducer.cart
+  };
+};
 
 const mapDispatchToProps = dispacth => {
   return {
@@ -62,7 +90,7 @@ const mapDispatchToProps = dispacth => {
 
 export default compose(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   ),
   withNavigation
