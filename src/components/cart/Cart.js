@@ -62,7 +62,7 @@ class Cart extends Component {
 
           <View style={styles.nameContainer}>
             <Text>{item.name}</Text>
-            <Text>Size: {item.size.toUpperCase()}</Text>
+            <Text>Size: {item.size ? item.size.toUpperCase() : 'N/A'}</Text>
           </View>
 
           <View style={styles.detialsContainer}>

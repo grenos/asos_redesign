@@ -141,8 +141,9 @@ const styles = StyleSheet.create({
     zIndex: 5
   },
   addToCartButton: {
-    width: wp('50%'),
+    // width: wp('100%'),
     flex: 1,
+    // flexDirection: 'row',
     paddingBottom: height < 737 ? hp('1.5%') : hp('3.5%')
   }
 });

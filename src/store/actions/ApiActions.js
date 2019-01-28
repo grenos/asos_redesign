@@ -161,7 +161,13 @@ export const clearBrands = () => ({
   type: 'CLEAR_BRANDS'
 });
 
-export const addToCart = (id, image, name, size, price) => ({
+export const addToCart = (
+  id,
+  image = null,
+  name = null,
+  size = null,
+  price = null
+) => ({
   type: 'ADD_TO_CART',
   payload: {
     id,

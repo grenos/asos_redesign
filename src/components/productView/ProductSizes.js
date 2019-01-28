@@ -30,7 +30,7 @@ class ProductSizes extends Component {
 
     setTimeout(() => {
       this.props.navigation.goBack();
-    }, 700);
+    }, 500);
   };
 
   render() {

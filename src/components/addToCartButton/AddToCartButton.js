@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import {
   widthPercentageToDP as wp,
@@ -21,12 +21,13 @@ const AddToCartButton = props => {
     let size = props.size;
     let price = props.price;
     let cart = props.cart;
+    let { isNoSize } = props;
 
     let itemId = [];
     cart.map(item => {
       itemId.push(item.id);
     });
-    if (!size) {
+    if (!size && !isNoSize) {
       alert('please select a size first');
     } else if (itemId.includes(id)) {
       alert('item is already in your cart');
@@ -35,18 +36,24 @@ const AddToCartButton = props => {
     }
   };
 
+  const { isNoSize } = props;
   return (
-    <TouchableHighlight onPress={() => onAddToCart()}>
+    <TouchableWithoutFeedback onPress={() => onAddToCart()}>
       <View {...props} style={[styles.buttonContainer, props.style]}>
         {props.cart.length < 1 ? null : (
-          <View style={styles.itemQuantityContainer}>
+          <View
+            style={[
+              styles.itemQuantityContainer,
+              !isNoSize ? { right: wp('10%') } : { right: wp('37%') }
+            ]}
+          >
             <Text style={styles.itemQuantityText}>{props.cart.length}</Text>
           </View>
         )}
         <Text style={styles.text}>CART</Text>
         <Icon name="ios-cart" size={23} style={styles.icon} />
       </View>
-    </TouchableHighlight>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -74,7 +81,6 @@ const styles = StyleSheet.create({
   itemQuantityContainer: {
     backgroundColor: 'red',
     position: 'absolute',
-    right: wp('10%'),
     bottom: hp('5%'),
     height: 20,
     width: 20,
@@ -94,7 +100,8 @@ const mapStateToProps = state => {
     image: state.apiReducer.apiResult.media.images[0].url,
     price: state.apiReducer.apiResult.price.current.text,
     size: state.uiReducer.sizeChosen,
-    cart: state.apiReducer.cart
+    cart: state.apiReducer.cart,
+    isNoSize: state.apiReducer.apiResult
   };
 };
 

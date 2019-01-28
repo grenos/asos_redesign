@@ -28,6 +28,8 @@ export const scaleFontSize = fontSize => {
 
 export const substring = [
   'boots',
+  'Boot',
+  'Boots',
   'boot',
   'loafers',
   'loafer',
