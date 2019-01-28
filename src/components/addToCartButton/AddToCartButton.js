@@ -27,6 +27,9 @@ const AddToCartButton = props => {
     cart.map(item => {
       itemId.push(item.id);
     });
+
+    console.log(isNoSize);
+
     if (!size && !isNoSize) {
       alert('please select a size first');
     } else if (itemId.includes(id)) {
@@ -101,7 +104,7 @@ const mapStateToProps = state => {
     price: state.apiReducer.apiResult.price.current.text,
     size: state.uiReducer.sizeChosen,
     cart: state.apiReducer.cart,
-    isNoSize: state.apiReducer.apiResult
+    isNoSize: state.apiReducer.apiResult.isNoSize
   };
 };
 
