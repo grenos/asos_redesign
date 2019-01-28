@@ -27,6 +27,11 @@ const reducer = (state = UI_STATE, action) => {
         ...state,
         isShoe: true
       };
+    case 'SHOE_CATEGORY_FALSE':
+      return {
+        ...state,
+        isShoe: false
+      };
     case 'TOTAL_PRICE':
       return {
         ...state,

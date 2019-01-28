@@ -28,8 +28,6 @@ const AddToCartButton = props => {
       itemId.push(item.id);
     });
 
-    console.log(isNoSize);
-
     if (!size && !isNoSize) {
       alert('please select a size first');
     } else if (itemId.includes(id)) {
@@ -111,7 +109,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispacth => {
   return {
     addItemToCart: (id, image, name, size, price) =>
-      dispacth(addToCart(id, image, name, size, price))
+      dispacth(addToCart(id, image, name, size, price)),
+    clearSimilar: () => dispacth(clearStateSimilarItems())
   };
 };
 

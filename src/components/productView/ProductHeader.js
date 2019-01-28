@@ -35,6 +35,11 @@ class ProductHeader extends Component {
     this.props.clearSizes();
   };
 
+  onCartButton = () => {
+    this.props.navigation.navigate('CartScreen');
+    this.props.clearSimilar();
+  };
+
   render() {
     let { isVideo } = this.props;
     let cameraIcon = null;
@@ -89,9 +94,7 @@ class ProductHeader extends Component {
               </View>
 
               <View style={styles.shareContainer}>
-                <TouchableWithoutFeedback
-                  onPress={() => this.props.navigation.navigate('CartScreen')}
-                >
+                <TouchableWithoutFeedback onPress={() => this.onCartButton()}>
                   <Icon name="ios-cart" size={33} />
                 </TouchableWithoutFeedback>
               </View>
