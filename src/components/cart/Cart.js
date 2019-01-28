@@ -6,7 +6,8 @@ import {
   FlatList,
   Image,
   TouchableOpacity,
-  Animated
+  Animated,
+  Picker
 } from 'react-native';
 import { connect } from 'react-redux';
 import { compose } from 'redux';

@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
   container: {
     height: hp('15%'),
     borderTopWidth: 1,
-    borderColor: '#f5f5f5'
+    borderColor: '#f5f5f5',
+    backgroundColor: '#fff'
   },
   totalContainer: {
     alignItems: 'flex-end',
