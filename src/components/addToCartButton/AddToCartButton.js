@@ -7,10 +7,14 @@ import {
 } from 'react-native-responsive-screen';
 // redux
 import { addToCart } from '../../store/actions/ApiActions';
+import { getTotalPrice } from '../../store/actions/UiActions';
+
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import get from 'lodash.get';
+import { deleteEuro, doMath } from '../../helpers/helpers';
+
 
 const AddToCartButton = props => {
   //
@@ -35,6 +39,14 @@ const AddToCartButton = props => {
       // }
     } else {
       props.addItemToCart(id, image, name, size, price);
+
+      // helper functions
+      // convert string to number
+      let priceNoEu = deleteEuro(price);
+      let makeNumber = doMath(priceNoEu);
+      // dispatch action
+      props.getTotal(makeNumber);
+
     }
   };
 
@@ -111,7 +123,8 @@ const mapDispatchToProps = dispacth => {
   return {
     addItemToCart: (id, image, name, size, price) =>
       dispacth(addToCart(id, image, name, size, price)),
-    clearSimilar: () => dispacth(clearStateSimilarItems())
+    clearSimilar: () => dispacth(clearStateSimilarItems()),
+    getTotal: price => dispacth(getTotalPrice(price))
   };
 };
 

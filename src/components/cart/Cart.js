@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { getTotalPrice } from '../../store/actions/UiActions';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { withNavigation } from 'react-navigation';
 import {
@@ -19,9 +18,9 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 import { iOSUIKit } from 'react-native-typography';
-
 import Checkout from './Checkout';
-import { deleteEuro, doMath } from '../../helpers/helpers';
+
+
 
 class Cart extends Component {
   state = {
@@ -29,16 +28,6 @@ class Cart extends Component {
   };
 
   componentDidMount() {
-    this.props.items.map(item => {
-      let price = item.price;
-
-      // helper functions
-      let priceNoEu = deleteEuro(price);
-      let makeNumber = doMath(priceNoEu);
-
-      // dispatch action
-      this.props.getTotal(makeNumber);
-    });
 
     Animated.timing(
       // Animate over time
@@ -116,7 +105,7 @@ class Cart extends Component {
             { transform: [{ translateY: slideUp }] }
           ]}
         >
-          <Checkout total={this.props.total} />
+          <Checkout total={this.props.total.toFixed(2)} />
         </Animated.View>
       </View>
     );
@@ -179,16 +168,16 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispacth => {
-  return {
-    getTotal: price => dispacth(getTotalPrice(price))
-  };
-};
+// const mapDispatchToProps = dispacth => {
+//   return {
+//     getTotal: price => dispacth(getTotalPrice(price))
+//   };
+// };
 
 export default compose(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    null
   ),
   withNavigation
 )(Cart);

@@ -30,6 +30,7 @@ export const toggleShoeCategoryFalse = () => ({
   type: 'SHOE_CATEGORY_FALSE'
 });
 
+
 export const getTotalPrice = price => ({
   type: 'TOTAL_PRICE',
   payload: price
