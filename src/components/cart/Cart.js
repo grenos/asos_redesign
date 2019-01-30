@@ -7,8 +7,9 @@ import {
   Image,
   TouchableOpacity,
   Animated,
-  Picker
 } from 'react-native';
+
+
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -51,8 +52,23 @@ class Cart extends Component {
           />
 
           <View style={styles.nameContainer}>
-            <Text>{item.name}</Text>
-            <Text>Size: {item.size ? item.size.toUpperCase() : 'N/A'}</Text>
+            <Text style={styles.name}>{item.name}</Text>
+
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <TouchableOpacity style={styles.modifyButton} onPress={() => this.props.navigation.navigate('FindSizeModal')}>
+                <Text style={styles.buttonText}>Size: {item.size ? item.size.toUpperCase() : 'N/A'}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.modifyButton} onPress={() => this.props.navigation.navigate('SetQtyModal')}>
+                <Text style={styles.buttonText}>Qty: 3</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View>
+              {/* <TouchableOpacity style={styles.modifyButton} onPress={() => this.props.navigation.navigate('SetQtyModal')}>
+                <Text style={styles.buttonText}>Size: {item.size ? item.size.toUpperCase() : 'N/A'}</Text>
+              </TouchableOpacity> */}
+            </View>
+
           </View>
 
           <View style={styles.detialsContainer}>
@@ -120,7 +136,8 @@ const styles = StyleSheet.create({
     marginLeft: wp('1%')
   },
   flatlist: {
-    height: '100%'
+    height: '100%',
+    paddingBottom: 150
   },
   itemContainer: {
     flexDirection: 'row',
@@ -131,8 +148,9 @@ const styles = StyleSheet.create({
     marginHorizontal: wp('1%')
   },
   nameContainer: {
-    flex: 3,
-
+    flex: 4,
+    justifyContent: 'space-evenly',
+    height: hp('15%'),
     paddingLeft: wp('2%'),
     paddingRight: wp('1%')
   },
@@ -148,16 +166,26 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   img: {
-    height: hp('10%'),
+    height: hp('15%'),
     width: wp('25%')
   },
-  name: { ...iOSUIKit.body },
-  price: { ...iOSUIKit.bodyEmphasized, fontSize: 20 },
+  name: { ...iOSUIKit.title3, fontSize: wp('4.05%') },
+  price: {},
   size: { ...iOSUIKit.body },
   icon: {},
   checkoutAnimation: {
     position: 'absolute',
     bottom: 0
+  },
+  modifyButton: {
+    backgroundColor: '#000',
+    paddingVertical: 2,
+    paddingHorizontal: 15
+  },
+  buttonText: {
+    ...iOSUIKit.body,
+    color: '#fff',
+    textAlign: 'center'
   }
 });
 

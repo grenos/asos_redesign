@@ -84,7 +84,8 @@ const reducer = (state = API_STATE, action) => {
             image: action.payload.image,
             name: action.payload.name,
             size: action.payload.size,
-            price: action.payload.price
+            price: action.payload.price,
+            qty: action.payload.qty
           }
         ]
       };

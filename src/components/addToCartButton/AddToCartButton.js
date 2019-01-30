@@ -34,9 +34,9 @@ const AddToCartButton = props => {
 
     if (!size && !isNoSize) {
       alert('please select a size first');
-      // } else if (itemId.includes(id)) {
-      //   alert('item is already in your cart');
-      // }
+    }
+    else if (itemId.includes(id)) {
+      alert('item is already in your cart');
     } else {
       props.addItemToCart(id, image, name, size, price);
 

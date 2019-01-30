@@ -166,7 +166,8 @@ export const addToCart = (
   image = null,
   name = null,
   size = null,
-  price = null
+  price = null,
+  qty = null
 ) => ({
   type: 'ADD_TO_CART',
   payload: {
@@ -174,6 +175,7 @@ export const addToCart = (
     image,
     name,
     size,
-    price
+    price,
+    qty
   }
 });

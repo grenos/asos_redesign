@@ -17,6 +17,7 @@ import SearchProductModal from '../screens/modals/SearchProductModal';
 import FindSizeModal from '../screens/modals/FindSizeModal';
 import Brands from '../screens/brands/Brands';
 import CartScreen from '../screens/cart/CartScreen';
+import SetQtyModal from '../screens/modals/SetQtyModal'
 
 //components
 import BackButton from '../components/backButton/BackButton';
@@ -112,6 +113,9 @@ const CompleteStack = createStackNavigator(
     },
     FindSizeModal: {
       screen: FindSizeModal
+    },
+    SetQtyModal: {
+      screen: SetQtyModal
     }
   },
   {
