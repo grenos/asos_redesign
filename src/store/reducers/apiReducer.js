@@ -68,6 +68,11 @@ const reducer = (state = API_STATE, action) => {
         ...state,
         apiResults: []
       };
+    case 'CLEAR_STATE_API_RESULT':
+      return {
+        ...state,
+        apiResult: {}
+      };
     case 'CLEAR_BRANDS':
       return {
         ...state,

@@ -114,6 +114,10 @@ export const clearStateApiResults = () => ({
   type: 'CLEAR_STATE_API_RESULTS'
 });
 
+export const clearStateApiResult = () => ({
+  type: 'CLEAR_STATE_API_RESULT'
+});
+
 export const getSimilar = () => {
   return (dispatch, getState) => {
     //

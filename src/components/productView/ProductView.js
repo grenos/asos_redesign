@@ -44,7 +44,7 @@ class ProductView extends Component {
     // get array from helpers find if user has clicked
     // on shoes product
     //get product title to see if it contains keyword
-    const { name } = this.props.apiResult;
+    const name = get(this.props.apiResult, 'name', 'loading');
     // split string to compare with helpers array
     const split = name.split(' ');
     //compare arrays

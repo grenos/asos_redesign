@@ -20,12 +20,14 @@ const AddToCartButton = props => {
   //
   const onAddToCart = () => {
     let id = props.id;
-    let image = props.image;
     let name = props.name;
     let size = props.size;
-    let price = props.price;
     let cart = props.cart;
     let { isNoSize } = props;
+
+    const image = get(props.image, 'media.images[0].url', 'loading');
+    const price = get(props.price, 'price.current.text', 'loading');
+
 
     let itemId = [];
     cart.map(item => {
@@ -111,8 +113,8 @@ const mapStateToProps = state => {
   return {
     name: state.apiReducer.apiResult.name,
     id: state.apiReducer.apiResult.id,
-    image: state.apiReducer.apiResult.media.images[0].url,
-    price: state.apiReducer.apiResult.price.current.text,
+    image: state.apiReducer.apiResult,
+    price: state.apiReducer.apiResult,
     size: state.uiReducer.sizeChosen,
     cart: state.apiReducer.cart,
     isNoSize: state.apiReducer.apiResult.isNoSize

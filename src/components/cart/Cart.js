@@ -8,13 +8,12 @@ import {
   TouchableOpacity,
   Animated,
 } from 'react-native';
-
-
+//!redux
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { deleteCartItem } from '../../store/actions/ApiActions'
+import { deleteCartItem, searchProduct, clearStateApiResult } from '../../store/actions/ApiActions'
 import { getNewTotalPrice } from '../../store/actions/UiActions';
-
+//!libraries
 import Icon from 'react-native-vector-icons/Ionicons';
 import { withNavigation } from 'react-navigation';
 import {
@@ -22,9 +21,10 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 import { iOSUIKit } from 'react-native-typography';
+//!components
 import Checkout from './Checkout';
+//!helpers
 import { deleteEuro, doMath } from '../../helpers/helpers';
-
 
 
 
@@ -34,6 +34,9 @@ class Cart extends Component {
   };
 
   componentDidMount() {
+    // clear product 
+    this.props.clearProduct()
+
 
     Animated.timing(
       // Animate over time
@@ -56,11 +59,18 @@ class Cart extends Component {
     // dispatch action
     this.props.getTotal(makeNumber);
 
+    // clear product 
+    // this.props.clearProduct()
+
+  }
+
+  onItemPress = id => {
+    this.props.getProduct(id);
   }
 
   _renderItems = ({ item }) => {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => this.onItemPress(item.id)}>
         <View style={styles.itemContainer}>
           <Image
             source={{ uri: `https://${item.image}` }}
@@ -200,14 +210,17 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     items: state.apiReducer.cart,
-    total: state.uiReducer.totalPrice
+    total: state.uiReducer.totalPrice,
+    product: state.apiReducer.apiResult
   };
 };
 
 const mapDispatchToProps = dispacth => {
   return {
-    deleteItem: (id) => dispacth(deleteCartItem(id)),
-    getTotal: price => dispacth(getNewTotalPrice(price))
+    deleteItem: id => dispacth(deleteCartItem(id)),
+    getTotal: price => dispacth(getNewTotalPrice(price)),
+    getProduct: id => dispacth(searchProduct(id)),
+    clearProduct: () => dispacth(clearStateApiResult())
   };
 };
 
