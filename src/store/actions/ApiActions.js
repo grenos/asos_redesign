@@ -179,3 +179,8 @@ export const addToCart = (
     qty
   }
 });
+
+export const deleteCartItem = (id) => ({
+  type: 'DELETE_CART_ITEM',
+  payload: id
+})

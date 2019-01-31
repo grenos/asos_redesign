@@ -89,6 +89,12 @@ const reducer = (state = API_STATE, action) => {
           }
         ]
       };
+    case 'DELETE_CART_ITEM':
+      return {
+        ...state,
+        cart: state.cart.filter((item) => action.payload !== item.id)
+      };
+
     default:
       return state;
   }

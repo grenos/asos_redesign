@@ -37,6 +37,11 @@ const reducer = (state = UI_STATE, action) => {
         ...state,
         totalPrice: state.totalPrice + action.payload
       };
+    case 'NEW_TOTAL_PRICE':
+      return {
+        ...state,
+        totalPrice: state.totalPrice - action.payload
+      };
     default:
       return state;
   }

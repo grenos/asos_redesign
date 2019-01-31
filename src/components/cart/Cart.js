@@ -12,6 +12,9 @@ import {
 
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { deleteCartItem } from '../../store/actions/ApiActions'
+import { getNewTotalPrice } from '../../store/actions/UiActions';
+
 import Icon from 'react-native-vector-icons/Ionicons';
 import { withNavigation } from 'react-navigation';
 import {
@@ -20,6 +23,8 @@ import {
 } from 'react-native-responsive-screen';
 import { iOSUIKit } from 'react-native-typography';
 import Checkout from './Checkout';
+import { deleteEuro, doMath } from '../../helpers/helpers';
+
 
 
 
@@ -41,6 +46,18 @@ class Cart extends Component {
     ).start();
   }
 
+  onDeleteItem = ({ item }) => {
+    this.props.deleteItem(item.id)
+
+    // helper functions
+    // convert string to number
+    let priceNoEu = deleteEuro(item.price);
+    let makeNumber = doMath(priceNoEu);
+    // dispatch action
+    this.props.getTotal(makeNumber);
+
+  }
+
   _renderItems = ({ item }) => {
     return (
       <TouchableOpacity>
@@ -53,28 +70,19 @@ class Cart extends Component {
 
           <View style={styles.nameContainer}>
             <Text style={styles.name}>{item.name}</Text>
-
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <TouchableOpacity style={styles.modifyButton} onPress={() => this.props.navigation.navigate('FindSizeModal')}>
-                <Text style={styles.buttonText}>Size: {item.size ? item.size.toUpperCase() : 'N/A'}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.modifyButton} onPress={() => this.props.navigation.navigate('SetQtyModal')}>
-                <Text style={styles.buttonText}>Qty: 3</Text>
-              </TouchableOpacity>
+              <View style={styles.modifyButton} onPress={() => this.props.navigation.navigate('ModifySize')}>
+                <Text style={styles.buttonText}>Size: {item.size ? item.size.toUpperCase() : 'n/a'}</Text>
+              </View>
             </View>
-
-            <View>
-              {/* <TouchableOpacity style={styles.modifyButton} onPress={() => this.props.navigation.navigate('SetQtyModal')}>
-                <Text style={styles.buttonText}>Size: {item.size ? item.size.toUpperCase() : 'N/A'}</Text>
-              </TouchableOpacity> */}
-            </View>
-
           </View>
 
           <View style={styles.detialsContainer}>
-            <Text>{item.price}</Text>
+            <Text style={styles.price}>{item.price}</Text>
             <View style={styles.iconsContainer}>
-              <Icon name="ios-close" size={40} style={styles.icon} />
+              <TouchableOpacity onPress={() => this.onDeleteItem({ item })}>
+                <Icon name="ios-trash" size={40} style={styles.icon} />
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -169,8 +177,8 @@ const styles = StyleSheet.create({
     height: hp('15%'),
     width: wp('25%')
   },
-  name: { ...iOSUIKit.title3, fontSize: wp('4.05%') },
-  price: {},
+  name: { ...iOSUIKit.title3, fontSize: wp('4.05%'), lineHeight: wp('4.2%') },
+  price: { ...iOSUIKit.bodyEmphasized, fontSize: wp('4%') },
   size: { ...iOSUIKit.body },
   icon: {},
   checkoutAnimation: {
@@ -196,16 +204,17 @@ const mapStateToProps = state => {
   };
 };
 
-// const mapDispatchToProps = dispacth => {
-//   return {
-//     getTotal: price => dispacth(getTotalPrice(price))
-//   };
-// };
+const mapDispatchToProps = dispacth => {
+  return {
+    deleteItem: (id) => dispacth(deleteCartItem(id)),
+    getTotal: price => dispacth(getNewTotalPrice(price))
+  };
+};
 
 export default compose(
   connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
   ),
   withNavigation
 )(Cart);

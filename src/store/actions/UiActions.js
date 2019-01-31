@@ -35,3 +35,8 @@ export const getTotalPrice = price => ({
   type: 'TOTAL_PRICE',
   payload: price
 });
+
+export const getNewTotalPrice = price => ({
+  type: 'NEW_TOTAL_PRICE',
+  payload: price
+});
