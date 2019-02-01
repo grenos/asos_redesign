@@ -188,3 +188,23 @@ export const deleteCartItem = (id) => ({
   type: 'DELETE_CART_ITEM',
   payload: id
 })
+
+
+export const addToFavorites = (
+  id,
+  image = null,
+  name = null,
+  size = null,
+  price = null,
+  qty = null
+) => ({
+  type: 'ADD_TO_CART',
+  payload: {
+    id,
+    image,
+    name,
+    size,
+    price,
+    qty
+  }
+});

@@ -99,6 +99,22 @@ const reducer = (state = API_STATE, action) => {
         ...state,
         cart: state.cart.filter((item) => action.payload !== item.id)
       };
+    case 'ADD_TO_FAVORITES':
+      return {
+        ...state,
+        // ...action.payload,
+        cart: [
+          ...state.cart,
+          {
+            id: action.payload.id,
+            image: action.payload.image,
+            name: action.payload.name,
+            size: action.payload.size,
+            price: action.payload.price,
+            qty: action.payload.qty
+          }
+        ]
+      };
 
     default:
       return state;

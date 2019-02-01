@@ -21,52 +21,28 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 import { iOSUIKit } from 'react-native-typography';
-//!components
-import Checkout from './Checkout';
+
 //!helpers
 import { deleteEuro, doMath } from '../../helpers/helpers';
 
 
 
-class Cart extends Component {
-  state = {
-    slideUp: new Animated.Value(hp('15%'))
-  };
+class FavoritesView extends Component {
 
   componentDidMount() {
     // clear product 
-    this.props.clearProduct()
-
-
-    Animated.timing(
-      // Animate over time
-      this.state.slideUp,
-      {
-        toValue: 0,
-        duration: 500,
-        useNativeDriver: true
-      }
-    ).start();
+    // this.props.clearProduct()
   }
 
   onDeleteItem = ({ item }) => {
+    // make another action
     this.props.deleteItem(item.id)
-
-    // helper functions
-    // convert string to number
-    let priceNoEu = deleteEuro(item.price);
-    let makeNumber = doMath(priceNoEu);
-    // dispatch action
-    this.props.getTotal(makeNumber);
-
-    // clear product 
-    // this.props.clearProduct()
-
   }
+
 
   onItemPress = id => {
     this.props.getProduct(id);
-    this.props.clearSize()
+    // this.props.clearSize()
   }
 
   _renderItems = ({ item }) => {
@@ -134,14 +110,6 @@ class Cart extends Component {
           stickyHeaderIndices={[0]}
           style={styles.flatlist}
         />
-        <Animated.View
-          style={[
-            styles.checkoutAnimation,
-            { transform: [{ translateY: slideUp }] }
-          ]}
-        >
-          <Checkout total={this.props.total.toFixed(2)} />
-        </Animated.View>
       </View>
     );
   }
@@ -210,19 +178,19 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    items: state.apiReducer.cart,
-    total: state.uiReducer.totalPrice,
-    product: state.apiReducer.apiResult
+    // items: state.apiReducer.cart,
+    // total: state.uiReducer.totalPrice,
+    // product: state.apiReducer.apiResult
   };
 };
 
 const mapDispatchToProps = dispacth => {
   return {
-    deleteItem: id => dispacth(deleteCartItem(id)),
-    getTotal: price => dispacth(getNewTotalPrice(price)),
-    getProduct: id => dispacth(searchProduct(id)),
-    clearProduct: () => dispacth(clearStateApiResult()),
-    clearSize: () => dispacth(clearSize())
+    // deleteItem: id => dispacth(deleteCartItem(id)),
+    // getTotal: price => dispacth(getNewTotalPrice(price)),
+    // getProduct: id => dispacth(searchProduct(id)),
+    // clearProduct: () => dispacth(clearStateApiResult()),
+    // clearSize: () => dispacth(clearSize())
   };
 };
 
@@ -232,4 +200,4 @@ export default compose(
     mapDispatchToProps
   ),
   withNavigation
-)(Cart);
+)(FavoritesView);
