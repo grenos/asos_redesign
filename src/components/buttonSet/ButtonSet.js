@@ -18,16 +18,10 @@ import { compose } from 'redux';
 
 const ButtonSet = props => {
   //
-  const onGoBack = () => {
-    props.clearInput();
-    props.clearCategory();
-    props.clearOffset();
-    props.navigation.goBack();
-  };
 
   return (
     <View style={{ flexDirection: 'row' }}>
-      <TouchableOpacity onPress={() => onGoBack()}>
+      <TouchableOpacity onPress={() => props.navigation.navigate('Favorites')}>
         <View {...props} style={[styles.buttonContainer, props.style]}>
           <Icon name="ios-heart" size={28} style={styles.icon} />
         </View>

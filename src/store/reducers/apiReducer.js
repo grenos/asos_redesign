@@ -81,7 +81,6 @@ const reducer = (state = API_STATE, action) => {
     case 'ADD_TO_CART':
       return {
         ...state,
-        // ...action.payload,
         cart: [
           ...state.cart,
           {
@@ -97,21 +96,19 @@ const reducer = (state = API_STATE, action) => {
     case 'DELETE_CART_ITEM':
       return {
         ...state,
-        cart: state.cart.filter((item) => action.payload !== item.id)
+        cart: state.cart.filter(item => action.payload !== item.id)
       };
     case 'ADD_TO_FAVORITES':
       return {
         ...state,
-        // ...action.payload,
-        cart: [
-          ...state.cart,
+        favorites: [
+          ...state.favorites,
           {
             id: action.payload.id,
-            image: action.payload.image,
+            imageUrl: action.payload.imageUrl,
             name: action.payload.name,
-            size: action.payload.size,
-            price: action.payload.price,
-            qty: action.payload.qty
+            text: action.payload.text,
+            url: action.payload.url
           }
         ]
       };

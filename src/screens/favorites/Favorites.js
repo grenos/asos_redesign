@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import FavoritesView from '../../components/favoriteComponent/FavoritesView';
-import CartBackButon from '../../components/cart/GoBack';
-import SearchButton from '../../components/searchButton/SearchButton';
-
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withNavigation } from 'react-navigation';
+
+import FavoritesView from '../../components/favoritesComponent/FavoritesView';
+import CartBackButon from '../../components/cart/GoBack';
+import SearchButton from '../../components/searchButton/SearchButton';
 
 class Favorites extends Component {
   static navigationOptions = {

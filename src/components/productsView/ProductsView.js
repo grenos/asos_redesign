@@ -14,7 +14,8 @@ import { compose } from 'redux';
 import {
   setOffset,
   searchProducts,
-  searchProduct
+  searchProduct,
+  addToFavorites
 } from '../../store/actions/ApiActions';
 
 //! libraries
@@ -50,7 +51,9 @@ class ProductsView extends Component {
                 </Text>
               </View>
               <View style={styles.iconContainer}>
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback
+                  onPress={() => this.onAddToFavorite({ item })}
+                >
                   <Icon name="ios-heart-empty" size={24} />
                 </TouchableWithoutFeedback>
               </View>
@@ -74,7 +77,9 @@ class ProductsView extends Component {
                 </Text>
               </View>
               <View style={styles.iconContainer}>
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback
+                  onPress={() => this.onAddToFavorite({ item })}
+                >
                   <Icon name="ios-heart-empty" size={24} />
                 </TouchableWithoutFeedback>
               </View>
@@ -83,6 +88,14 @@ class ProductsView extends Component {
         </TouchableWithoutFeedback>
       );
     }
+  };
+
+  onAddToFavorite = ({ item }) => {
+    let { text } = item.price.current;
+    let { name, url, id } = item;
+    let imageUrl = item.images[0].url;
+
+    this.props.addFavorite({ text, name, url, id, imageUrl });
   };
 
   _productSelected = id => {
@@ -191,7 +204,8 @@ const mapDispatchToProps = dispacth => {
   return {
     searchProducts: () => dispacth(searchProducts()),
     updateOffset: offset => dispacth(setOffset(offset)),
-    searchProduct: id => dispacth(searchProduct(id))
+    searchProduct: id => dispacth(searchProduct(id)),
+    addFavorite: favorite => dispacth(addToFavorites(favorite))
   };
 };
 

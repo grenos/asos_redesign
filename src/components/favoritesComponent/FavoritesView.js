@@ -6,12 +6,16 @@ import {
   FlatList,
   Image,
   TouchableOpacity,
-  Animated,
+  Animated
 } from 'react-native';
 //!redux
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { deleteCartItem, searchProduct, clearStateApiResult } from '../../store/actions/ApiActions'
+import {
+  deleteCartItem,
+  searchProduct,
+  clearStateApiResult
+} from '../../store/actions/ApiActions';
 import { getNewTotalPrice, clearSize } from '../../store/actions/UiActions';
 //!libraries
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -25,47 +29,41 @@ import { iOSUIKit } from 'react-native-typography';
 //!helpers
 import { deleteEuro, doMath } from '../../helpers/helpers';
 
-
-
 class FavoritesView extends Component {
-
   componentDidMount() {
-    // clear product 
+    // clear product
     // this.props.clearProduct()
   }
 
   onDeleteItem = ({ item }) => {
     // make another action
-    this.props.deleteItem(item.id)
-  }
-
+    this.props.deleteItem(item.id);
+  };
 
   onItemPress = id => {
     this.props.getProduct(id);
     // this.props.clearSize()
-  }
+  };
 
   _renderItems = ({ item }) => {
     return (
       <TouchableOpacity onPress={() => this.onItemPress(item.id)}>
         <View style={styles.itemContainer}>
           <Image
-            source={{ uri: `https://${item.image}` }}
+            source={{ uri: item.imageUrl }}
             style={styles.img}
             resizeMode="cover"
           />
 
           <View style={styles.nameContainer}>
             <Text style={styles.name}>{item.name}</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <View style={styles.modifyButton} onPress={() => this.props.navigation.navigate('ModifySize')}>
-                <Text style={styles.buttonText}>Size: {item.size ? item.size.toUpperCase() : 'n/a'}</Text>
-              </View>
-            </View>
+            <View
+              style={{ flexDirection: 'row', justifyContent: 'space-between' }}
+            />
           </View>
 
           <View style={styles.detialsContainer}>
-            <Text style={styles.price}>{item.price}</Text>
+            <Text style={styles.price}>{item.text}</Text>
             <View style={styles.iconsContainer}>
               <TouchableOpacity onPress={() => this.onDeleteItem({ item })}>
                 <Icon name="ios-trash" size={40} style={styles.icon} />
@@ -81,7 +79,7 @@ class FavoritesView extends Component {
 
   _brandsHeader = () => (
     <View style={styles.headerContainer}>
-      <Text style={styles.header}>YOUR PRODUCTS</Text>
+      <Text style={styles.header}>YOUR FAVORITES</Text>
     </View>
   );
 
@@ -97,7 +95,6 @@ class FavoritesView extends Component {
 
   render() {
     let { items } = this.props;
-    let { slideUp } = this.state;
 
     return (
       <View style={{ paddingTop: hp('13%') }}>
@@ -136,7 +133,7 @@ const styles = StyleSheet.create({
   },
   nameContainer: {
     flex: 4,
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     height: hp('15%'),
     paddingLeft: wp('2%'),
     paddingRight: wp('1%')
@@ -178,9 +175,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    // items: state.apiReducer.cart,
-    // total: state.uiReducer.totalPrice,
-    // product: state.apiReducer.apiResult
+    items: state.apiReducer.favorites
   };
 };
 

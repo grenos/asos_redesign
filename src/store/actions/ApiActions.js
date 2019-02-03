@@ -184,27 +184,24 @@ export const addToCart = (
   }
 });
 
-export const deleteCartItem = (id) => ({
+export const deleteCartItem = id => ({
   type: 'DELETE_CART_ITEM',
   payload: id
-})
+});
 
-
-export const addToFavorites = (
-  id,
-  image = null,
+export const addToFavorites = ({
+  text = null,
   name = null,
-  size = null,
-  price = null,
-  qty = null
-) => ({
-  type: 'ADD_TO_CART',
+  url = null,
+  id = null,
+  imageUrl = null
+}) => ({
+  type: 'ADD_TO_FAVORITES',
   payload: {
     id,
-    image,
+    imageUrl,
     name,
-    size,
-    price,
-    qty
+    text,
+    url
   }
 });
