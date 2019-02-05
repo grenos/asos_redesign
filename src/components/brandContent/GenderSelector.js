@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ImageBackground
+} from 'react-native';
 
 //!redux
 import { connect } from 'react-redux';
@@ -13,6 +19,7 @@ import {
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { iOSUIKit } from 'react-native-typography';
+import images from '../../assets/img/index';
 
 const GenderSelector = props => {
   const handleNavigation = id => {
@@ -25,6 +32,35 @@ const GenderSelector = props => {
     }
   };
 
+  let genderBG = null;
+  if (props.genderSelected === 'women') {
+    genderBG = (
+      <ImageBackground
+        source={images.woman}
+        style={[styles.img, styles.genderContainer]}
+        resizeMode="cover"
+      >
+        <Text style={[styles.textWhite]}>
+          {props.genderSelected.toUpperCase()}
+        </Text>
+      </ImageBackground>
+    );
+  }
+
+  if (props.genderSelected === 'men') {
+    genderBG = (
+      <ImageBackground
+        source={images.man}
+        style={[styles.img, styles.genderContainer]}
+        resizeMode="cover"
+      >
+        <Text style={[styles.textWhite]}>
+          {props.genderSelected.toUpperCase()}
+        </Text>
+      </ImageBackground>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -34,28 +70,22 @@ const GenderSelector = props => {
         ]}
         onPress={() => handleNavigation(props.genders[0].id)}
       >
-        <Text
-          style={[
-            styles.text,
-            props.genderSelected == 'women' ? styles.underline : null
-          ]}
-        >
-          Woman
-        </Text>
+        {props.genderSelected === 'women' ? (
+          genderBG
+        ) : (
+          <Text style={[styles.text]}>WOMAN</Text>
+        )}
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.genderContainer}
         onPress={() => handleNavigation(props.genders[1].id)}
       >
-        <Text
-          style={[
-            styles.text,
-            props.genderSelected == 'men' ? styles.underline : null
-          ]}
-        >
-          Man
-        </Text>
+        {props.genderSelected === 'men' ? (
+          genderBG
+        ) : (
+          <Text style={[styles.text]}>MAN</Text>
+        )}
       </TouchableOpacity>
     </View>
   );
@@ -66,7 +96,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: hp('7%'),
     borderWidth: 1,
-    borderColor: '#F5F5F5'
+    borderColor: '#F5F5F5',
+    borderLeftWidth: 0
   },
   genderContainer: {
     flex: 1,
@@ -74,10 +105,16 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    ...iOSUIKit.title3
+    ...iOSUIKit.title3,
+    color: '#000'
   },
-  underline: {
-    textDecorationLine: 'underline'
+  img: {
+    width: '100%',
+    height: '100%'
+  },
+  textWhite: {
+    ...iOSUIKit.title3,
+    color: '#fff'
   }
 });
 

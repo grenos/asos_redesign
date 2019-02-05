@@ -112,6 +112,11 @@ const reducer = (state = API_STATE, action) => {
           }
         ]
       };
+    case 'DELETE_FAVORITE_ITEM':
+      return {
+        ...state,
+        favorites: state.favorites.filter(item => action.payload !== item.id)
+      };
 
     default:
       return state;

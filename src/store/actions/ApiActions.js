@@ -205,3 +205,8 @@ export const addToFavorites = ({
     url
   }
 });
+
+export const deleteFavoriteItem = id => ({
+  type: 'DELETE_FAVORITE_ITEM',
+  payload: id
+});

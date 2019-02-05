@@ -87,7 +87,8 @@ const styles = StyleSheet.create({
     paddingVertical: hp('2%')
   },
   header: {
-    ...iOSUIKit.title3Emphasized
+    ...iOSUIKit.title3Emphasized,
+    marginLeft: wp('2.5%')
   },
   brandContainer: {
     padding: '3%'

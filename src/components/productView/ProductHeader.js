@@ -29,6 +29,7 @@ class ProductHeader extends Component {
     // there are problems with the similar item slider and
     // redux store. For now functionality remains as is.
     this.props.navigation.navigate('Products');
+    // this.props.navigation.goBack();
 
     this.props.videoTrue();
     this.props.clearSimilar();

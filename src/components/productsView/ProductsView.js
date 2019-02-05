@@ -91,11 +91,25 @@ class ProductsView extends Component {
   };
 
   onAddToFavorite = ({ item }) => {
-    let { text } = item.price.current;
-    let { name, url, id } = item;
-    let imageUrl = item.images[0].url;
 
-    this.props.addFavorite({ text, name, url, id, imageUrl });
+    let { favorites } = this.props;
+
+
+    let itemIds = [];
+    favorites.map(items => {
+      itemIds.push(items.id);
+    });
+
+
+    if (itemIds.includes(item.id)) {
+      return null
+
+    } else {
+      let { text } = item.price.current;
+      let { name, url, id } = item;
+      let imageUrl = item.images[0].url;
+      this.props.addFavorite({ text, name, url, id, imageUrl });
+    }
   };
 
   _productSelected = id => {
@@ -196,7 +210,8 @@ const mapStateToProps = state => {
   return {
     apiResults: state.apiReducer.apiResults,
     categoryName: state.apiReducer.selectedCategoryName,
-    searchName: state.apiReducer.searchInput
+    searchName: state.apiReducer.searchInput,
+    favorites: state.apiReducer.favorites
   };
 };
 

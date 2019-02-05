@@ -12,7 +12,7 @@ import {
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import {
-  deleteCartItem,
+  deleteFavoriteItem,
   searchProduct,
   clearStateApiResult
 } from '../../store/actions/ApiActions';
@@ -36,7 +36,6 @@ class FavoritesView extends Component {
   }
 
   onDeleteItem = ({ item }) => {
-    // make another action
     this.props.deleteItem(item.id);
   };
 
@@ -181,9 +180,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispacth => {
   return {
-    // deleteItem: id => dispacth(deleteCartItem(id)),
+    deleteItem: id => dispacth(deleteFavoriteItem(id)),
     // getTotal: price => dispacth(getNewTotalPrice(price)),
-    // getProduct: id => dispacth(searchProduct(id)),
+    getProduct: id => dispacth(searchProduct(id))
     // clearProduct: () => dispacth(clearStateApiResult()),
     // clearSize: () => dispacth(clearSize())
   };
