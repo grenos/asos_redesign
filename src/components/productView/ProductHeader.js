@@ -26,10 +26,12 @@ class ProductHeader extends Component {
 
   onBackButton = () => {
     //this needs to be goBack but
-    // there are problems with the similar item slider and
-    // redux store. For now functionality remains as is.
-    this.props.navigation.navigate('Products');
-    // this.props.navigation.goBack();
+  	// on click of similar item slider just change the contents of product page
+		// and does not act like a new screen is loaded/pushed
+		// so i used push as "push new page on top on the stack"
+		// For now functionality remains as is.
+
+		this.props.navigation.navigate('Products');
 
     this.props.videoTrue();
     this.props.clearSimilar();
@@ -162,7 +164,9 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     isVideo: state.uiReducer.isVideo,
-    apiResult: state.apiReducer.apiResult
+		apiResult: state.apiReducer.apiResult,
+    apiResults: state.apiReducer.apiResults,
+		favorites: state.apiReducer.favorites
   };
 };
 

@@ -92,18 +92,18 @@ class ProductsView extends Component {
 
   onAddToFavorite = ({ item }) => {
 
+		// get item ids from items already saved
     let { favorites } = this.props;
-
-
     let itemIds = [];
     favorites.map(items => {
       itemIds.push(items.id);
     });
 
 
+		// check if item is already added to favorites
+		// add to favorites if not yet added
     if (itemIds.includes(item.id)) {
       return null
-
     } else {
       let { text } = item.price.current;
       let { name, url, id } = item;
